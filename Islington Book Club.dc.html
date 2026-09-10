@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <title>Islington Book Club</title>
-<meta name="description" content="A book club in Islington, London. One book a month, the last Sunday at four, in whoever's living room can take us.">
+<meta name="description" content="A book club in Islington, London. One book a month, the last Monday at four, in whoever's living room can take us.">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="icon" href="favicon.png" sizes="512x512">
 <link rel="apple-touch-icon" href="favicon-180.png">
@@ -18,11 +18,11 @@
 <script src="./image-slot.js"></script>
 <style>
   body { margin: 0; }
-  a { color: var(--color-accent); }
+  a { color: var(--color-accent-700); }
   a:hover { color: var(--color-accent-700); }
   .lnk { background: none; border: 0; font: inherit; cursor: pointer; padding: 0; color: inherit; text-align: left; }
-  .lnk:hover { color: var(--color-accent); }
-  .rule-link { border-bottom: 1px solid var(--color-accent); padding-bottom: 2px; color: var(--color-accent); font-size: 13px; }
+  .lnk:hover { color: var(--color-accent-700); }
+  .rule-link { border-bottom: 1px solid var(--color-accent-700); padding-bottom: 2px; color: var(--color-accent-700); font-size: 13px; }
   @keyframes ibc-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .ticker-track { animation: ibc-ticker 60s linear infinite; }
   .ticker-track:hover { animation-play-state: paused; }
@@ -42,11 +42,9 @@
     <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
       <nav style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; font-size: 14px;">
         <button class="lnk" onClick="{{ goHome }}" style="color: {{ cHome }};">Home</button>
-        <button class="lnk" onClick="{{ goAbout }}" style="color: {{ cAbout }};">The Club</button>
-        <button class="lnk" onClick="{{ goReading }}" style="color: {{ cReading }};">Reading</button>
         <button class="lnk" onClick="{{ goEvents }}" style="color: {{ cEvents }};">Events</button>
         <button class="lnk" onClick="{{ goGallery }}" style="color: {{ cGallery }};">Gallery</button>
-        <button class="lnk" onClick="{{ goVote }}" style="color: {{ cVote }};">Vote</button>
+        <button class="lnk" onClick="{{ goJoin }}" style="color: {{ cJoin }};">Join</button>
         <button class="lnk" onClick="{{ goAdmin }}" style="color: {{ cAdmin }}; opacity: 0.55; font-size: 12px;">Housekeeping</button>
       </nav>
     </sc-if>
@@ -63,11 +61,9 @@
     <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
       <nav id="ibc-menu" style="flex: 1 0 100%; display: flex; flex-direction: column; border-top: 1px solid var(--color-divider); margin-top: 12px;">
         <button class="lnk" onClick="{{ goHome }}" style="color: {{ cHome }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">Home</button>
-        <button class="lnk" onClick="{{ goAbout }}" style="color: {{ cAbout }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">The Club</button>
-        <button class="lnk" onClick="{{ goReading }}" style="color: {{ cReading }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">Reading</button>
         <button class="lnk" onClick="{{ goEvents }}" style="color: {{ cEvents }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">Events</button>
         <button class="lnk" onClick="{{ goGallery }}" style="color: {{ cGallery }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">Gallery</button>
-        <button class="lnk" onClick="{{ goVote }}" style="color: {{ cVote }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">Vote</button>
+        <button class="lnk" onClick="{{ goJoin }}" style="color: {{ cJoin }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">Join</button>
         <button class="lnk" onClick="{{ goAdmin }}" style="color: {{ cAdmin }}; padding: 13px 2px; opacity: 0.6; font-size: 13px;">Housekeeping</button>
       </nav>
     </sc-if>
@@ -83,21 +79,48 @@
             <div style="position: absolute; inset: 0; background: rgba(20,17,15,0.7);"></div>
           </sc-if>
           <div style="position: relative; padding: clamp(56px, 9vw, 104px) clamp(24px, 6vw, 68px); text-align: center; color: #f3f2f2;">
-            <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent-400);">Islington, London &middot; Meeting since 2019</div>
-            <h1 style="font-weight: 400; font-size: clamp(40px, 7vw, 78px); line-height: 1.05; margin: 22px auto 0; max-width: 20ch;">A warm room, a hard book, and something on the stove.</h1>
-            <div style="width: 96px; height: 1px; background: var(--color-accent); margin: 32px auto;"></div>
-            <p style="max-width: 56ch; font-size: 17px; line-height: 1.75; color: #d9d5cf; margin: 0 auto;">Last Sunday of the month, four o'clock, whoever's living room can take us. One book, two hours, and a rule we have never once kept: finish it before you arrive.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; justify-content: center;">
-              <button class="btn btn-primary" onClick="{{ goReading }}" style="color: var(--color-accent-300); border-color: var(--color-accent-300);">What we're reading</button>
-              <button class="btn btn-secondary" onClick="{{ goVote }}" style="color: #f3f2f2; border-color: rgba(243,242,242,0.32);">Vote on next month</button>
+            <h1 style="font-weight: 400; font-size: clamp(38px, 6.6vw, 76px); line-height: 1.06; margin: 0 auto; max-width: 16ch;">Islington Book Club</h1>
+            <div style="font-size: 13px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--color-accent-400); margin-top: 14px;">Founded 2008</div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; margin-top: 30px; font-family: var(--font-heading); font-style: italic; font-size: clamp(24px, 3.4vw, 38px); line-height: 1.35; color: #efe9dd;">
+              <span style="padding: 0 clamp(16px, 3vw, 32px);">To Read</span>
+              <span style="width: 1px; background: rgba(200,145,63,0.55);"></span>
+              <span style="padding: 0 clamp(16px, 3vw, 32px);">To Laugh</span>
+              <span style="width: 1px; background: rgba(200,145,63,0.55);"></span>
+              <span style="padding: 0 clamp(16px, 3vw, 32px);">To Drink</span>
             </div>
+            <p style="max-width: 62ch; font-size: 17px; line-height: 1.8; color: #d9d5cf; margin: 32px auto 0;">Join us on the last Monday of the month in Islington for drinking, eating, and fun, lively book discussions with a friendly group of adults from all walks of life. Running continuously since 2008, we supplement our usual meetings with a variety of social activities, including an annual literary-themed pub crawl.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; justify-content: center;">
+              <button class="btn btn-primary" onClick="{{ goEvents }}" style="color: var(--color-accent-300); border-color: var(--color-accent-300);">What we're reading</button>
+              <button class="btn btn-secondary" onClick="{{ goJoin }}" style="color: #f3f2f2; border-color: rgba(243,242,242,0.32);">Join the club</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(26px, 4vw, 54px); align-items: start; padding: clamp(40px, 6vw, 72px) 0 clamp(8px, 2vw, 16px);">
+          <div style="display: flex; flex-direction: column; gap: clamp(14px, 2vw, 22px); align-items: center;">
+            <div class="plate" style="width: 100%; aspect-ratio: 4 / 3; background: url('images/club-group.jpeg') center / cover no-repeat;"></div>
+            <div class="plate" style="width: min(72%, 340px); aspect-ratio: 3 / 4; background: url('images/club-dinner.jpeg') center / cover no-repeat;"></div>
+          </div>
+          <div>
+            <h6 style="color: var(--color-accent-700); margin-bottom: 12px;">Who we are</h6>
+            <p style="font-size: 15px; line-height: 1.85; margin: 0 0 14px;">Running strong since 2008, Islington Book Club is currently led by Rich P, Sam B, Helen M, Susan B, and Sam V. Our members are adults of all ages and backgrounds—whether you're based in North London or coming from further afield, you'll fit right in!</p>
+            <p style="font-size: 15px; line-height: 1.85; margin: 0 0 22px;">Beyond our monthly book chats, we host year-round socials, including a Christmas dinner, a summer outing, and our famous literary-themed pub crawl.</p>
+
+            <h6 style="color: var(--color-accent-700); margin-bottom: 10px;">Membership &amp; joining</h6>
+            <p style="font-size: 15px; line-height: 1.85; margin: 0 0 14px;">We are strictly not-for-profit. A nominal £8 annual subscription covers our website hosting and annual prizes, keeping all regular meetings completely free for active members.</p>
+            <div style="display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider); padding: 16px 0; margin-bottom: 20px;">
+              <p style="font-size: 14px; line-height: 1.7; margin: 0;"><strong style="font-weight: 500;">PayPal</strong> — send £8 to rsvpickup@hotmail.com with the reference &lsquo;Book Club Subs&rsquo;.</p>
+              <p style="font-size: 14px; line-height: 1.7; margin: 0;"><strong style="font-weight: 500;">Bank transfer</strong> — no PayPal? Just reach out to Rich for his details.</p>
+            </div>
+            <p style="font-size: 15px; line-height: 1.85; margin: 0 0 18px;">Ready to dive in? Click the Join us button to get started. We hope to see you soon!</p>
+            <button class="btn btn-primary" onClick="{{ goJoin }}" style="white-space: nowrap; width: fit-content;">Join us</button>
           </div>
         </div>
 
         <div style="margin: 0 calc(clamp(18px, 5vw, 40px) * -1); padding: clamp(32px, 5vw, 48px) 0; overflow: hidden;">
           <div class="ticker-track" style="display: flex; width: max-content; gap: 0;">
             <sc-for list="{{ coverLoop }}" as="b" hint-placeholder-count="10">
-              <button class="lnk" onClick="{{ goReading }}" style="flex: 0 0 auto; width: clamp(130px, 18vw, 168px); padding-right: clamp(16px, 3vw, 28px); box-sizing: content-box;">
+              <button class="lnk" onClick="{{ goEvents }}" style="flex: 0 0 auto; width: clamp(130px, 18vw, 168px); padding-right: clamp(16px, 3vw, 28px); box-sizing: content-box;">
                 <div class="plate" style="aspect-ratio: 2 / 3; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; background: {{ b.cover }};">
                   <span style="font-family: var(--font-heading); font-size: 18px; line-height: 1.15; color: #f6f3ee;">{{ b.title }}</span>
                   <span style="font-size: 11px; color: #d8d2c8; margin-top: 4px;">{{ b.author }}</span>
@@ -107,87 +130,124 @@
             </sc-for>
           </div>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--color-divider); border-top: 1px solid var(--color-divider);">
-          <div style="background: var(--color-bg); padding: 28px clamp(18px, 3vw, 26px);">
-            <h6 style="color: var(--color-accent); margin-bottom: 10px;">Reading now</h6>
-            <h3 style="font-weight: 400; font-size: 26px; margin-bottom: 6px;">{{ current.title }}</h3>
-            <p class="text-muted" style="font-size: 14px; margin: 0 0 14px;">{{ current.author }}</p>
-            <p style="font-size: 14px; line-height: 1.75; margin: 0 0 16px;">{{ current.blurb }}</p>
-            <button class="lnk rule-link" onClick="{{ goReading }}">The shelf so far &rarr;</button>
-          </div>
-          <div style="background: var(--color-bg); padding: 28px clamp(18px, 3vw, 26px);">
-            <h6 style="color: var(--color-accent); margin-bottom: 10px;">Next gathering</h6>
-            <h3 style="font-weight: 400; font-size: 26px; margin-bottom: 6px;">{{ nextEvent.title }}</h3>
-            <p class="text-muted" style="font-size: 14px; margin: 0 0 14px; font-variant-numeric: tabular-nums;">{{ nextEventLine }}</p>
-            <p style="font-size: 14px; line-height: 1.75; margin: 0 0 16px;">{{ nextEvent.note }}</p>
-            <button class="lnk rule-link" onClick="{{ goEvents }}">All events &rarr;</button>
-          </div>
-          <div style="background: var(--color-bg); padding: 28px clamp(18px, 3vw, 26px);">
-            <h6 style="color: var(--color-accent); margin-bottom: 10px;">On the ballot</h6>
-            <h3 style="font-weight: 400; font-size: 26px; margin-bottom: 6px;">{{ poll.month }}</h3>
-            <p class="text-muted" style="font-size: 14px; margin: 0 0 14px; font-variant-numeric: tabular-nums;">Closes {{ poll.closes }}</p>
-            <p style="font-size: 14px; line-height: 1.75; margin: 0 0 16px;">Four nominees, one vote each. Ties go to whoever is hosting, which is not a fair system and we like it that way.</p>
-            <button class="lnk rule-link" onClick="{{ goVote }}">Cast your vote &rarr;</button>
-          </div>
-        </div>
-
-
       </section>
     </sc-if>
 
-    <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
-      <section style="padding-top: clamp(40px, 6vw, 72px);">
-        <h6 style="color: var(--color-accent);">The club</h6>
-        <h1 style="font-weight: 400; font-size: clamp(36px, 6vw, 60px); max-width: 18ch; margin-bottom: 30px;">Fourteen people who mostly finish the book</h1>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: clamp(26px, 5vw, 52px); align-items: start;">
-          <div style="text-align: justify; hyphens: auto; font-size: 15px; line-height: 1.85;">
-            <p>We started in a flat off Upper Street in the winter of 2019, when three of us discovered we had all been reading the same novel separately and resenting it privately. It seemed better to resent it together.</p>
-            <p>Since then we have met every month but two — one for a wedding, one for a burst pipe. We are teachers and nurses and one locksmith; the youngest of us is twenty-three and the oldest will not say.</p>
+    <sc-if value="{{ isEvents }}" hint-placeholder-val="{{ false }}">
+      <sc-if value="{{ memberLocked }}" hint-placeholder-val="{{ true }}">
+        <section style="padding: clamp(56px, 9vw, 110px) 0; max-width: 44ch; margin: 0 auto; text-align: center;">
+          <h6 style="color: var(--color-accent-700);">Members only</h6>
+          <h1 style="font-weight: 400; font-size: clamp(30px, 5vw, 46px); margin: 10px 0 12px;">The diary is behind a password</h1>
+          <p class="text-muted" style="font-size: 15px; line-height: 1.8; margin: 0 0 24px;">Meeting dates, addresses and what we are reading are for members. Ask any of the organisers for the password, or join the club.</p>
+          <form onSubmit="{{ onMemberUnlock }}" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+            <input class="input" type="password" value="{{ memberPass }}" onChange="{{ onMemberPass }}" placeholder="Password" aria-label="Members password" style="flex: 1 1 200px; min-width: 0; max-width: 260px;">
+            <button class="btn btn-primary" type="submit" style="white-space: nowrap;">Come in</button>
+          </form>
+          <p style="font-size: 13px; color: var(--color-accent-700); min-height: 18px; margin: 12px 0 0;">{{ memberError }}</p>
+          <button class="lnk rule-link" type="button" onClick="{{ goJoin }}" style="margin-top: 18px;">Not a member yet? Join us →</button>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ memberUnlocked }}" hint-placeholder-val="{{ false }}">
+        <section style="padding-top: clamp(40px, 6vw, 72px);">
+        <h6 style="color: var(--color-accent-700);">Diary</h6>
+        <h1 style="font-weight: 400; font-size: clamp(36px, 6vw, 60px); margin-bottom: 30px;">Coming up</h1>
+
+        <sc-if value="{{ noFeatured }}" hint-placeholder-val="{{ false }}">
+          <p class="text-muted" style="font-size: 15px; padding: 26px 0; border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider);">Nothing in the diary just yet. The next date goes up as soon as someone volunteers a living room.</p>
+        </sc-if>
+
+        <sc-for list="{{ upcomingCards }}" as="e" hint-placeholder-count="1">
+          <div style="border-top: 1px solid var(--color-divider); padding-top: clamp(26px, 4vw, 40px); margin-bottom: clamp(34px, 5vw, 56px);">
+            <article style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(24px, 4vw, 52px); align-items: start;">
+              <div>
+                <div style="font-family: var(--font-heading); font-size: clamp(24px, 3.4vw, 34px); font-variant-numeric: tabular-nums; color: var(--color-accent-700); margin-bottom: 10px;">{{ e.date }}</div>
+                <h2 style="font-weight: 400; font-size: clamp(28px, 4vw, 40px); line-height: 1.12; margin: 0 0 12px;">{{ e.title }}</h2>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                  <span class="tag tag-accent" style="font-variant-numeric: tabular-nums;">{{ e.time }}</span>
+                  <span class="tag tag-outline">{{ e.where }}</span>
+                </div>
+                <p style="text-align: justify; hyphens: auto; font-size: 15px; line-height: 1.85; max-width: 58ch; margin: 0;">{{ e.note }}</p>
+              </div>
+              <sc-if value="{{ e.hasImage }}" hint-placeholder-val="{{ true }}">
+                <div class="plate" style="aspect-ratio: 4 / 3; background: url({{ e.imageCss }}) center / cover no-repeat;"></div>
+              </sc-if>
+            </article>
+
+            <div style="border: 1px solid var(--color-accent-300); padding: clamp(18px, 3vw, 26px); margin-top: clamp(20px, 3vw, 30px); max-width: 72ch;">
+              <h3 style="font-weight: 400; font-size: 20px; margin: 0 0 4px;">Are you coming?</h3>
+              <p class="text-muted" style="font-size: 13px; margin: 0 0 16px;">So the host knows how many chairs. Answering again changes your answer.</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end;">
+                <div class="field" style="flex: 1 1 220px; min-width: 0;">
+                  <label for="{{ e.idName }}">Your name</label>
+                  <input class="input" id="{{ e.idName }}" value="{{ e.name }}" onChange="{{ e.onName }}" placeholder="Required">
+                </div>
+                <button class="btn btn-primary" type="button" onClick="{{ e.onYes }}" style="white-space: nowrap;">I'm coming</button>
+                <button class="btn btn-secondary" type="button" onClick="{{ e.onNo }}" style="white-space: nowrap;">Can't make it</button>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px;">
+                <sc-if value="{{ e.mineYes }}" hint-placeholder-val="{{ false }}">
+                  <span class="tag tag-accent">You're on the list</span>
+                </sc-if>
+                <sc-if value="{{ e.mineNo }}" hint-placeholder-val="{{ false }}">
+                  <span class="tag tag-neutral">You said no this time</span>
+                </sc-if>
+              </div>
+              <p style="font-size: 13px; color: var(--color-accent-700); min-height: 18px; margin: 10px 0 0;">{{ e.note2 }}</p>
+
+              <div style="display: flex; flex-wrap: wrap; gap: clamp(14px, 3vw, 32px); align-items: baseline; border-top: 1px solid var(--color-divider); margin-top: 16px; padding-top: 16px;">
+                <div style="display: flex; align-items: baseline; gap: 10px;">
+                  <span style="font-family: var(--font-heading); font-size: clamp(30px, 5vw, 44px); line-height: 1; color: var(--color-accent-700); font-variant-numeric: tabular-nums;">{{ e.goingCount }}</span>
+                  <span class="text-muted" style="font-size: 13px;">{{ e.goingLine }}</span>
+                </div>
+                <span class="text-muted" style="font-size: 13px; font-variant-numeric: tabular-nums;">{{ e.notLine }}</span>
+              </div>
+
+              <sc-if value="{{ e.hasGoing }}" hint-placeholder-val="{{ true }}">
+                <details style="margin-top: 12px;">
+                  <summary style="cursor: pointer; font-size: 13px; color: var(--color-accent-700);">Who's coming</summary>
+                  <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;">
+                    <sc-for list="{{ e.goingNames }}" as="r" hint-placeholder-count="4">
+                      <span class="tag tag-outline">{{ r.name }}</span>
+                    </sc-for>
+                  </div>
+                </details>
+              </sc-if>
+              <sc-if value="{{ e.hasNot }}" hint-placeholder-val="{{ false }}">
+                <details style="margin-top: 8px;">
+                  <summary style="cursor: pointer; font-size: 13px; color: var(--color-accent-700);">Sending apologies</summary>
+                  <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;">
+                    <sc-for list="{{ e.notNames }}" as="r" hint-placeholder-count="2">
+                      <span class="tag tag-neutral">{{ r.name }}</span>
+                    </sc-for>
+                  </div>
+                </details>
+              </sc-if>
+            </div>
           </div>
-          <div style="text-align: justify; hyphens: auto; font-size: 15px; line-height: 1.85;">
-            <p>One book a month, chosen by vote from four nominees any member may put forward. Literary fiction is the centre of gravity, but we have gone out to memoir, nature writing and, once, an entire book about concrete.</p>
-            <p>Nobody is quizzed. Nobody is shamed for skimming. There is always soup in November and always too much cheese in December.</p>
-          </div>
+        </sc-for>
+
+        <h2 style="font-weight: 400; margin: clamp(44px, 6vw, 68px) 0 18px;">Past</h2>
+        <div style="border-top: 1px solid var(--color-divider);">
+          <sc-for list="{{ past }}" as="e" hint-placeholder-count="4">
+            <div style="display: grid; grid-template-columns: clamp(84px, 22vw, 150px) minmax(0, 1fr); gap: clamp(14px, 4vw, 40px); padding: 18px 0; border-bottom: 1px solid var(--color-divider); opacity: 0.72;">
+              <div style="font-size: 14px; font-variant-numeric: tabular-nums;" class="text-muted">{{ e.date }}</div>
+              <div style="display: flex; gap: 14px; align-items: flex-start;">
+                <sc-if value="{{ e.image }}" hint-placeholder-val="{{ false }}">
+                  <div class="plate" style="flex: 0 0 auto; width: 72px; height: 54px; background: url({{ e.imageCss }}) center / cover no-repeat;"></div>
+                </sc-if>
+                <div style="min-width: 0;">
+                  <div style="font-family: var(--font-heading); font-size: 19px;">{{ e.title }}</div>
+                  <p class="text-muted" style="font-size: 13px; margin: 2px 0 0;">{{ e.where }}</p>
+                </div>
+              </div>
+            </div>
+          </sc-for>
         </div>
 
-        <hr class="hr" style="margin: clamp(40px, 6vw, 60px) 0;">
+          <hr class="hr" style="margin: clamp(52px, 7vw, 80px) 0 26px;">
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 22px;">
-          <div class="card">
-            <div class="card-kicker">When</div>
-            <div class="card-title" style="font-weight: 400;">Last Sunday, 4pm</div>
-            <p class="card-body">Two hours on the book, then an hour on everything else.</p>
-          </div>
-          <div class="card">
-            <div class="card-kicker">Where</div>
-            <div class="card-title" style="font-weight: 400;">Rotating living rooms</div>
-            <p class="card-body">The host picks the snacks and settles ties in the vote.</p>
-          </div>
-          <div class="card">
-            <div class="card-kicker">Joining</div>
-            <div class="card-title" style="font-weight: 400;">Come once and see</div>
-            <p class="card-body">Write to us and we'll send the address for the next one.</p>
-          </div>
-          <div class="card">
-            <div class="card-kicker">The one rule</div>
-            <div class="card-title" style="font-weight: 400;">No spoilers past chapter one</div>
-            <p class="card-body">Until everyone has had their first go at the book.</p>
-          </div>
-        </div>
-
-        <div style="margin-top: clamp(40px, 6vw, 60px); border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider); padding: 36px 0; display: flex; flex-wrap: wrap; gap: 26px; align-items: center; justify-content: space-between;">
-          <div>
-            <h3 style="font-weight: 400; margin-bottom: 6px;">A chair by the fire</h3>
-            <p class="text-muted" style="font-size: 14px; margin: 0;">We take two or three new readers a year. No form, just an email.</p>
-          </div>
-          <a class="btn btn-primary" href="mailto:hello@islingtonbookclub.uk">hello@islingtonbookclub.uk</a>
-        </div>
-      </section>
-    </sc-if>
-
-    <sc-if value="{{ isReading }}" hint-placeholder-val="{{ false }}">
-      <section style="padding-top: clamp(40px, 6vw, 72px);">
-        <h6 style="color: var(--color-accent);">This month</h6>
+        <h6 style="color: var(--color-accent-700);">This month</h6>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(26px, 5vw, 52px); align-items: start; margin-top: 16px;">
           <div class="plate" style="width: 100%; max-width: 260px; aspect-ratio: 2 / 3; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; background: {{ current.cover }};">
             <span style="font-family: var(--font-heading); font-size: 26px; line-height: 1.1; color: #f6f3ee;">{{ current.title }}</span>
@@ -198,7 +258,7 @@
             <p class="text-muted" style="font-size: 16px; margin-bottom: 16px;">{{ currentMeta }}</p>
             <p style="text-align: justify; hyphens: auto; font-size: 15px; line-height: 1.85; max-width: 60ch;">{{ current.blurb }}</p>
             <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 26px;">
-              <span class="tag tag-accent" style="font-variant-numeric: tabular-nums;">Discussed {{ current.meeting }}</span>
+              <span class="tag tag-accent" style="font-variant-numeric: tabular-nums;">Meeting on&nbsp;{{ current.meeting }}</span>
               <sc-if value="{{ currentWhere }}" hint-placeholder-val="{{ false }}">
                 <span class="tag tag-outline">{{ currentWhere }}</span>
               </sc-if>
@@ -237,7 +297,7 @@
                 <td style="font-family: var(--font-heading); font-size: 17px;">{{ b.title }}</td>
                 <td class="text-muted">{{ b.author }}</td>
                 <td style="text-align: right; white-space: nowrap;">
-                  <span style="color: var(--color-accent); letter-spacing: 2px;">{{ b.stars }}</span>
+                  <span style="color: var(--color-accent-700); letter-spacing: 2px;">{{ b.stars }}</span>
                   <span class="text-muted" style="font-size: 11px; margin-left: 6px; font-variant-numeric: tabular-nums;">{{ b.rating }}</span>
                 </td>
               </tr>
@@ -245,125 +305,62 @@
           </tbody>
         </table></div>
         <p class="text-muted" style="font-size: 12px; margin-top: 12px;">Ratings are the average of members' marks out of five, collected the night we meet.</p>
-      </section>
-    </sc-if>
 
-    <sc-if value="{{ isEvents }}" hint-placeholder-val="{{ false }}">
-      <section style="padding-top: clamp(40px, 6vw, 72px);">
-        <h6 style="color: var(--color-accent);">Diary</h6>
-        <h1 style="font-weight: 400; font-size: clamp(36px, 6vw, 60px); margin-bottom: 30px;">Upcoming</h1>
-        <div style="border-top: 1px solid var(--color-divider);">
-          <sc-for list="{{ upcoming }}" as="e" hint-placeholder-count="3">
-            <div style="display: grid; grid-template-columns: clamp(84px, 22vw, 150px) minmax(0, 1fr); gap: clamp(14px, 4vw, 40px); padding: 26px 0; border-bottom: 1px solid var(--color-divider);">
-              <div style="font-family: var(--font-heading); font-size: 19px; font-variant-numeric: tabular-nums; color: var(--color-accent-700);">{{ e.date }}</div>
-              <div>
-                <h3 style="font-weight: 400; font-size: 24px; margin-bottom: 4px;">{{ e.title }}</h3>
-                <p class="text-muted" style="font-size: 13px; margin-bottom: 10px;">{{ e.where }} &middot; {{ e.time }}</p>
-                <p style="font-size: 14px; line-height: 1.75; margin: 0; max-width: 62ch;">{{ e.note }}</p>
-                <sc-if value="{{ e.image }}" hint-placeholder-val="{{ false }}">
-                  <div class="plate" style="margin-top: 16px; max-width: 340px; aspect-ratio: 3 / 2; background: url({{ e.imageCss }}) center / cover no-repeat;"></div>
-                </sc-if>
-              </div>
-            </div>
-          </sc-for>
-        </div>
-
-        <h2 style="font-weight: 400; margin: clamp(44px, 6vw, 68px) 0 18px;">Past</h2>
-        <div style="border-top: 1px solid var(--color-divider);">
-          <sc-for list="{{ past }}" as="e" hint-placeholder-count="4">
-            <div style="display: grid; grid-template-columns: clamp(84px, 22vw, 150px) minmax(0, 1fr); gap: clamp(14px, 4vw, 40px); padding: 18px 0; border-bottom: 1px solid var(--color-divider); opacity: 0.72;">
-              <div style="font-size: 14px; font-variant-numeric: tabular-nums;" class="text-muted">{{ e.date }}</div>
-              <div style="display: flex; gap: 14px; align-items: flex-start;">
-                <sc-if value="{{ e.image }}" hint-placeholder-val="{{ false }}">
-                  <div class="plate" style="flex: 0 0 auto; width: 72px; height: 54px; background: url({{ e.imageCss }}) center / cover no-repeat;"></div>
-                </sc-if>
-                <div style="min-width: 0;">
-                  <div style="font-family: var(--font-heading); font-size: 19px;">{{ e.title }}</div>
-                  <p class="text-muted" style="font-size: 13px; margin: 2px 0 0;">{{ e.where }}</p>
-                </div>
-              </div>
-            </div>
-          </sc-for>
-        </div>
-      </section>
+        </section>
+      </sc-if>
     </sc-if>
 
     <sc-if value="{{ isGallery }}" hint-placeholder-val="{{ false }}">
       <section style="padding-top: clamp(40px, 6vw, 72px);">
-        <h6 style="color: var(--color-accent);">Gallery</h6>
-        <h1 style="font-weight: 400; font-size: clamp(36px, 6vw, 60px); max-width: 16ch; margin-bottom: 12px;">Rooms we have argued in</h1>
-        <p class="text-muted" style="font-size: 14px; max-width: 60ch; margin-bottom: 32px;">Every photograph attached to an event appears here automatically, published for everyone. Add them under Housekeeping when you add the event.</p>
-        <sc-if value="{{ hasGallery }}" hint-placeholder-val="{{ false }}">
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 26px; margin-bottom: clamp(44px, 6vw, 68px);">
-            <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="3">
-              <figure>
-                <div class="plate" style="aspect-ratio: 4 / 3; background: url({{ g.imageCss }}) center / cover no-repeat;"></div>
-                <figcaption>{{ g.caption }}</figcaption>
-              </figure>
-            </sc-for>
-          </div>
+        <h6 style="color: var(--color-accent-700);">The album</h6>
+        <h1 style="font-weight: 400; font-size: clamp(36px, 6vw, 60px); max-width: 16ch; margin-bottom: 12px;">Photographs from past events</h1>
+        <p class="text-muted" style="font-size: 15px; max-width: 60ch; margin-bottom: clamp(28px, 4vw, 40px);">Pub crawls, Christmas dinners, summer outings, and the meetings in between.</p>
+
+        <sc-if value="{{ noPhotos }}" hint-placeholder-val="{{ false }}">
+          <p class="text-muted" style="font-size: 15px; padding: 26px 0; border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider);">No photographs up yet. They go in through Housekeeping.</p>
         </sc-if>
-        <sc-if value="{{ noGallery }}" hint-placeholder-val="{{ true }}">
-          <p style="font-size: 14px; max-width: 60ch; margin-bottom: clamp(40px, 6vw, 60px); padding: 18px 20px; border: 1px solid var(--color-divider);">No event photographs published yet. Attach one to an event under Housekeeping and it will appear here for everyone.</p>
-        </sc-if>
-        <hr class="hr">
-        <h3 style="font-weight: 400; margin: 0 0 6px;">Your own scratchpad</h3>
-        <p class="text-muted" style="font-size: 13px; max-width: 60ch; margin-bottom: 26px;">Drag a photograph onto any frame below to try it out. These stay in your browser and nobody else sees them — for a photograph everyone can see, attach it to an event.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 26px;">
-          <figure>
-            <div class="plate" style="aspect-ratio: 4 / 3;"><image-slot id="ibc-g1" shape="rect" placeholder="Kitchen table, January"></image-slot></div>
-            <figcaption>January &mdash; the soup year begins</figcaption>
-          </figure>
-          <figure>
-            <div class="plate" style="aspect-ratio: 4 / 3;"><image-slot id="ibc-g2" shape="rect" placeholder="Someone's overloaded shelf"></image-slot></div>
-            <figcaption>The shelf that started the argument</figcaption>
-          </figure>
-          <figure>
-            <div class="plate" style="aspect-ratio: 4 / 3;"><image-slot id="ibc-g3" shape="rect" placeholder="The summer meeting outdoors"></image-slot></div>
-            <figcaption>July &mdash; Highbury Fields, briefly</figcaption>
-          </figure>
-          <figure>
-            <div class="plate" style="aspect-ratio: 4 / 3;"><image-slot id="ibc-g4" shape="rect" placeholder="Cheese, December"></image-slot></div>
-            <figcaption>December &mdash; too much cheese, as agreed</figcaption>
-          </figure>
-          <figure>
-            <div class="plate" style="aspect-ratio: 4 / 3;"><image-slot id="ibc-g5" shape="rect" placeholder="A bookshop crawl"></image-slot></div>
-            <figcaption>The annual crawl, Charing Cross Road</figcaption>
-          </figure>
-          <figure>
-            <div class="plate" style="aspect-ratio: 4 / 3;"><image-slot id="ibc-g6" shape="rect" placeholder="Notes and margins"></image-slot></div>
-            <figcaption>Margins, which is half the name</figcaption>
-          </figure>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: clamp(14px, 2vw, 22px);">
+          <sc-for list="{{ photos }}" as="p" hint-placeholder-count="6">
+            <figure style="margin: 0;">
+              <div class="plate" style="aspect-ratio: 4 / 3; background: url({{ p.srcCss }}) center / cover no-repeat;"></div>
+              <figcaption class="text-muted" style="font-size: 12px; margin-top: 8px; line-height: 1.5;">{{ p.caption }}</figcaption>
+            </figure>
+          </sc-for>
         </div>
       </section>
     </sc-if>
 
-    <sc-if value="{{ isVote }}" hint-placeholder-val="{{ false }}">
+    <sc-if value="{{ isJoin }}" hint-placeholder-val="{{ false }}">
       <section style="padding-top: clamp(40px, 6vw, 72px);">
-        <h6 style="color: var(--color-accent);">The ballot</h6>
-        <h1 style="font-weight: 400; font-size: clamp(36px, 6vw, 60px); margin-bottom: 8px;">{{ poll.month }}</h1>
-        <p class="text-muted" style="font-size: 15px; margin-bottom: 30px; font-variant-numeric: tabular-nums;">One vote each. Voting closes {{ poll.closes }}.</p>
+        <h6 style="color: var(--color-accent-700);">Membership</h6>
+        <h1 style="font-weight: 400; font-size: clamp(36px, 6vw, 60px); max-width: 15ch; margin-bottom: 12px;">Come and join us</h1>
+        <p style="font-size: 16px; line-height: 1.8; max-width: 62ch; margin-bottom: clamp(30px, 4vw, 44px);">Members are adults of all ages and backgrounds — North London or further afield, you'll fit right in. Fill in your details below and one of us will be in touch before the next meeting.</p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px;">
-          <sc-for list="{{ poll.nominees }}" as="n" hint-placeholder-count="4">
-            <div class="card">
-              <div class="card-kicker">Nominated by {{ n.by }}</div>
-              <div class="card-title" style="font-weight: 400; font-size: 20px;">{{ n.title }}</div>
-              <p class="card-body" style="font-size: 13px;">{{ n.author }} &middot; {{ n.pages }} pages</p>
-              <p class="card-body">{{ n.pitch }}</p>
-            </div>
-          </sc-for>
-        </div>
-
-        <div style="margin-top: clamp(36px, 5vw, 56px); border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider); padding: 36px 0; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;">
-          <div style="max-width: 46ch;">
-            <h3 style="font-weight: 400; margin-bottom: 6px;">Vote on the poll</h3>
-            <p class="text-muted" style="font-size: 14px; margin: 0;">The ballot itself lives on our poll page — it opens in a new tab, takes ten seconds, and shows the running tally once you've voted.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(26px, 4vw, 52px); align-items: start;">
+          <div>
+            <sc-if value="{{ hasJoinForm }}" hint-placeholder-val="{{ false }}">
+              <iframe src="{{ joinFormUrl }}" title="Join the Islington Book Club" style="width: 100%; min-height: 760px; border: 1px solid var(--color-divider); background: var(--color-surface);"></iframe>
+            </sc-if>
+            <sc-if value="{{ noJoinForm }}" hint-placeholder-val="{{ true }}">
+              <div style="border: 1px dashed var(--color-divider); padding: clamp(30px, 5vw, 52px); text-align: center; background: var(--color-surface);">
+                <h3 style="font-weight: 400; font-size: 22px; margin: 0 0 8px;">The sign-up form goes here</h3>
+                <p class="text-muted" style="font-size: 14px; line-height: 1.7; margin: 0 auto; max-width: 42ch;">Paste your Google Form's embed address into Housekeeping → Join form, and it appears in this space.</p>
+              </div>
+            </sc-if>
           </div>
-          <a class="btn btn-primary" href="{{ poll.url }}" target="_blank" rel="noopener">Open the ballot &rarr;</a>
-        </div>
 
-        <p class="text-muted" style="font-size: 13px; margin-top: 26px; max-width: 60ch;">Want to nominate something for next month? Bring it to the meeting or email <a href="mailto:hello@islingtonbookclub.uk">hello@islingtonbookclub.uk</a> before the 20th.</p>
+          <div>
+            <h3 style="font-weight: 400; font-size: 24px; margin: 0 0 10px;">Subscription</h3>
+            <p style="font-size: 15px; line-height: 1.85; margin: 0 0 16px;">We are strictly not-for-profit. A nominal £8 annual subscription covers our website hosting and annual prizes, keeping all regular meetings completely free for active members.</p>
+            <div style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider); padding: 18px 0; margin-bottom: 22px;">
+              <p style="font-size: 14px; line-height: 1.7; margin: 0;"><strong style="font-weight: 500;">PayPal</strong> — send £8 to rsvpickup@hotmail.com with the reference &lsquo;Book Club Subs&rsquo;.</p>
+              <p style="font-size: 14px; line-height: 1.7; margin: 0;"><strong style="font-weight: 500;">Bank transfer</strong> — no PayPal? Just reach out to Rich for his details.</p>
+            </div>
+            <h3 style="font-weight: 400; font-size: 24px; margin: 0 0 10px;">What to expect</h3>
+            <p style="font-size: 15px; line-height: 1.85; margin: 0;">One book a month, discussed on the last Monday. Nobody is quizzed and nobody is shamed for skimming. Beyond the books there's a Christmas dinner, a summer outing, and the literary-themed pub crawl.</p>
+          </div>
+        </div>
       </section>
     </sc-if>
 
@@ -371,7 +368,7 @@
       <section style="padding-top: clamp(40px, 6vw, 72px);">
         <sc-if value="{{ locked }}" hint-placeholder-val="{{ true }}">
           <div style="max-width: 380px;">
-            <h6 style="color: var(--color-accent);">Housekeeping</h6>
+            <h6 style="color: var(--color-accent-700);">Housekeeping</h6>
             <h1 style="font-weight: 400; font-size: 40px; margin-bottom: 8px;">Locked</h1>
             <p class="text-muted" style="font-size: 14px;">For club organisers. If you have mislaid the passphrase, ask whoever set the site up.</p>
             <form onSubmit="{{ onUnlock }}" style="display: flex; gap: 10px; margin-top: 18px;">
@@ -386,12 +383,14 @@
           <div>
             <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between;">
               <div>
-                <h6 style="color: var(--color-accent);">Housekeeping</h6>
+                <h6 style="color: var(--color-accent-700);">Housekeeping</h6>
                 <h1 style="font-weight: 400; font-size: clamp(32px, 5vw, 46px); margin: 0;">Keep the site fed</h1>
               </div>
               <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <button class="btn btn-primary" onClick="{{ onPublish }}">{{ publishLabel }}</button>
+                <button class="btn btn-primary" onClick="{{ onPreview }}">{{ previewLabel }}</button>
+                <button class="btn btn-secondary" onClick="{{ onPublish }}">{{ publishLabel }}</button>
                 <button class="btn btn-secondary" onClick="{{ onExport }}">{{ exportLabel }}</button>
+                <button class="btn btn-secondary" onClick="{{ onDiscard }}">Discard changes</button>
                 <button class="btn btn-secondary" onClick="{{ onLock }}">Lock</button>
               </div>
             </div>
@@ -400,7 +399,7 @@
                 <strong style="font-family: var(--font-heading); font-size: 18px; font-weight: 400;">How saving works</strong>
                 <span class="tag tag-neutral">{{ publishState }}</span>
               </div>
-              <p style="font-size: 13px; line-height: 1.7; margin: 0 0 8px;">Edits below save to this browser instantly so you can check them. <strong>Publish to GitHub</strong> then commits them to <code>data.json</code> in the repository — that is what every other visitor loads, so it is the step that makes a change real. Pages redeploys in about a minute.</p>
+              <p style="font-size: 13px; line-height: 1.7; margin: 0 0 8px;">Edits below are saved as a draft in this browser and nobody else sees them. <strong>Save &amp; preview</strong> takes you to the site as it would look; <strong>Discard changes</strong> throws the draft away and puts back what is published. <strong>Publish to GitHub</strong> commits the draft to <code>data.json</code> in the repository — that is what every other visitor loads, so it is the step that makes a change real. Pages redeploys in about a minute.</p>
               <p class="text-muted" style="font-size: 12px; margin: 0;">No token to hand? <strong>Copy data</strong> puts the same JSON on your clipboard to paste into GitHub by hand. Either route ends in the same commit.</p>
               <details style="margin-top: 14px;">
                 <summary style="cursor: pointer; font-size: 13px; color: var(--color-accent-700);">Repository and token</summary>
@@ -421,7 +420,127 @@
 
             <hr class="hr">
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(26px, 4vw, 44px); align-items: start;">
+            <hr class="hr" style="margin: clamp(30px, 4vw, 44px) 0 22px;">
+            <h3 style="font-weight: 400; margin-bottom: 4px;">Upcoming events</h3>
+            <p class="text-muted" style="font-size: 12px; margin-bottom: 14px;">The first one here is what the home page and the Events tab show in full. Changes save as you type.</p>
+            <button class="btn btn-primary" type="button" onClick="{{ onAddUpcoming }}" style="margin-bottom: 16px; white-space: nowrap;">Add an upcoming event</button>
+
+            <sc-if value="{{ eventsAdmin.noUpcoming }}" hint-placeholder-val="{{ false }}">
+              <p class="text-muted" style="font-size: 13px; padding: 16px 18px; border: 1px solid var(--color-divider);">Nothing upcoming. Add one above, or move a past event back.</p>
+            </sc-if>
+
+            <sc-for list="{{ eventsAdmin.upcoming }}" as="e" hint-placeholder-count="1">
+              <div style="border: 1px solid var(--color-divider); padding: 18px 20px; margin-bottom: 16px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px;">
+                  <div class="field"><label for="{{ e.idDate }}">Date</label><input class="input" id="{{ e.idDate }}" defaultValue="{{ e.date }}" onBlur="{{ e.onDate }}" placeholder="29 Mar 2027"></div>
+                  <div class="field"><label for="{{ e.idTitle }}">Title</label><input class="input" id="{{ e.idTitle }}" defaultValue="{{ e.title }}" onBlur="{{ e.onTitle }}"></div>
+                  <div class="field"><label for="{{ e.idWhere }}">Where</label><input class="input" id="{{ e.idWhere }}" defaultValue="{{ e.where }}" onBlur="{{ e.onWhere }}"></div>
+                  <div class="field"><label for="{{ e.idTime }}">Time</label><input class="input" id="{{ e.idTime }}" defaultValue="{{ e.time }}" onBlur="{{ e.onTime }}" placeholder="4pm"></div>
+                </div>
+                <div class="field" style="margin-top: 12px;"><label for="{{ e.idNote }}">Details</label><textarea class="input" id="{{ e.idNote }}" defaultValue="{{ e.note }}" onBlur="{{ e.onNote }}" style="min-height: 110px;"></textarea></div>
+                <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; margin-top: 12px;">
+                  <sc-if value="{{ e.hasImage }}" hint-placeholder-val="{{ true }}">
+                    <div class="plate" style="flex: 0 0 96px; width: 96px; aspect-ratio: 4 / 3; background: url({{ e.imageCss }}) center / cover no-repeat;"></div>
+                  </sc-if>
+                  <div style="flex: 1 1 220px; min-width: 0;">
+                    <div class="field"><label for="{{ e.idImage }}">Photograph</label><input class="input" id="{{ e.idImage }}" defaultValue="{{ e.image }}" onBlur="{{ e.onImage }}" placeholder="https://… or images/…"></div>
+                    <input type="file" accept="image/*" id="{{ e.idFile }}" onChange="{{ e.onImageFile }}" style="margin-top: 8px; font-size: 12px;">
+                  </div>
+                </div>
+                <details style="margin-top: 14px; border-top: 1px solid var(--color-divider); padding-top: 12px;">
+                  <summary style="cursor: pointer; font-size: 13px; color: var(--color-accent-700);">Who has replied — {{ e.rsvpSummary }}</summary>
+                  <sc-if value="{{ e.hasRsvps }}" hint-placeholder-val="{{ true }}">
+                    <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 12px;"><table class="table" style="min-width: 420px;">
+                      <thead><tr><th>Name</th><th style="width: 110px;">Attending</th><th style="width: 190px;"></th></tr></thead>
+                      <tbody>
+                        <sc-for list="{{ e.attendees }}" as="a" hint-placeholder-count="3">
+                          <tr>
+                            <td><input class="input" defaultValue="{{ a.name }}" onBlur="{{ a.onName }}" aria-label="Name"></td>
+                            <td class="text-muted" style="font-size: 12px;">{{ a.comingLabel }}</td>
+                            <td style="text-align: right; white-space: nowrap;">
+                              <button class="btn btn-ghost" type="button" onClick="{{ a.onToggle }}">{{ a.toggleLabel }}</button>
+                              <button class="btn btn-ghost" type="button" onClick="{{ a.onRemove }}">Delete</button>
+                            </td>
+                          </tr>
+                        </sc-for>
+                      </tbody>
+                    </table></div>
+                  </sc-if>
+                  <p style="font-size: 12px; color: var(--color-accent-700); margin: 8px 0 0;">{{ rsvpAdminNote }}</p>
+                </details>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px;">
+                  <button class="btn btn-secondary" type="button" onClick="{{ e.togglePast }}">{{ e.moveLabel }}</button>
+                  <button class="btn btn-ghost" type="button" onClick="{{ e.remove }}">Remove</button>
+                </div>
+              </div>
+            </sc-for>
+
+            <h3 style="font-weight: 400; margin: 30px 0 4px;">Past events</h3>
+            <p class="text-muted" style="font-size: 12px; margin-bottom: 12px;">Edit any field in place.</p>
+            <button class="btn btn-secondary" type="button" onClick="{{ onAddPast }}" style="margin-bottom: 12px; white-space: nowrap;">Add a past event</button>
+            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;"><table class="table" style="min-width: 760px;">
+              <thead><tr><th style="width: 120px;">Date</th><th>Title</th><th>Where</th><th>Photograph</th><th style="width: 180px;"></th></tr></thead>
+              <tbody>
+                <sc-for list="{{ eventsAdmin.past }}" as="e" hint-placeholder-count="4">
+                  <tr>
+                    <td><input class="input" defaultValue="{{ e.date }}" onBlur="{{ e.onDate }}" aria-label="Date"></td>
+                    <td><input class="input" defaultValue="{{ e.title }}" onBlur="{{ e.onTitle }}" aria-label="Title"></td>
+                    <td><input class="input" defaultValue="{{ e.where }}" onBlur="{{ e.onWhere }}" aria-label="Where"></td>
+                    <td><input class="input" defaultValue="{{ e.image }}" onBlur="{{ e.onImage }}" aria-label="Photograph"></td>
+                    <td style="text-align: right; white-space: nowrap;">
+                      <button class="btn btn-ghost" onClick="{{ e.togglePast }}">Upcoming</button>
+                      <button class="btn btn-ghost" onClick="{{ e.remove }}">Remove</button>
+                    </td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table></div>
+
+            <hr class="hr" style="margin: clamp(36px, 5vw, 52px) 0 22px;">
+            <h3 style="font-weight: 400; margin-bottom: 4px;">RSVP server</h3>
+            <p class="text-muted" style="font-size: 12px; line-height: 1.65; margin-bottom: 12px; max-width: 66ch;">The Apps Script <code>/exec</code> address from <code>rsvp-tally.gs</code>. With it set, each event gets its own tab in your Google Sheet — name and a yes/no in two columns — and all members see the same list. Empty, and answers only live in each person's own browser.</p>
+            <div class="field" style="max-width: 60ch; margin-bottom: clamp(30px, 4vw, 44px);">
+              <label for="rsvp-endpoint">Web app address</label>
+              <input class="input" id="rsvp-endpoint" defaultValue="{{ rsvpEndpoint }}" onBlur="{{ onRsvpEndpoint }}" placeholder="https://script.google.com/macros/s/…/exec">
+            </div>
+
+            <h3 style="font-weight: 400; margin-bottom: 4px;">Join form</h3>
+            <p class="text-muted" style="font-size: 12px; line-height: 1.65; margin-bottom: 12px; max-width: 66ch;">In Google Forms: Send &rarr; <code>&lt;&gt;</code> embed &rarr; copy the <code>src</code> address only (it ends in <code>viewform?embedded=true</code>). Saves as you type.</p>
+            <div class="field" style="max-width: 60ch;">
+              <label for="jf-url">Google Form embed address</label>
+              <input class="input" id="jf-url" defaultValue="{{ joinFormUrl }}" onBlur="{{ onJoinFormUrl }}" placeholder="https://docs.google.com/forms/…/viewform?embedded=true">
+            </div>
+
+            <hr class="hr" style="margin: clamp(30px, 4vw, 44px) 0 22px;">
+            <h3 style="font-weight: 400; margin-bottom: 4px;">The gallery</h3>
+            <p class="text-muted" style="font-size: 12px; margin-bottom: 14px;">Photographs from past events. Newest first — upload several at once, then caption them. Captions save as you type.</p>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 8px;">
+              <label class="btn btn-primary" style="cursor: pointer;">Upload photographs<input type="file" accept="image/*" multiple onChange="{{ onAddPhotoFile }}" style="display: none;"></label>
+              <span style="font-size: 12px; color: var(--color-accent-700);">{{ photoNote }}</span>
+            </div>
+            <form onSubmit="{{ onAddPhotoUrl }}" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; margin-bottom: 18px;">
+              <div class="field" style="flex: 1 1 260px; min-width: 0;"><label for="ph-new-s">…or paste an image address</label><input class="input" id="ph-new-s" name="src" placeholder="https://… or images/…"></div>
+              <div class="field" style="flex: 1 1 200px; min-width: 0;"><label for="ph-new-c">Caption</label><input class="input" id="ph-new-c" name="caption" placeholder="Christmas dinner, 2025"></div>
+              <button class="btn btn-secondary" type="submit" style="white-space: nowrap;">Add</button>
+            </form>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px;">
+              <sc-for list="{{ photosAdmin }}" as="p" hint-placeholder-count="4">
+                <div style="border: 1px solid var(--color-divider); padding: 12px;">
+                  <div class="plate" style="aspect-ratio: 4 / 3; background: url({{ p.srcCss }}) center / cover no-repeat; margin-bottom: 10px;"></div>
+                  <div class="field" style="margin-bottom: 8px;"><label for="{{ p.idCap }}">Caption</label><input class="input" id="{{ p.idCap }}" defaultValue="{{ p.caption }}" onBlur="{{ p.onCaption }}"></div>
+                  <div class="field"><label for="{{ p.idSrc }}">File</label><input class="input" id="{{ p.idSrc }}" defaultValue="{{ p.src }}" onBlur="{{ p.onSrc }}" style="font-size: 12px;"></div>
+                  <div style="display: flex; gap: 8px; margin-top: 10px;">
+                    <button class="btn btn-ghost" type="button" onClick="{{ p.moveUp }}">Move up</button>
+                    <button class="btn btn-ghost" type="button" onClick="{{ p.remove }}">Remove</button>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+
+            <hr class="hr" style="margin: clamp(36px, 5vw, 52px) 0 22px;">
+            <div style="max-width: 640px;">
               <form onSubmit="{{ onAddBook }}">
                 <h3 style="font-weight: 400; margin-bottom: 6px;">Add a book to the shelf</h3>
                 <p class="text-muted" style="font-size: 12px; margin-bottom: 12px;">Paste a Goodreads link, an ISBN, or just the title and we'll fetch the rest from Open Library.</p>
@@ -456,7 +575,7 @@
                   <div style="border-left: 1px solid var(--color-accent-300); padding-left: 16px; margin: 4px 0 14px;">
                     <p class="text-muted" style="font-size: 12px; margin: 0 0 12px;">What the Reading page will say about it.</p>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
-                      <div class="field"><label for="cur-meeting">Meeting date</label><input class="input" id="cur-meeting" value="{{ draft.meeting }}" onChange="{{ onDraftMeeting }}" placeholder="Sun 26 April"></div>
+                      <div class="field"><label for="cur-meeting">Meeting date</label><input class="input" id="cur-meeting" value="{{ draft.meeting }}" onChange="{{ onDraftMeeting }}" placeholder="Mon 26 April"></div>
                       <div class="field"><label for="cur-where">Location</label><input class="input" id="cur-where" value="{{ draft.where }}" onChange="{{ onDraftWhere }}" placeholder="Marek's, Highbury"></div>
                       <div class="field"><label for="cur-pick">How it was chosen</label><input class="input" id="cur-pick" value="{{ draft.pick }}" onChange="{{ onDraftPick }}" placeholder="Chosen by vote, 9–4–2–1"></div>
                     </div>
@@ -469,67 +588,7 @@
                 <p style="font-size: 12px; color: var(--color-accent-700); margin-top: 10px;">{{ lookupNote }}</p>
               </form>
 
-              <form onSubmit="{{ onAddEvent }}">
-                <h3 style="font-weight: 400; margin-bottom: 14px;">Add an event</h3>
-                <div class="field" style="margin-bottom: 12px;"><label for="ev-date">Date</label><input class="input" id="ev-date" name="date" placeholder="29 Mar 2027"></div>
-                <div class="field" style="margin-bottom: 12px;"><label for="ev-title">Title</label><input class="input" id="ev-title" name="title" placeholder="March meeting"></div>
-                <div class="field" style="margin-bottom: 12px;"><label for="ev-where">Where</label><input class="input" id="ev-where" name="where" placeholder="Priya's, Barnsbury"></div>
-                <div class="field" style="margin-bottom: 12px;"><label for="ev-time">Time</label><input class="input" id="ev-time" name="time" placeholder="4pm"></div>
-                <div class="field" style="margin-bottom: 12px;"><label for="ev-note">Note</label><textarea class="input" id="ev-note" name="note" placeholder="What to bring, what to expect"></textarea></div>
-                <div class="field" style="margin-bottom: 6px;">
-                  <label for="ev-image">Photograph</label>
-                  <input class="input" id="ev-image" value="{{ eventImage }}" onChange="{{ onEventImageUrl }}" placeholder="https://… or images/…">
-                </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px;">
-                  <label class="btn btn-secondary" style="cursor: pointer; margin: 0;">
-                    Upload a file<input type="file" accept="image/*" onChange="{{ onEventImageFile }}" style="display: none;">
-                  </label>
-                  <sc-if value="{{ eventImage }}" hint-placeholder-val="{{ false }}">
-                    <div class="plate" style="width: 64px; height: 48px; background: url({{ eventImageCss }}) center / cover no-repeat;"></div>
-                  </sc-if>
-                </div>
-                <p class="text-muted" style="font-size: 12px; line-height: 1.65; margin: 0 0 12px;">{{ imageNote }}</p>
-                <label class="radio" style="margin-bottom: 12px;"><input type="checkbox" name="isPast"><span class="dot"></span>File under past events</label>
-                <button class="btn btn-primary btn-block" type="submit">Add event</button>
-              </form>
-
-              <form onSubmit="{{ onSavePoll }}">
-                <h3 style="font-weight: 400; margin-bottom: 14px;">The ballot</h3>
-                <div class="field" style="margin-bottom: 12px;"><label for="pl-month">Month</label><input class="input" id="pl-month" name="month" value="{{ poll.month }}"></div>
-                <div class="field" style="margin-bottom: 12px;"><label for="pl-closes">Closes</label><input class="input" id="pl-closes" name="closes" value="{{ poll.closes }}"></div>
-                <div class="field" style="margin-bottom: 12px;"><label for="pl-url">Poll link</label><input class="input" id="pl-url" name="url" value="{{ poll.url }}"></div>
-                <p class="text-muted" style="font-size: 12px;">Nominees: edit them in <code>data.json</code>, or paste four lines below as <code>Title | Author | pages | nominated by | pitch</code>.</p>
-                <div class="field" style="margin-bottom: 12px;"><label for="pl-noms">Nominees</label><textarea class="input" id="pl-noms" name="noms" style="min-height: 120px;">{{ nomineeText }}</textarea></div>
-                <button class="btn btn-primary btn-block" type="submit">Save ballot</button>
-
-                <h3 style="font-weight: 400; margin: 28px 0 14px;">Home page illustration</h3>
-                <div class="field" style="margin-bottom: 10px;">
-                  <label for="hero-img">Image</label>
-                  <input class="input" id="hero-img" value="{{ heroImage }}" onChange="{{ onHeroImageUrl }}" placeholder="https://… or images/…">
-                </div>
-                <label class="btn btn-secondary btn-block" style="cursor: pointer;">Upload a file<input type="file" accept="image/*" onChange="{{ onHeroImageFile }}" style="display: none;"></label>
-                <p class="text-muted" style="font-size: 12px; line-height: 1.65; margin: 10px 0 0;">{{ heroNote }}</p>
-              </form>
             </div>
-
-            <hr class="hr" style="margin: clamp(36px, 5vw, 52px) 0 22px;">
-            <h3 style="font-weight: 400; margin-bottom: 4px;">The current read</h3>
-            <p class="text-muted" style="font-size: 12px; margin-bottom: 14px;">What the Reading page says right now. Edit any of it; empty fields simply do not appear.</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 14px;">
-              <div class="field"><label for="cc-title">Title</label><input class="input" value="{{ cur.title }}" id="cc-title" onChange="{{ cur.onTitle }}"></div>
-              <div class="field"><label for="cc-author">Author</label><input class="input" value="{{ cur.author }}" id="cc-author" onChange="{{ cur.onAuthor }}"></div>
-              <div class="field"><label for="cc-pages">Pages</label><input class="input" value="{{ cur.pages }}" id="cc-pages" onChange="{{ cur.onPages }}"></div>
-              <div class="field"><label for="cc-meeting">Meeting date</label><input class="input" value="{{ cur.meeting }}" id="cc-meeting" onChange="{{ cur.onMeeting }}" placeholder="Sun 26 April"></div>
-              <div class="field"><label for="cc-where">Location</label><input class="input" value="{{ cur.where }}" id="cc-where" onChange="{{ cur.onWhere }}" placeholder="Marek's, Highbury"></div>
-              <div class="field"><label for="cc-pick">How it was chosen</label><input class="input" value="{{ cur.pick }}" id="cc-pick" onChange="{{ cur.onPick }}" placeholder="Chosen by vote, 9–4–2–1"></div>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;">
-              <div class="field"><label for="cc-blurb">Blurb</label><textarea class="input" id="cc-blurb" value="{{ cur.blurb }}" onChange="{{ cur.onBlurb }}" style="min-height: 130px;"></textarea></div>
-              <div class="field"><label for="cc-questions">Questions for the night</label><textarea class="input" id="cc-questions" value="{{ cur.questions }}" onChange="{{ cur.onQuestions }}" onBlur="{{ cur.onQuestionsBlur }}" style="min-height: 130px;" placeholder="One per line."></textarea></div>
-            </div>
-            <div class="field" style="margin-top: 14px;"><label for="cc-cover">Cover image</label><input class="input" id="cc-cover" value="{{ cur.coverUrl }}" onChange="{{ cur.onCover }}" placeholder="https://… or images/…"></div>
-            <label class="btn btn-secondary" style="cursor: pointer; margin-top: 10px; display: inline-block;">Upload a cover<input type="file" accept="image/*" onChange="{{ cur.onCoverFile }}" style="display: none;"></label>
-            <p class="text-muted" style="font-size: 12px; margin: 10px 0 0;">{{ curCoverNote }}</p>
 
             <hr class="hr" style="margin: clamp(30px, 4vw, 44px) 0 22px;">
             <h3 style="font-weight: 400; margin-bottom: 4px;">Everything on the shelf</h3>
@@ -550,22 +609,7 @@
               </tbody>
             </table></div>
 
-            <h3 style="font-weight: 400; margin: 30px 0 12px;">All events</h3>
-            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;"><table class="table" style="min-width: 460px;">
-              <thead><tr><th style="width: 130px;">Date</th><th>Title</th><th style="width: 90px;">List</th><th style="width: 80px;"></th></tr></thead>
-              <tbody>
-                <sc-for list="{{ eventsAdmin }}" as="e" hint-placeholder-count="4">
-                  <tr>
-                    <td class="text-muted" style="font-variant-numeric: tabular-nums;">{{ e.date }}</td>
-                    <td>{{ e.title }}</td>
-                    <td class="text-muted" style="font-size: 12px;">{{ e.list }}</td>
-                    <td style="text-align: right;"><button class="btn btn-ghost" onClick="{{ e.remove }}">Remove</button></td>
-                  </tr>
-                </sc-for>
-              </tbody>
-            </table></div>
-
-            <p class="text-muted" style="font-size: 12px; margin-top: 26px;">Reset this browser's copy back to <code>data.json</code>: <button class="lnk" onClick="{{ onReset }}" style="color: var(--color-accent); border-bottom: 1px solid var(--color-accent);">discard local changes</button>.</p>
+            <p class="text-muted" style="font-size: 12px; margin-top: 26px;">Reset this browser's copy back to <code>data.json</code>: <button class="lnk" onClick="{{ onReset }}" style="color: var(--color-accent-700); border-bottom: 1px solid var(--color-accent-700);">discard local changes</button>.</p>
           </div>
         </sc-if>
       </section>
@@ -574,7 +618,7 @@
   </main>
 
   <footer style="border-top: 1px solid var(--color-divider); padding: 30px clamp(18px, 5vw, 56px); display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center;">
-    <span class="text-muted" style="font-size: 12px;">Islington Book Club &middot; Last Sunday of the month, 4pm</span>
+    <span class="text-muted" style="font-size: 12px;">Islington Book Club · Last Monday of the month, 4pm</span>
     <a href="mailto:hello@islingtonbookclub.uk" style="font-size: 12px;">hello@islingtonbookclub.uk</a>
   </footer>
 </div>
@@ -582,131 +626,15 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: &quot;100%&quot;}}">
 // Change this to set the admin passphrase (compared case-insensitively).
 const ADMIN_PASS = 'BookKeeper';
+// Members-only password for the Events page.
+const MEMBER_PASS = 'BookClub';
+const MEMBER_KEY = 'ibc-member-v1';
+const RSVP_KEY = 'ibc-rsvp-v1';
 const KEY = 'ibc-site-data-v1';
 const GH_KEY = 'ibc-gh-settings-v1';
 const GH_DEFAULTS = { owner: '', repo: '', branch: 'main', path: 'data.json', token: '' };
-
-function b64(str) {
-  const bytes = new TextEncoder().encode(str);
-  let bin = '';
-  bytes.forEach((b) => { bin += String.fromCharCode(b); });
-  return btoa(bin);
-}
-// Commits data.json through the GitHub contents API. A fine-grained token with
-// Contents: read+write on this one repository is enough; it stays in this
-// browser's localStorage and is never sent anywhere but api.github.com.
-async function ghUploadImage(cfg, file) {
-  const safe = file.name.toLowerCase().replace(/[^a-z0-9.]+/g, '-').replace(/^-|-$/g, '');
-  const path = 'images/' + Date.now().toString(36) + '-' + safe;
-  const buf = new Uint8Array(await file.arrayBuffer());
-  let bin = '';
-  buf.forEach((b) => { bin += String.fromCharCode(b); });
-  const res = await fetch('https://api.github.com/repos/' + cfg.owner + '/' + cfg.repo + '/contents/' + path, {
-    method: 'PUT',
-    headers: {
-      Authorization: 'Bearer ' + cfg.token,
-      Accept: 'application/vnd.github+json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ message: 'Add event photograph', content: btoa(bin), branch: cfg.branch })
-  });
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({}));
-    throw new Error(body.message || 'GitHub said ' + res.status + ' uploading the image.');
-  }
-  return path;
-}
-
-async function ghPublish(cfg, data) {
-  const base = 'https://api.github.com/repos/' + cfg.owner + '/' + cfg.repo + '/contents/' + cfg.path;
-  const headers = {
-    Authorization: 'Bearer ' + cfg.token,
-    Accept: 'application/vnd.github+json',
-    'Content-Type': 'application/json'
-  };
-  let sha;
-  const head = await fetch(base + '?ref=' + encodeURIComponent(cfg.branch), { headers });
-  if (head.ok) sha = (await head.json()).sha;
-  else if (head.status !== 404) throw new Error(head.status === 401 ? 'Token rejected — check it has Contents write on this repo.' : 'GitHub said ' + head.status + ' reading the file.');
-  const res = await fetch(base, {
-    method: 'PUT',
-    headers,
-    body: JSON.stringify({
-      message: 'Update club data from admin page',
-      content: b64(JSON.stringify(data, null, 2)),
-      branch: cfg.branch,
-      sha
-    })
-  });
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({}));
-    throw new Error(body.message || 'GitHub said ' + res.status + ' saving the file.');
-  }
-  return (await res.json()).commit;
-}
-const COVERS = [
-  'linear-gradient(150deg, #3a2f28, #6b4f34)',
-  'linear-gradient(150deg, #2c3630, #55654f)',
-  'linear-gradient(150deg, #402a2a, #7d5411)',
-  'linear-gradient(150deg, #262a33, #4d5566)',
-  'linear-gradient(150deg, #3a2b34, #7a5a4a)'
-];
-const DEFAULTS = {
-  heroImage: '',
-  poll: {
-    month: 'April\u2019s book',
-    closes: 'Saturday 24 April',
-    url: 'https://strawpoll.com/example-islington-book-club',
-    nominees: [
-      { title: 'The Rings of Saturn', author: 'W. G. Sebald', pages: 296, by: 'Marek', pitch: 'A walk along the Suffolk coast that keeps falling through the floor into history. Slow, and then suddenly enormous.' },
-      { title: 'Cold Enough for Snow', author: 'Jessica Au', pages: 112, by: 'Priya', pitch: 'A mother and daughter in Tokyo, saying almost nothing. Short enough that even Tom will finish it.' },
-      { title: 'Small Things Like These', author: 'Claire Keegan', pages: 128, by: 'Ruth', pitch: 'A coal merchant in 1985 Ireland notices something he could choose not to notice. Perfect for December weather in April.' },
-      { title: 'The Vegetarian', author: 'Han Kang', pages: 188, by: 'Jonah', pitch: 'A woman stops eating meat and the world around her comes apart. We will not agree about it, which is the point.' }
-    ]
-  },
-  current: {
-    title: 'Piranesi', author: 'Susanna Clarke', pages: 245,
-    blurb: 'A man lives alone in a house of endless halls and tidal seas, keeping careful notes on the statues and the birds. It is a puzzle, but the pleasure of it is the voice \u2014 patient, decent, entirely unbothered by the fact that his world makes no sense. Bring your theories; we will disagree warmly.',
-    meeting: 'Sun 29 March', pick: 'Chosen by vote, 14\u20132\u20131\u20131',
-    cover: COVERS[0],
-    questions: [
-      'Does the House work better as a place or as a metaphor \u2014 and does it matter?',
-      'Piranesi is kind almost to a fault. Is that innocence, or damage?',
-      'Where did the ending leave you: relieved, or a bit bereft?'
-    ]
-  },
-  shelf: [
-    { when: 'Feb 2027', title: 'Klara and the Sun', author: 'Kazuo Ishiguro', rating: 3.8 },
-    { when: 'Jan 2027', title: 'Cold Enough for Snow', author: 'Jessica Au', rating: 4.1 },
-    { when: 'Dec 2026', title: 'A Christmas Memory', author: 'Truman Capote', rating: 4.6 },
-    { when: 'Nov 2026', title: 'The Overstory', author: 'Richard Powers', rating: 3.4 },
-    { when: 'Oct 2026', title: 'Dept. of Speculation', author: 'Jenny Offill', rating: 4.3 },
-    { when: 'Sep 2026', title: 'Concrete: A Life', author: 'Rachel Adler', rating: 2.9 },
-    { when: 'Aug 2026', title: 'The Remains of the Day', author: 'Kazuo Ishiguro', rating: 4.7 },
-    { when: 'Jul 2026', title: 'H is for Hawk', author: 'Helen Macdonald', rating: 4.2 }
-  ],
-  events: [
-    { date: '29 Mar 2027', title: 'March meeting \u2014 Piranesi', where: 'Ruth\u2019s, Canonbury', time: '4pm', note: 'Soup, because it is still March. Bring a passage you marked and one thing that annoyed you.', past: false },
-    { date: '11 Apr 2027', title: 'Bookshop crawl', where: 'Charing Cross Road', time: 'From noon', note: 'Four shops, one pub, a strict twenty-pound ceiling that nobody observes.', past: false },
-    { date: '26 Apr 2027', title: 'April meeting \u2014 winner of the vote', where: 'Marek\u2019s, Highbury', time: '4pm', note: 'Whichever of the four nominees takes it. Marek has promised the good coffee.', past: false },
-    { date: '22 Feb 2027', title: 'February meeting \u2014 Klara and the Sun', where: 'Priya\u2019s, Barnsbury', time: '4pm', past: true },
-    { date: '25 Jan 2027', title: 'January meeting \u2014 Cold Enough for Snow', where: 'The Alma, back room', time: '4pm', past: true },
-    { date: '14 Dec 2026', title: 'Christmas cheese and Capote', where: 'Jonah\u2019s, Angel', time: '7pm', past: true },
-    { date: '30 Nov 2026', title: 'November meeting \u2014 The Overstory', where: 'Ruth\u2019s, Canonbury', time: '4pm', past: true }
-  ]
-};
-
-function clone(o) { return JSON.parse(JSON.stringify(o)); }
-function coverBg(book, i) {
-  return book && book.coverUrl
-    ? 'linear-gradient(to top, rgba(20,17,15,0.82), rgba(20,17,15,0.05) 55%), url("' + book.coverUrl + '") center / cover no-repeat'
-    : COVERS[i % COVERS.length];
-}
-// Goodreads has had no public API since 2020 and blocks browser requests,
-// so a pasted Goodreads URL is reduced to its title slug and looked up on
-// Open Library, which is free, keyless and CORS-open.
 function parseQuery(raw) {
-  const s = (raw || '').trim();
+  const s = String(raw || '').trim();
   const gr = s.match(/goodreads\.com\/book\/show\/\d+[.-]?([^?#]*)/i);
   if (gr && gr[1]) return { type: 'q', value: gr[1].replace(/[-_]+/g, ' ').trim() };
   const isbn = s.replace(/[^0-9Xx]/g, '');
@@ -724,14 +652,164 @@ async function lookupBook(raw) {
   const json = await res.json();
   const d = json.docs && json.docs[0];
   if (!d) throw new Error('No match \u2014 try the plain title and author.');
+  let blurb = '';
+  if (d.key && /^\/works\//.test(d.key)) {
+    try {
+      const wr = await fetch('https://openlibrary.org' + d.key + '.json');
+      if (wr.ok) {
+        const w = await wr.json();
+        const desc = w.description;
+        blurb = typeof desc === 'string' ? desc : (desc && desc.value) || '';
+      }
+    } catch (e) { /* synopsis is optional */ }
+  }
+  if (!blurb && d.first_sentence && d.first_sentence[0]) blurb = d.first_sentence[0];
+  blurb = blurb
+    .replace(/\r/g, '')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/\[([^\]]+)\]\[[^\]]*\]/g, '$1')
+    .split(/\n\s*-{3,}|\n\s*\(?\[?source/i)[0]
+    .replace(/^\[\d+\]:.*$/gm, '')
+    .replace(/\[\d+\]/g, '')
+    .replace(/\*\*|__/g, '')
+    .replace(/(^|[\s("'])[*_]([^*_\n]+)[*_]/g, '$1$2')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+  const paras = blurb.split(/\n{2,}/).filter(Boolean);
+  blurb = paras.slice(0, 2).join('\n\n').trim();
+  if (blurb.length > 700) {
+    const cut = blurb.slice(0, 700);
+    const stop = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
+    blurb = (stop > 300 ? cut.slice(0, stop + 1) : cut.trim() + '\u2026').trim();
+  }
   return {
     title: d.title || '',
     author: (d.author_name && d.author_name[0]) || '',
     pages: d.number_of_pages_median || '',
+    blurb: blurb,
     coverUrl: d.cover_i ? 'https://covers.openlibrary.org/b/id/' + d.cover_i + '-L.jpg' : ''
   };
 }
 const EMPTY_DRAFT = { when: '', title: '', author: '', pages: '', rating: '', coverUrl: '', meeting: '', where: '', blurb: '', questions: '', pick: '' };
+function clone(o) { return JSON.parse(JSON.stringify(o)); }
+
+const DEFAULTS = {
+  heroImage: '',
+  joinFormUrl: '',
+  rsvpEndpoint: '',
+  rsvps: {},
+  photos: [
+    { src: 'images/club-group.jpeg', caption: 'Literary pub crawl \u2014 the Duke of Wellington' },
+    { src: 'images/club-dinner.jpeg', caption: 'Christmas dinner' }
+  ],
+  current: {
+    title: 'Piranesi',
+    author: 'Susanna Clarke',
+    pages: 245,
+    coverUrl: '',
+    blurb: 'A man lives alone in a house of endless halls and tidal seas, keeping careful notes on the statues and the birds. It is a puzzle, but the pleasure of it is the voice \u2014 patient, decent, entirely unbothered by the fact that his world makes no sense.',
+    meeting: 'Mon 29 March',
+    where: '',
+    pick: 'Chosen by vote, 14\u20132\u20131\u20131',
+    questions: [
+      'Does the House work better as a place or as a metaphor \u2014 and does it matter?',
+      'Piranesi is kind almost to a fault. Is that innocence, or damage?',
+      'Where did the ending leave you: relieved, or a bit bereft?'
+    ]
+  },
+  shelf: [
+    { when: 'Feb 2027', title: 'Klara and the Sun', author: 'Kazuo Ishiguro', rating: 3.8 },
+    { when: 'Jan 2027', title: 'Cold Enough for Snow', author: 'Jessica Au', rating: 4.1 },
+    { when: 'Dec 2026', title: 'A Christmas Memory', author: 'Truman Capote', rating: 4.6 },
+    { when: 'Nov 2026', title: 'The Overstory', author: 'Richard Powers', rating: 3.4 },
+    { when: 'Oct 2026', title: 'Dept. of Speculation', author: 'Jenny Offill', rating: 4.3 },
+    { when: 'Sep 2026', title: 'Concrete: A Life', author: 'Rachel Adler', rating: 2.9 },
+    { when: 'Aug 2026', title: 'The Remains of the Day', author: 'Kazuo Ishiguro', rating: 4.7 },
+    { when: 'Jul 2026', title: 'H is for Hawk', author: 'Helen Macdonald', rating: 4.2 }
+  ],
+  events: [
+    { date: '29 Mar 2027', title: 'March meeting \u2014 Piranesi', where: 'Ruth\u2019s, Canonbury', time: '4pm', note: 'Soup, because it is still March. Bring a passage you marked and one thing that annoyed you.', image: '', past: false },
+    { date: '22 Feb 2027', title: 'February meeting \u2014 Klara and the Sun', where: 'Priya\u2019s, Barnsbury', time: '4pm', past: true },
+    { date: '25 Jan 2027', title: 'January meeting \u2014 Cold Enough for Snow', where: 'The Alma, back room', time: '4pm', past: true },
+    { date: '14 Dec 2026', title: 'Christmas cheese and Capote', where: 'Jonah\u2019s, Angel', time: '7pm', past: true },
+    { date: '30 Nov 2026', title: 'November meeting \u2014 The Overstory', where: 'Ruth\u2019s, Canonbury', time: '4pm', past: true }
+  ]
+};
+
+const SPINES = ['#3f3a34', '#4a3b2c', '#33403c', '#4a3340', '#2f3a48', '#463c26', '#3a2f2a'];
+function coverBg(b, i) {
+  const url = b && (b.coverUrl || b.cover);
+  if (url && typeof url === 'string' && !/^linear-gradient/.test(url)) {
+    return 'linear-gradient(rgba(20,17,14,0.28), rgba(20,17,14,0.55)), url("' + url + '") center / cover no-repeat';
+  }
+  const base = SPINES[(i || 0) % SPINES.length];
+  return 'linear-gradient(155deg, ' + base + ', #14110e)';
+}
+
+async function ghRequest(cfg, path, init) {
+  const res = await fetch('https://api.github.com/repos/' + cfg.owner + '/' + cfg.repo + '/contents/' + path, Object.assign({
+    headers: {
+      Authorization: 'Bearer ' + cfg.token,
+      Accept: 'application/vnd.github+json'
+    }
+  }, init || {}));
+  return res;
+}
+
+async function ghPublish(cfg, data) {
+  const path = cfg.path || 'data.json';
+  let sha;
+  const head = await ghRequest(cfg, path + '?ref=' + encodeURIComponent(cfg.branch || 'main'));
+  if (head.ok) { const j = await head.json(); sha = j.sha; }
+  else if (head.status === 401 || head.status === 403) throw new Error('GitHub refused the token — check it has Contents: write on this repository.');
+  const body = {
+    message: 'Update site content',
+    content: btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2)))),
+    branch: cfg.branch || 'main'
+  };
+  if (sha) body.sha = sha;
+  const put = await ghRequest(cfg, path, {
+    method: 'PUT',
+    headers: {
+      Authorization: 'Bearer ' + cfg.token,
+      Accept: 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+  if (!put.ok) {
+    const t = await put.text();
+    throw new Error('GitHub said no (' + put.status + '). ' + t.slice(0, 120));
+  }
+  return true;
+}
+
+function ghUploadImage(cfg, file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error('Could not read that file.'));
+    reader.onload = async () => {
+      try {
+        const b64 = String(reader.result).split(',')[1];
+        const safe = file.name.toLowerCase().replace(/[^a-z0-9.]+/g, '-');
+        const path = 'images/' + Date.now() + '-' + safe;
+        const put = await ghRequest(cfg, path, {
+          method: 'PUT',
+          headers: {
+            Authorization: 'Bearer ' + cfg.token,
+            Accept: 'application/vnd.github+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ message: 'Add ' + path, content: b64, branch: cfg.branch || 'main' })
+        });
+        if (!put.ok) { reject(new Error('Upload failed (' + put.status + ').')); return; }
+        resolve(path);
+      } catch (e) { reject(new Error('Upload failed.')); }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
 function stars(r) {
   const n = Math.round(Number(r) || 0);
   return '\u2605\u2605\u2605\u2605\u2605'.slice(0, n) + '\u2606\u2606\u2606\u2606\u2606'.slice(0, 5 - n);
@@ -742,7 +820,12 @@ class Component extends DCLogic {
     page: 'home', data: clone(DEFAULTS), unlocked: false, authError: '', exportLabel: 'Copy data',
     draft: { ...EMPTY_DRAFT }, lookupQuery: '', lookupLabel: 'Fetch', lookupNote: '',
     gh: { ...GH_DEFAULTS }, publishLabel: 'Publish to GitHub', publishNote: '', dirty: false,
-    eventImage: '', imageNote: '', heroNote: '', coverNote: '', curCoverNote: '', curQuestionsText: null, makeCurrent: false, narrow: false, menuOpen: false
+    coverNote: '', imageNote: '', curQuestionsText: null, makeCurrent: false, narrow: false, menuOpen: false,
+    photoNote: '',
+    member: (() => { try { return localStorage.getItem(MEMBER_KEY) === '1'; } catch (e) { return false; } })(),
+    memberPass: '', memberError: '',
+    rsvpNames: {}, rsvpNotes: {}, rsvps: null,
+    myRsvps: (() => { try { return JSON.parse(localStorage.getItem(RSVP_KEY) || '{}') || {}; } catch (e) { return {}; } })()
   };
 
   setGh(key) {
@@ -779,7 +862,9 @@ class Component extends DCLogic {
         this.published = published;
         let local = null;
         try { local = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
-        this.setState({ data: Object.assign(clone(DEFAULTS), published, local || {}) });
+        const merged = Object.assign(clone(DEFAULTS), published, local || {});
+        this.setState({ data: merged });
+        this.fetchRsvps(merged);
       })
       .catch(() => {});
     try {
@@ -794,6 +879,19 @@ class Component extends DCLogic {
 
   componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
 
+  fetchRsvps(data) {
+    const d = data || this.state.data;
+    if (!d.rsvpEndpoint) return;
+    const f = (d.events || []).filter((e) => !e.past)[0];
+    if (!f) return;
+    const id = f.date + '|' + f.title;
+    const sep = d.rsvpEndpoint.indexOf('?') === -1 ? '?' : '&';
+    fetch(d.rsvpEndpoint + sep + 'event=' + encodeURIComponent(id))
+      .then((r) => r.json())
+      .then((j) => { if (j && j.rsvps) this.setState({ rsvps: j.rsvps }); })
+      .catch(() => {});
+  }
+
   save(data) {
     this.setState({ data, dirty: true });
     try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { /* private mode */ }
@@ -806,7 +904,7 @@ class Component extends DCLogic {
   renderVals() {
     const d = this.state.data;
     const page = this.state.page;
-    const ink = (p) => (page === p ? 'var(--color-accent)' : 'inherit');
+    const ink = (p) => (page === p ? 'var(--color-accent-700)' : 'inherit');
     const withImg = (e) => ({ ...e, image: e.image || '', imageCss: '"' + (e.image || '') + '"' });
     const upcoming = d.events.filter((e) => !e.past).map(withImg);
     const past = d.events.filter((e) => e.past).map(withImg);
@@ -818,35 +916,159 @@ class Component extends DCLogic {
       menuOpen: this.state.menuOpen,
       menuLabel: this.state.menuOpen ? 'Close' : 'Menu',
       onToggleMenu: () => this.setState((st) => ({ menuOpen: !st.menuOpen })),
-      isHome: page === 'home', isAbout: page === 'about', isReading: page === 'reading',
-      isEvents: page === 'events', isGallery: page === 'gallery', isVote: page === 'vote',
+      isHome: page === 'home',
+      isEvents: page === 'events', isGallery: page === 'gallery', isJoin: page === 'join',
       isAdmin: page === 'admin',
-      cHome: ink('home'), cAbout: ink('about'), cReading: ink('reading'), cEvents: ink('events'),
-      cGallery: ink('gallery'), cVote: ink('vote'), cAdmin: ink('admin'),
-      goHome: this.go('home'), goAbout: this.go('about'), goReading: this.go('reading'),
-      goEvents: this.go('events'), goGallery: this.go('gallery'), goVote: this.go('vote'),
+      cHome: ink('home'), cEvents: ink('events'),
+      cGallery: ink('gallery'), cJoin: ink('join'), cAdmin: ink('admin'),
+      goHome: this.go('home'),
+      goEvents: this.go('events'), goGallery: this.go('gallery'), goJoin: this.go('join'),
       goAdmin: this.go('admin'),
 
       heroImage: d.heroImage || '',
       heroImageCss: '"' + (d.heroImage || '') + '"',
-      onHeroImageUrl: (e) => { const nd = clone(d); nd.heroImage = e.target.value.trim(); this.save(nd); },
-      onHeroImageFile: (e) => {
-        const file = e.target.files && e.target.files[0];
-        if (!file) return;
-        const cfg = this.state.gh;
-        if (!cfg.owner || !cfg.repo || !cfg.token) { this.setState({ heroNote: 'Set the repository and token above first, or paste a web address.' }); return; }
-        this.setState({ heroNote: 'Uploading\u2026' });
-        ghUploadImage(cfg, file).then(
-          (path) => { const nd = clone(this.state.data); nd.heroImage = path; this.save(nd); this.setState({ heroNote: 'Committed as ' + path + '.' }); },
-          (err) => this.setState({ heroNote: err.message })
-        );
-      },
-      heroNote: this.state.heroNote || 'Sits behind the title on the home page, under a dark wash. Leave empty for plain ink.',
       current: { ...d.current, cover: coverBg(d.current, 0) },
       currentWhere: d.current.where || '',
       currentPick: d.current.pick || '',
       currentMeta: [d.current.author, d.current.pages ? d.current.pages + ' pages' : ''].filter(Boolean).join(' \u00b7 '),
-      poll: d.poll,
+      memberLocked: !this.state.member,
+      memberUnlocked: !!this.state.member,
+      memberPass: this.state.memberPass,
+      memberError: this.state.memberError,
+      onMemberPass: (e) => this.setState({ memberPass: e.target.value, memberError: '' }),
+      onMemberUnlock: (ev) => {
+        ev.preventDefault();
+        if ((this.state.memberPass || '').trim().toLowerCase() === MEMBER_PASS.toLowerCase()) {
+          try { localStorage.setItem(MEMBER_KEY, '1'); } catch (e) {}
+          this.setState({ member: true, memberPass: '', memberError: '' });
+        } else {
+          this.setState({ memberError: 'That is not it. Ask an organiser.' });
+        }
+      },
+      upcomingCards: (d.events || []).map((e, idx) => ({ e, idx })).filter((x) => !x.e.past).map(({ e, idx }) => {
+        const id = e.date + '|' + e.title;
+        const all = this.state.rsvps || {};
+        const list = all[id] || (d.rsvps || {})[id] || [];
+        const going = list.filter((r) => r.coming);
+        const notGoing = list.filter((r) => !r.coming);
+        const mine = this.state.myRsvps && this.state.myRsvps[id];
+        const send = (coming) => {
+          const name = ((this.state.rsvpNames || {})[id] || '').trim();
+          if (!name) { this.setState({ rsvpNotes: { ...(this.state.rsvpNotes || {}), [id]: 'Put your name in first.' } }); return; }
+          const next = list.filter((r) => (r.name || '').toLowerCase() !== name.toLowerCase())
+            .concat([{ name, coming, at: new Date().toISOString() }]);
+          const nd = clone(this.state.data);
+          nd.rsvps = nd.rsvps || {};
+          nd.rsvps[id] = next;
+          this.save(nd);
+          const myNext = { ...(this.state.myRsvps || {}), [id]: { name, coming } };
+          try { localStorage.setItem(RSVP_KEY, JSON.stringify(myNext)); } catch (err) {}
+          this.setState({
+            rsvps: { ...all, [id]: next },
+            myRsvps: myNext,
+            rsvpNotes: { ...(this.state.rsvpNotes || {}), [id]: coming ? 'Marked you as coming, ' + name + '.' : 'Noted \u2014 next time, ' + name + '.' }
+          });
+          const url = d.rsvpEndpoint;
+          if (url) {
+            fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ event: id, name, coming }) })
+              .then((r) => r.json())
+              .then((j) => { if (j && j.rsvps) this.setState({ rsvps: { ...(this.state.rsvps || {}), [id]: j.rsvps } }); })
+              .catch(() => this.setState({ rsvpNotes: { ...(this.state.rsvpNotes || {}), [id]: 'Saved here, but the list server could not be reached.' } }));
+          }
+        };
+        return {
+          date: e.date || '', title: e.title || '', time: e.time || '', where: e.where || '',
+          note: e.note || '', image: e.image || '', imageCss: '"' + (e.image || '') + '"',
+          hasImage: !!e.image,
+          idName: 'rsvp-' + idx,
+          name: (this.state.rsvpNames || {})[id] || '',
+          note2: (this.state.rsvpNotes || {})[id] || '',
+          onName: (ev) => this.setState({
+            rsvpNames: { ...(this.state.rsvpNames || {}), [id]: ev.target.value },
+            rsvpNotes: { ...(this.state.rsvpNotes || {}), [id]: '' }
+          }),
+          onYes: () => send(true),
+          onNo: () => send(false),
+          goingCount: going.length,
+          goingLine: going.length === 1 ? 'person coming' : 'people coming',
+          goingNames: going.map((r) => ({ name: r.name })),
+          hasGoing: going.length > 0,
+          notLine: notGoing.length === 1 ? '1 cannot make it' : notGoing.length + ' cannot make it',
+          notNames: notGoing.map((r) => ({ name: r.name })),
+          hasNot: notGoing.length > 0,
+          mineYes: !!mine && mine.coming,
+          mineNo: !!mine && !mine.coming
+        };
+      }),
+      rsvpAdminNote: this.state.rsvpAdminNote || '',
+      rsvpEndpoint: d.rsvpEndpoint || '',
+      onRsvpEndpoint: (e) => { const nd = clone(this.state.data); nd.rsvpEndpoint = e.target.value.trim(); this.save(nd); },
+      photos: (d.photos || []).map((p) => ({ srcCss: '"' + p.src + '"', caption: p.caption || '' })),
+      noPhotos: !(d.photos || []).length,
+      galleryHeadline: (d.photos && d.photos.length && d.photos[0].caption) || 'The album',
+      galleryCountLine: (d.photos || []).length === 1 ? '1 photograph' : (d.photos || []).length + ' photographs',
+      joinFormUrl: d.joinFormUrl || '',
+      hasJoinForm: !!d.joinFormUrl,
+      noJoinForm: !d.joinFormUrl,
+      onJoinFormUrl: (e) => { const nd = clone(this.state.data); nd.joinFormUrl = e.target.value.trim(); this.save(nd); },
+      onAddUpcoming: () => {
+        const nd = clone(this.state.data);
+        nd.events = nd.events || [];
+        nd.events.unshift({ date: '', title: '', where: '', time: '', note: '', image: '', past: false });
+        this.save(nd);
+      },
+      onAddPast: () => {
+        const nd = clone(this.state.data);
+        nd.events = nd.events || [];
+        nd.events.push({ date: '', title: '', where: '', time: '', note: '', image: '', past: true });
+        this.save(nd);
+      },
+      photoNote: this.state.photoNote,
+      photosAdmin: (d.photos || []).map((p, i) => ({
+        srcCss: '"' + p.src + '"',
+        src: p.src || '',
+        caption: p.caption || '',
+        idSrc: 'ph' + i + '-s', idCap: 'ph' + i + '-c',
+        onSrc: (e) => { const nd = clone(this.state.data); nd.photos[i].src = e.target.value; this.save(nd); },
+        onCaption: (e) => { const nd = clone(this.state.data); nd.photos[i].caption = e.target.value; this.save(nd); },
+        moveUp: () => {
+          if (i === 0) return;
+          const nd = clone(this.state.data);
+          const [x] = nd.photos.splice(i, 1); nd.photos.splice(i - 1, 0, x); this.save(nd);
+        },
+        remove: () => { const nd = clone(this.state.data); nd.photos.splice(i, 1); this.save(nd); }
+      })),
+      onAddPhotoFile: (ev) => {
+        const files = Array.from(ev.target.files || []);
+        if (!files.length) return;
+        const cfg = this.state.gh;
+        if (!cfg.owner || !cfg.repo || !cfg.token) { this.setState({ photoNote: 'Set the repository and token above first, or paste web addresses below.' }); return; }
+        const tooBig = files.filter((f) => f.size > 4 * 1024 * 1024);
+        if (tooBig.length) { this.setState({ photoNote: tooBig.length + ' file(s) over 4MB \u2014 shrink them first.' }); return; }
+        this.setState({ photoNote: 'Uploading ' + files.length + '\u2026' });
+        Promise.all(files.map((f) => ghUploadImage(cfg, f))).then(
+          (paths) => {
+            const nd = clone(this.state.data);
+            nd.photos = nd.photos || [];
+            paths.forEach((p) => nd.photos.unshift({ src: p, caption: '' }));
+            this.save(nd);
+            this.setState({ photoNote: paths.length + ' added. Give them captions, then publish.' });
+          },
+          (err) => this.setState({ photoNote: err.message })
+        );
+      },
+      onAddPhotoUrl: (ev) => {
+        ev.preventDefault();
+        const f = ev.target.elements;
+        const src = f.src.value.trim();
+        if (!src) { this.setState({ photoNote: 'Paste an image address first.' }); return; }
+        const nd = clone(d);
+        nd.photos = nd.photos || [];
+        nd.photos.unshift({ src, caption: f.caption.value.trim() });
+        this.save(nd);
+        ev.target.reset();
+        this.setState({ photoNote: 'Added to the album.' });
+      },
       draft: { ...this.state.draft, cover: coverBg(this.state.draft, 0) },
       lookupQuery: this.state.lookupQuery,
       lookupLabel: this.state.lookupLabel,
@@ -881,22 +1103,25 @@ class Component extends DCLogic {
         this.setState({ lookupLabel: 'Fetching\u2026', lookupNote: '' });
         lookupBook(this.state.lookupQuery).then(
           (b) => this.setState((s) => ({
-            draft: { ...s.draft, title: b.title, author: b.author, pages: b.pages, coverUrl: b.coverUrl },
+            draft: { ...s.draft, title: b.title, author: b.author, pages: b.pages, coverUrl: b.coverUrl, blurb: b.blurb || s.draft.blurb },
             lookupLabel: 'Fetch',
-            lookupNote: b.coverUrl ? 'Found it \u2014 check the details and add.' : 'Found it, but no cover art. Fine to add anyway.'
+            lookupNote: [
+              b.coverUrl ? 'Found it' : 'Found it, but no cover art',
+              b.blurb ? 'synopsis pulled in' : 'no synopsis on file \u2014 write your own',
+              'check the details and add.'
+            ].join(' \u2014 ')
           })),
           (err) => this.setState({ lookupLabel: 'Fetch', lookupNote: err.message })
         );
       },
       nextEvent,
       nextEventLine: [nextEvent.date, nextEvent.where].filter(Boolean).join(' \u00b7 '),
+      nextEventWhen: [nextEvent.date, nextEvent.time].filter(Boolean).join(', '),
+      nextEventWhere: nextEvent.where || '',
+      hasNextEventWhere: !!nextEvent.where,
+      hasFeatured: upcoming.length > 0,
+      noFeatured: upcoming.length === 0,
       upcoming, past,
-      gallery: d.events.filter((e) => e.image).map((e) => ({
-        imageCss: '"' + e.image + '"',
-        caption: [e.title, e.date].filter(Boolean).join(' \u2014 ')
-      })),
-      hasGallery: d.events.some((e) => e.image),
-      noGallery: !d.events.some((e) => e.image),
       shelf: d.shelf.map((b) => ({ ...b, stars: stars(b.rating), rating: Number(b.rating).toFixed(1) })),
       shelfLine: d.shelf.length + ' books logged',
       tickerLoop: (() => {
@@ -912,42 +1137,6 @@ class Component extends DCLogic {
       unlocked: this.state.unlocked,
       authError: this.state.authError,
       exportLabel: this.state.exportLabel,
-      nomineeText: d.poll.nominees.map((n) => [n.title, n.author, n.pages, n.by, n.pitch].join(' | ')).join('\n'),
-      cur: (() => {
-        const c = d.current || {};
-        const set = (key) => (e) => { const nd = clone(d); nd.current[key] = e.target.value; this.save(nd); };
-        return {
-          title: c.title || '', author: c.author || '', pages: c.pages === undefined ? '' : String(c.pages),
-          meeting: c.meeting || '', where: c.where || '', pick: c.pick || '',
-          blurb: c.blurb || '',
-          questions: this.state.curQuestionsText === null ? (c.questions || []).join('\n') : this.state.curQuestionsText,
-          coverUrl: c.coverUrl || '',
-          onTitle: set('title'), onAuthor: set('author'), onPages: set('pages'),
-          onMeeting: set('meeting'), onWhere: set('where'), onPick: set('pick'),
-          onBlurb: set('blurb'), onCover: set('coverUrl'),
-          onQuestions: (e) => this.setState({ curQuestionsText: e.target.value }),
-          onQuestionsBlur: () => {
-            const raw = this.state.curQuestionsText;
-            if (raw === null) return;
-            const nd = clone(this.state.data);
-            nd.current.questions = raw.split('\n').map((q) => q.trim()).filter(Boolean);
-            this.save(nd);
-            this.setState({ curQuestionsText: null });
-          },
-          onCoverFile: (e) => {
-            const file = e.target.files && e.target.files[0];
-            if (!file) return;
-            const cfg = this.state.gh;
-            if (!cfg.owner || !cfg.repo || !cfg.token) { this.setState({ curCoverNote: 'Set the repository and token above first, or paste an address.' }); return; }
-            this.setState({ curCoverNote: 'Uploading\u2026' });
-            ghUploadImage(cfg, file).then(
-              (path) => { const nd = clone(this.state.data); nd.current.coverUrl = path; this.save(nd); this.setState({ curCoverNote: 'Committed as ' + path + '.' }); },
-              (err) => this.setState({ curCoverNote: err.message })
-            );
-          }
-        };
-      })(),
-      curCoverNote: this.state.curCoverNote || 'Leave the address empty for a plain ink cover.',
       shelfAdmin: d.shelf.map((b, i) => {
         const set = (key, cast) => (e) => {
           const nd = clone(d);
@@ -964,10 +1153,96 @@ class Component extends DCLogic {
           remove: () => { const nd = clone(d); nd.shelf.splice(i, 1); this.save(nd); }
         };
       }),
-      eventsAdmin: d.events.map((e, i) => ({
-        date: e.date, title: e.title, list: e.past ? 'Past' : 'Upcoming',
-        remove: () => { const nd = clone(d); nd.events.splice(i, 1); this.save(nd); }
-      })),
+      eventsAdmin: (() => {
+        const build = (e, i) => {
+          const set = (key) => (ev) => { const nd = clone(this.state.data); nd.events[i][key] = ev.target.value; this.save(nd); };
+          return {
+            date: e.date || '', title: e.title || '', where: e.where || '', time: e.time || '',
+            note: e.note || '', image: e.image || '', imageCss: '"' + (e.image || '') + '"',
+            hasImage: !!e.image,
+            list: e.past ? 'Past' : 'Upcoming',
+            moveLabel: e.past ? 'Move to upcoming' : 'Move to past',
+            idDate: 'ev-e' + i + '-date', idTitle: 'ev-e' + i + '-title', idWhere: 'ev-e' + i + '-where',
+            idTime: 'ev-e' + i + '-time', idNote: 'ev-e' + i + '-note', idImage: 'ev-e' + i + '-image',
+            idFile: 'ev-e' + i + '-file',
+            onDate: set('date'), onTitle: set('title'), onWhere: set('where'),
+            onTime: set('time'), onNote: set('note'), onImage: set('image'),
+            onImageFile: (ev) => {
+              const file = ev.target.files && ev.target.files[0];
+              if (!file) return;
+              const cfg = this.state.gh;
+              if (!cfg.owner || !cfg.repo || !cfg.token) { this.setState({ imageNote: 'Set the repository and token above first, or paste a web address instead.' }); return; }
+              if (file.size > 4 * 1024 * 1024) { this.setState({ imageNote: 'That is over 4MB \u2014 shrink it first.' }); return; }
+              this.setState({ imageNote: 'Uploading\u2026' });
+              ghUploadImage(cfg, file).then(
+                (path) => { const nd = clone(this.state.data); nd.events[i].image = path; this.save(nd); this.setState({ imageNote: 'Committed as ' + path + '.' }); },
+                (err) => this.setState({ imageNote: err.message })
+              );
+            },
+            togglePast: () => { const nd = clone(this.state.data); nd.events[i].past = !nd.events[i].past; this.save(nd); },
+            remove: () => { const nd = clone(this.state.data); nd.events.splice(i, 1); this.save(nd); },
+            ...(() => {
+              const id = (e.date || '') + '|' + (e.title || '');
+              const all = this.state.rsvps || {};
+              const list = all[id] || (d.rsvps || {})[id] || [];
+              const push = (next, note) => {
+                const nd = clone(this.state.data);
+                nd.rsvps = nd.rsvps || {};
+                nd.rsvps[id] = next;
+                this.save(nd);
+                this.setState({ rsvps: { ...all, [id]: next }, rsvpAdminNote: note || '' });
+              };
+              const post = (body, fallback) => {
+                const url = this.state.data.rsvpEndpoint;
+                if (!url) return;
+                fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ event: id, ...body }) })
+                  .then((r) => r.json())
+                  .then((j) => { if (j && j.rsvps) this.setState({ rsvps: { ...(this.state.rsvps || {}), [id]: j.rsvps } }); })
+                  .catch(() => this.setState({ rsvpAdminNote: fallback }));
+              };
+              const going = list.filter((r) => r.coming).length;
+              return {
+                rsvpCount: list.length,
+                rsvpSummary: list.length
+                  ? going + ' coming, ' + (list.length - going) + ' not \u2014 ' + list.length + ' replied'
+                  : 'Nobody has replied yet',
+                hasRsvps: list.length > 0,
+                attendees: list.map((r, j) => ({
+                  name: r.name,
+                  comingLabel: r.coming ? 'Coming' : 'Not coming',
+                  toggleLabel: r.coming ? 'Mark as not coming' : 'Mark as coming',
+                  onName: (ev) => {
+                    const newName = ev.target.value.trim();
+                    if (!newName || newName === r.name) return;
+                    const next = list.map((x, k) => (k === j ? { ...x, name: newName } : x));
+                    push(next, '');
+                    post({ name: r.name, remove: true });
+                    post({ name: newName, coming: r.coming }, 'Renamed here, but the sheet did not answer.');
+                  },
+                  onToggle: () => {
+                    const next = list.map((x, k) => (k === j ? { ...x, coming: !x.coming } : x));
+                    push(next, '');
+                    post({ name: r.name, coming: !r.coming }, 'Changed here, but the sheet did not answer.');
+                  },
+                  onRemove: () => {
+                    push(list.filter((x, k) => k !== j), '');
+                    post({ name: r.name, remove: true }, 'Removed here, but the sheet did not answer.');
+                  }
+                }))
+              };
+            })()
+          };
+        };
+        const all = d.events.map(build);
+        return {
+          all,
+          upcoming: d.events.map((e, i) => (e.past ? null : build(e, i))).filter(Boolean),
+          past: d.events.map((e, i) => (e.past ? build(e, i) : null)).filter(Boolean),
+          hasUpcoming: d.events.some((e) => !e.past),
+          noUpcoming: !d.events.some((e) => !e.past),
+          hasPast: d.events.some((e) => e.past)
+        };
+      })(),
 
       onUnlock: (ev) => {
         ev.preventDefault();
@@ -1004,58 +1279,6 @@ class Component extends DCLogic {
         ev.target.reset();
         this.setState({ draft: { ...EMPTY_DRAFT }, lookupQuery: '', lookupNote: 'Added.', makeCurrent: false });
       },
-      eventImage: this.state.eventImage,
-      eventImageCss: '"' + this.state.eventImage + '"',
-      imageNote: this.state.imageNote || 'Upload commits the file to the repository\u2019s images/ folder \u2014 needs the token set up above. A pasted web address works too, but breaks if that site takes it down.',
-      onEventImageUrl: (e) => this.setState({ eventImage: e.target.value, imageNote: '' }),
-      onEventImageFile: (e) => {
-        const file = e.target.files && e.target.files[0];
-        if (!file) return;
-        const cfg = this.state.gh;
-        if (!cfg.owner || !cfg.repo || !cfg.token) {
-          this.setState({ imageNote: 'Set the repository and token above first, or paste a web address instead.' });
-          return;
-        }
-        if (file.size > 4 * 1024 * 1024) {
-          this.setState({ imageNote: 'That is over 4MB \u2014 shrink it first, or the repository will bloat.' });
-          return;
-        }
-        this.setState({ imageNote: 'Uploading\u2026' });
-        ghUploadImage(cfg, file).then(
-          (path) => this.setState({ eventImage: path, imageNote: 'Committed as ' + path + '.' }),
-          (err) => this.setState({ imageNote: err.message })
-        );
-      },
-      onAddEvent: (ev) => {
-        ev.preventDefault();
-        const f = ev.target.elements;
-        if (!f.title.value.trim()) return;
-        const nd = clone(d);
-        nd.events.unshift({
-          date: f.date.value.trim(), title: f.title.value.trim(), where: f.where.value.trim(),
-          time: f.time.value.trim(), note: f.note.value.trim(), past: f.isPast.checked,
-          image: this.state.eventImage.trim()
-        });
-        this.save(nd);
-        ev.target.reset();
-        this.setState({ eventImage: '', imageNote: '' });
-      },
-      onSavePoll: (ev) => {
-        ev.preventDefault();
-        const f = ev.target.elements;
-        const nd = clone(d);
-        nd.poll.month = f.month.value.trim();
-        nd.poll.closes = f.closes.value.trim();
-        nd.poll.url = f.url.value.trim();
-        const lines = f.noms.value.split('\n').map((l) => l.trim()).filter(Boolean);
-        if (lines.length) {
-          nd.poll.nominees = lines.map((l) => {
-            const p = l.split('|').map((s) => s.trim());
-            return { title: p[0] || '', author: p[1] || '', pages: p[2] || '', by: p[3] || '', pitch: p[4] || '' };
-          });
-        }
-        this.save(nd);
-      },
       gh: this.state.gh,
       publishLabel: this.state.publishLabel,
       publishNote: this.state.publishNote,
@@ -1085,6 +1308,21 @@ class Component extends DCLogic {
         const text = JSON.stringify(this.state.data, null, 2);
         const done = () => { this.setState({ exportLabel: 'Copied \u2014 paste into data.json' }); setTimeout(() => this.setState({ exportLabel: 'Copy data' }), 2600); };
         if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, done); else done();
+      },
+      previewLabel: this.state.previewLabel || 'Save & preview',
+      onPreview: () => {
+        try { localStorage.setItem(KEY, JSON.stringify(this.state.data)); } catch (e) {}
+        this.setState({ previewLabel: 'Save & preview', publishNote: '' });
+        this.go('home')();
+      },
+      onDiscard: () => {
+        if (!window.confirm('Throw away the unpublished draft in this browser and go back to what is published?')) return;
+        try { localStorage.removeItem(KEY); } catch (e) {}
+        this.setState({
+          data: Object.assign(clone(DEFAULTS), this.published || {}),
+          dirty: false, curQuestionsText: null,
+          publishNote: 'Draft discarded \u2014 showing the published version again.'
+        });
       },
       onReset: () => {
         try { localStorage.removeItem(KEY); } catch (e) {}
