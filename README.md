@@ -37,9 +37,20 @@ Open `/#admin`, unlock (passphrase `margin` — change it in `onUnlock` in the c
 
 The token is stored in that browser's localStorage and is sent only to api.github.com. It never enters the repository. Treat it like a house key: anyone with the device and the passphrase can commit with it. If it leaks, revoke it on GitHub and make a new one.
 
+### Photographs
+
+Two places take an image, both under Housekeeping:
+
+- **Home page illustration** — sits behind the centred title, under a dark wash.
+- **Event photograph** — shows on the event, and appears automatically in the Gallery.
+
+Each field accepts a pasted web address, or **Upload a file**, which commits the image into the repository's `images/` folder and stores the path. Uploading needs the token; it is the better option, since a pasted address dies whenever that other site does. Keep files under about 1MB — the repository grows forever.
+
+The Gallery also has a personal scratchpad of drop-frames at the bottom. Those live in your browser only and are never published; they are for trying a photo out.
+
 ### Day to day
 
-1. Add books (paste a Goodreads link or ISBN → **Fetch** pulls title, author, pages and cover from Open Library) and events.
+1. Add books (paste a Goodreads link or ISBN → **Fetch** pulls title, author, pages and cover from Open Library) and events, with photographs if you have them.
 2. Press **Publish to GitHub**. That writes `data.json`; Pages redeploys in about a minute.
 3. No token to hand? **Copy data** puts the same JSON on the clipboard — paste it over `data.json` in the GitHub web editor and commit. Same outcome.
 
@@ -52,6 +63,11 @@ The badge at the top of the admin panel says whether this browser holds unpublis
 - **Votes are not tallied here.** Voting is a link out to a poll service (set the URL in the admin ballot form), because a real shared tally needs a server. If you want live vote counts and phone-friendly editing without GitHub, the honest answer is a free Supabase or Firebase project — say the word and it can be swapped in.
 - **Gallery photos are per-browser.** Dropped images live in your browser only. For published photos, commit image files and replace the `<image-slot>` elements with `<img>`.
 
+## The pages
+
+Home (centred title, scrolling covers of recent reads, then the three-up summary), The Club, Reading (current book with discussion questions, plus the full shelf and ratings), Events (upcoming and past), Gallery, Vote, and Housekeeping — the admin page, linked quietly at the end of the nav and also at `/admin/`.
+
 ## Notes
 
+- The passphrase is set by `ADMIN_PASS` near the top of the logic block in `Islington Book Club.dc.html`. It is readable in the page source, so treat it as a doormat lock, not a safe. The GitHub token is the thing that actually matters, and that never leaves your browser.
 - Covers are hotlinked from Open Library. Goodreads has had no public API since 2020, so a pasted Goodreads URL is matched on its title slug — check the fetched details before adding.

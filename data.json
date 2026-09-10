@@ -1,4 +1,5 @@
 {
+  "heroImage": "",
   "poll": {
     "month": "April’s book",
     "closes": "Saturday 24 April",
@@ -35,9 +36,9 @@
     ]
   },
   "current": {
-    "title": "Sky Full of Elephants",
-    "author": "Cebo Campbell",
-    "pages": "",
+    "title": "Piranesi",
+    "author": "Susanna Clarke",
+    "pages": 245,
     "blurb": "A man lives alone in a house of endless halls and tidal seas, keeping careful notes on the statues and the birds. It is a puzzle, but the pleasure of it is the voice — patient, decent, entirely unbothered by the fact that his world makes no sense. Bring your theories; we will disagree warmly.",
     "meeting": "Sun 29 March",
     "pick": "Chosen by vote, 14–2–1–1",
@@ -45,26 +46,9 @@
       "Does the House work better as a place or as a metaphor — and does it matter?",
       "Piranesi is kind almost to a fault. Is that innocence, or damage?",
       "Where did the ending leave you: relieved, or a bit bereft?"
-    ],
-    "coverUrl": "https://covers.openlibrary.org/b/id/14822979-L.jpg"
+    ]
   },
   "shelf": [
-    {
-      "when": "—",
-      "title": "Sky Full of Elephants",
-      "author": "Cebo Campbell",
-      "pages": "",
-      "rating": 0,
-      "coverUrl": "https://covers.openlibrary.org/b/id/14822979-L.jpg"
-    },
-    {
-      "when": "—",
-      "title": "Yellow face",
-      "author": "David Henry Hwang",
-      "pages": "",
-      "rating": 0,
-      "coverUrl": "https://covers.openlibrary.org/b/id/9804403-L.jpg"
-    },
     {
       "when": "Feb 2027",
       "title": "Klara and the Sun",
