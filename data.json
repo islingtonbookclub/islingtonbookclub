@@ -50,7 +50,15 @@
   },
   "shelf": [
     {
-      "when": "MAy 2026",
+      "when": "June",
+      "title": "The Big Sleep",
+      "author": "Raymond Chandler",
+      "pages": "",
+      "rating": 0,
+      "coverUrl": "https://covers.openlibrary.org/b/id/7268475-L.jpg"
+    },
+    {
+      "when": "May 2026",
       "title": "Beneath the surface",
       "author": "Jo Spain",
       "pages": "",
