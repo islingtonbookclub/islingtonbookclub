@@ -8,6 +8,11 @@
 <body>
 <x-dc>
 <helmet>
+<title>Islington Book Club</title>
+<meta name="description" content="A book club in Islington, London. One book a month, the last Sunday at four, in whoever's living room can take us.">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="icon" href="favicon.png" sizes="512x512">
+<link rel="apple-touch-icon" href="favicon-180.png">
 <link rel="stylesheet" href="ds/styles.css">
 <script src="ds/ds-bundle.js"></script>
 <script src="./image-slot.js"></script>
@@ -34,15 +39,38 @@
       </span>
       <span>Islington Book Club</span>
     </button>
-    <nav style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; font-size: 14px;">
-      <button class="lnk" onClick="{{ goHome }}" style="color: {{ cHome }};">Home</button>
-      <button class="lnk" onClick="{{ goAbout }}" style="color: {{ cAbout }};">The Club</button>
-      <button class="lnk" onClick="{{ goReading }}" style="color: {{ cReading }};">Reading</button>
-      <button class="lnk" onClick="{{ goEvents }}" style="color: {{ cEvents }};">Events</button>
-      <button class="lnk" onClick="{{ goGallery }}" style="color: {{ cGallery }};">Gallery</button>
-      <button class="lnk" onClick="{{ goVote }}" style="color: {{ cVote }};">Vote</button>
-      <button class="lnk" onClick="{{ goAdmin }}" style="color: {{ cAdmin }}; opacity: 0.55; font-size: 12px;">Housekeeping</button>
-    </nav>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <nav style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; font-size: 14px;">
+        <button class="lnk" onClick="{{ goHome }}" style="color: {{ cHome }};">Home</button>
+        <button class="lnk" onClick="{{ goAbout }}" style="color: {{ cAbout }};">The Club</button>
+        <button class="lnk" onClick="{{ goReading }}" style="color: {{ cReading }};">Reading</button>
+        <button class="lnk" onClick="{{ goEvents }}" style="color: {{ cEvents }};">Events</button>
+        <button class="lnk" onClick="{{ goGallery }}" style="color: {{ cGallery }};">Gallery</button>
+        <button class="lnk" onClick="{{ goVote }}" style="color: {{ cVote }};">Vote</button>
+        <button class="lnk" onClick="{{ goAdmin }}" style="color: {{ cAdmin }}; opacity: 0.55; font-size: 12px;">Housekeeping</button>
+      </nav>
+    </sc-if>
+    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+      <button class="btn btn-secondary" onClick="{{ onToggleMenu }}" aria-expanded="{{ menuOpen }}" aria-controls="ibc-menu" style="display: flex; align-items: center; gap: 10px; padding: 12px 18px; min-height: 46px;">
+        <span style="display: grid; gap: 4px; width: 16px;">
+          <span style="height: 1px; background: currentColor;"></span>
+          <span style="height: 1px; background: currentColor;"></span>
+          <span style="height: 1px; background: currentColor;"></span>
+        </span>
+        <span style="font-size: 13px;">{{ menuLabel }}</span>
+      </button>
+    </sc-if>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <nav id="ibc-menu" style="flex: 1 0 100%; display: flex; flex-direction: column; border-top: 1px solid var(--color-divider); margin-top: 12px;">
+        <button class="lnk" onClick="{{ goHome }}" style="color: {{ cHome }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">Home</button>
+        <button class="lnk" onClick="{{ goAbout }}" style="color: {{ cAbout }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">The Club</button>
+        <button class="lnk" onClick="{{ goReading }}" style="color: {{ cReading }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">Reading</button>
+        <button class="lnk" onClick="{{ goEvents }}" style="color: {{ cEvents }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">Events</button>
+        <button class="lnk" onClick="{{ goGallery }}" style="color: {{ cGallery }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">Gallery</button>
+        <button class="lnk" onClick="{{ goVote }}" style="color: {{ cVote }}; padding: 13px 2px; border-bottom: 1px solid var(--color-divider);">Vote</button>
+        <button class="lnk" onClick="{{ goAdmin }}" style="color: {{ cAdmin }}; padding: 13px 2px; opacity: 0.6; font-size: 13px;">Housekeeping</button>
+      </nav>
+    </sc-if>
   </header>
 
   <main style="max-width: 1080px; margin: 0 auto; padding: 0 clamp(18px, 5vw, 40px) 96px;">
@@ -171,7 +199,12 @@
             <p style="text-align: justify; hyphens: auto; font-size: 15px; line-height: 1.85; max-width: 60ch;">{{ current.blurb }}</p>
             <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 26px;">
               <span class="tag tag-accent" style="font-variant-numeric: tabular-nums;">Discussed {{ current.meeting }}</span>
-              <span class="tag tag-neutral">{{ current.pick }}</span>
+              <sc-if value="{{ currentWhere }}" hint-placeholder-val="{{ false }}">
+                <span class="tag tag-outline">{{ currentWhere }}</span>
+              </sc-if>
+              <sc-if value="{{ currentPick }}" hint-placeholder-val="{{ true }}">
+                <span class="tag tag-neutral">{{ currentPick }}</span>
+              </sc-if>
             </div>
             <h4 style="font-weight: 400; margin-bottom: 8px;">Questions for the night</h4>
             <ol style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.95; max-width: 58ch;">
@@ -403,12 +436,35 @@
                     <div class="field" style="margin-bottom: 12px;"><label for="bk-author">Author</label><input class="input" id="bk-author" value="{{ draft.author }}" onChange="{{ onDraftAuthor }}" placeholder="Author"></div>
                   </div>
                 </div>
+                <div class="field" style="margin: 14px 0 6px;">
+                  <label for="bk-cover">Cover image</label>
+                  <input class="input" id="bk-cover" value="{{ draft.coverUrl }}" onChange="{{ onDraftCover }}" placeholder="https://… or images/…">
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                  <label class="btn btn-secondary" style="cursor: pointer; margin: 0;">
+                    Upload a cover<input type="file" accept="image/*" onChange="{{ onDraftCoverFile }}" style="display: none;">
+                  </label>
+                  <span class="text-muted" style="font-size: 12px;">{{ coverNote }}</span>
+                </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0;">
                   <div class="field"><label for="bk-when">Month</label><input class="input" id="bk-when" value="{{ draft.when }}" onChange="{{ onDraftWhen }}" placeholder="Mar 2027"></div>
                   <div class="field"><label for="bk-pages">Pages</label><input class="input" id="bk-pages" value="{{ draft.pages }}" onChange="{{ onDraftPages }}" placeholder="245"></div>
                   <div class="field"><label for="bk-rating">Rating /5</label><input class="input" id="bk-rating" value="{{ draft.rating }}" onChange="{{ onDraftRating }}" placeholder="4.2"></div>
                 </div>
-                <label class="radio" style="margin-bottom: 12px;"><input type="checkbox" name="makeCurrent"><span class="dot"></span>Make this the current read</label>
+                <label class="radio" style="margin-bottom: 12px;"><input type="checkbox" checked="{{ makeCurrent }}" onChange="{{ onMakeCurrent }}"><span class="dot"></span>Make this the current read</label>
+                <sc-if value="{{ makeCurrent }}" hint-placeholder-val="{{ false }}">
+                  <div style="border-left: 1px solid var(--color-accent-300); padding-left: 16px; margin: 4px 0 14px;">
+                    <p class="text-muted" style="font-size: 12px; margin: 0 0 12px;">What the Reading page will say about it.</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+                      <div class="field"><label for="cur-meeting">Meeting date</label><input class="input" id="cur-meeting" value="{{ draft.meeting }}" onChange="{{ onDraftMeeting }}" placeholder="Sun 26 April"></div>
+                      <div class="field"><label for="cur-where">Location</label><input class="input" id="cur-where" value="{{ draft.where }}" onChange="{{ onDraftWhere }}" placeholder="Marek's, Highbury"></div>
+                      <div class="field"><label for="cur-pick">How it was chosen</label><input class="input" id="cur-pick" value="{{ draft.pick }}" onChange="{{ onDraftPick }}" placeholder="Chosen by vote, 9–4–2–1"></div>
+                    </div>
+                    <div class="field" style="margin-top: 12px;"><label for="cur-blurb">Blurb</label><textarea class="input" id="cur-blurb" value="{{ draft.blurb }}" onChange="{{ onDraftBlurb }}" style="min-height: 96px;" placeholder="A paragraph in the club's voice — what it is, and what to expect."></textarea></div>
+                    <div class="field" style="margin-top: 12px;"><label for="cur-questions">Questions for the night</label><textarea class="input" id="cur-questions" value="{{ draft.questions }}" onChange="{{ onDraftQuestions }}" style="min-height: 96px;" placeholder="One per line."></textarea></div>
+                    <p class="text-muted" style="font-size: 12px; margin: 8px 0 0;">One question per line. Leave any of these empty to keep what is already on the page.</p>
+                  </div>
+                </sc-if>
                 <button class="btn btn-primary btn-block" type="submit">Add book</button>
                 <p style="font-size: 12px; color: var(--color-accent-700); margin-top: 10px;">{{ lookupNote }}</p>
               </form>
@@ -457,15 +513,37 @@
             </div>
 
             <hr class="hr" style="margin: clamp(36px, 5vw, 52px) 0 22px;">
-            <h3 style="font-weight: 400; margin-bottom: 12px;">Everything on the shelf</h3>
-            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;"><table class="table" style="min-width: 460px;">
-              <thead><tr><th style="width: 100px;">Month</th><th>Title</th><th style="width: 90px; text-align: right;">Rating</th><th style="width: 80px;"></th></tr></thead>
+            <h3 style="font-weight: 400; margin-bottom: 4px;">The current read</h3>
+            <p class="text-muted" style="font-size: 12px; margin-bottom: 14px;">What the Reading page says right now. Edit any of it; empty fields simply do not appear.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 14px;">
+              <div class="field"><label for="cc-title">Title</label><input class="input" value="{{ cur.title }}" id="cc-title" onChange="{{ cur.onTitle }}"></div>
+              <div class="field"><label for="cc-author">Author</label><input class="input" value="{{ cur.author }}" id="cc-author" onChange="{{ cur.onAuthor }}"></div>
+              <div class="field"><label for="cc-pages">Pages</label><input class="input" value="{{ cur.pages }}" id="cc-pages" onChange="{{ cur.onPages }}"></div>
+              <div class="field"><label for="cc-meeting">Meeting date</label><input class="input" value="{{ cur.meeting }}" id="cc-meeting" onChange="{{ cur.onMeeting }}" placeholder="Sun 26 April"></div>
+              <div class="field"><label for="cc-where">Location</label><input class="input" value="{{ cur.where }}" id="cc-where" onChange="{{ cur.onWhere }}" placeholder="Marek's, Highbury"></div>
+              <div class="field"><label for="cc-pick">How it was chosen</label><input class="input" value="{{ cur.pick }}" id="cc-pick" onChange="{{ cur.onPick }}" placeholder="Chosen by vote, 9–4–2–1"></div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;">
+              <div class="field"><label for="cc-blurb">Blurb</label><textarea class="input" id="cc-blurb" value="{{ cur.blurb }}" onChange="{{ cur.onBlurb }}" style="min-height: 130px;"></textarea></div>
+              <div class="field"><label for="cc-questions">Questions for the night</label><textarea class="input" id="cc-questions" value="{{ cur.questions }}" onChange="{{ cur.onQuestions }}" onBlur="{{ cur.onQuestionsBlur }}" style="min-height: 130px;" placeholder="One per line."></textarea></div>
+            </div>
+            <div class="field" style="margin-top: 14px;"><label for="cc-cover">Cover image</label><input class="input" id="cc-cover" value="{{ cur.coverUrl }}" onChange="{{ cur.onCover }}" placeholder="https://… or images/…"></div>
+            <label class="btn btn-secondary" style="cursor: pointer; margin-top: 10px; display: inline-block;">Upload a cover<input type="file" accept="image/*" onChange="{{ cur.onCoverFile }}" style="display: none;"></label>
+            <p class="text-muted" style="font-size: 12px; margin: 10px 0 0;">{{ curCoverNote }}</p>
+
+            <hr class="hr" style="margin: clamp(30px, 4vw, 44px) 0 22px;">
+            <h3 style="font-weight: 400; margin-bottom: 4px;">Everything on the shelf</h3>
+            <p class="text-muted" style="font-size: 12px; margin-bottom: 12px;">Edit any field in place — changes save as you type. Publish afterwards to make them public.</p>
+            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;"><table class="table" style="min-width: 720px;">
+              <thead><tr><th style="width: 104px;">Month</th><th>Title</th><th>Author</th><th style="width: 78px;">Rating</th><th>Cover</th><th style="width: 76px;"></th></tr></thead>
               <tbody>
                 <sc-for list="{{ shelfAdmin }}" as="b" hint-placeholder-count="5">
                   <tr>
-                    <td class="text-muted" style="font-variant-numeric: tabular-nums;">{{ b.when }}</td>
-                    <td>{{ b.title }}</td>
-                    <td style="text-align: right; font-variant-numeric: tabular-nums;">{{ b.rating }}</td>
+                    <td><input class="input" value="{{ b.when }}" onChange="{{ b.onWhen }}" style="padding: 6px 8px; font-size: 13px;"></td>
+                    <td><input class="input" value="{{ b.title }}" onChange="{{ b.onTitle }}" style="padding: 6px 8px; font-size: 13px;"></td>
+                    <td><input class="input" value="{{ b.author }}" onChange="{{ b.onAuthor }}" style="padding: 6px 8px; font-size: 13px;"></td>
+                    <td><input class="input" value="{{ b.rating }}" onChange="{{ b.onRating }}" style="padding: 6px 8px; font-size: 13px; text-align: right;"></td>
+                    <td><input class="input" value="{{ b.coverUrl }}" onChange="{{ b.onCover }}" placeholder="https://… or images/…" style="padding: 6px 8px; font-size: 12px;"></td>
                     <td style="text-align: right;"><button class="btn btn-ghost" onClick="{{ b.remove }}">Remove</button></td>
                   </tr>
                 </sc-for>
@@ -503,7 +581,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: &quot;100%&quot;}}">
 // Change this to set the admin passphrase (compared case-insensitively).
-const ADMIN_PASS = 'margin';
+const ADMIN_PASS = 'BookKeeper';
 const KEY = 'ibc-site-data-v1';
 const GH_KEY = 'ibc-gh-settings-v1';
 const GH_DEFAULTS = { owner: '', repo: '', branch: 'main', path: 'data.json', token: '' };
@@ -653,7 +731,7 @@ async function lookupBook(raw) {
     coverUrl: d.cover_i ? 'https://covers.openlibrary.org/b/id/' + d.cover_i + '-L.jpg' : ''
   };
 }
-const EMPTY_DRAFT = { when: '', title: '', author: '', pages: '', rating: '', coverUrl: '' };
+const EMPTY_DRAFT = { when: '', title: '', author: '', pages: '', rating: '', coverUrl: '', meeting: '', where: '', blurb: '', questions: '', pick: '' };
 function stars(r) {
   const n = Math.round(Number(r) || 0);
   return '\u2605\u2605\u2605\u2605\u2605'.slice(0, n) + '\u2606\u2606\u2606\u2606\u2606'.slice(0, 5 - n);
@@ -664,7 +742,7 @@ class Component extends DCLogic {
     page: 'home', data: clone(DEFAULTS), unlocked: false, authError: '', exportLabel: 'Copy data',
     draft: { ...EMPTY_DRAFT }, lookupQuery: '', lookupLabel: 'Fetch', lookupNote: '',
     gh: { ...GH_DEFAULTS }, publishLabel: 'Publish to GitHub', publishNote: '', dirty: false,
-    eventImage: '', imageNote: '', heroNote: ''
+    eventImage: '', imageNote: '', heroNote: '', coverNote: '', curCoverNote: '', curQuestionsText: null, makeCurrent: false, narrow: false, menuOpen: false
   };
 
   setGh(key) {
@@ -686,6 +764,12 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    this.onResize = () => {
+      const narrow = window.innerWidth <= 720;
+      if (narrow !== this.state.narrow) this.setState({ narrow, menuOpen: false });
+    };
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
     // Published content lives in data.json (committed to the repo). A local
     // draft in this browser, if any, wins until the admin resets it.
     fetch('./data.json', { cache: 'no-store' })
@@ -708,13 +792,15 @@ class Component extends DCLogic {
     if (hash) this.setState({ page: hash });
   }
 
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+
   save(data) {
     this.setState({ data, dirty: true });
     try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { /* private mode */ }
   }
 
   go(page) {
-    return () => { this.setState({ page }); try { history.replaceState(null, '', '#' + page); } catch (e) {} window.scrollTo(0, 0); };
+    return () => { this.setState({ page, menuOpen: false }); try { history.replaceState(null, '', '#' + page); } catch (e) {} window.scrollTo(0, 0); };
   }
 
   renderVals() {
@@ -727,6 +813,11 @@ class Component extends DCLogic {
     const nextEvent = upcoming[0] || { title: 'To be announced', note: 'Watch this space.', date: '', where: '', time: '' };
 
     return {
+      wide: !this.state.narrow,
+      narrow: this.state.narrow,
+      menuOpen: this.state.menuOpen,
+      menuLabel: this.state.menuOpen ? 'Close' : 'Menu',
+      onToggleMenu: () => this.setState((st) => ({ menuOpen: !st.menuOpen })),
       isHome: page === 'home', isAbout: page === 'about', isReading: page === 'reading',
       isEvents: page === 'events', isGallery: page === 'gallery', isVote: page === 'vote',
       isAdmin: page === 'admin',
@@ -752,6 +843,8 @@ class Component extends DCLogic {
       },
       heroNote: this.state.heroNote || 'Sits behind the title on the home page, under a dark wash. Leave empty for plain ink.',
       current: { ...d.current, cover: coverBg(d.current, 0) },
+      currentWhere: d.current.where || '',
+      currentPick: d.current.pick || '',
       currentMeta: [d.current.author, d.current.pages ? d.current.pages + ' pages' : ''].filter(Boolean).join(' \u00b7 '),
       poll: d.poll,
       draft: { ...this.state.draft, cover: coverBg(this.state.draft, 0) },
@@ -760,6 +853,26 @@ class Component extends DCLogic {
       lookupNote: this.state.lookupNote,
       onLookupChange: (ev) => this.setState({ lookupQuery: ev.target.value }),
       onDraftTitle: this.setDraft('title'),
+      onDraftCover: this.setDraft('coverUrl'),
+      onDraftMeeting: this.setDraft('meeting'),
+      onDraftWhere: this.setDraft('where'),
+      onDraftBlurb: this.setDraft('blurb'),
+      onDraftQuestions: this.setDraft('questions'),
+      onDraftPick: this.setDraft('pick'),
+      makeCurrent: this.state.makeCurrent,
+      onMakeCurrent: (e) => this.setState({ makeCurrent: e.target.checked }),
+      coverNote: this.state.coverNote || 'If Fetch found no art, or found the wrong edition.',
+      onDraftCoverFile: (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const cfg = this.state.gh;
+        if (!cfg.owner || !cfg.repo || !cfg.token) { this.setState({ coverNote: 'Set the repository and token above first, or paste an address.' }); return; }
+        this.setState({ coverNote: 'Uploading\u2026' });
+        ghUploadImage(cfg, file).then(
+          (path) => this.setState((st) => ({ draft: { ...st.draft, coverUrl: path }, coverNote: 'Committed as ' + path + '.' })),
+          (err) => this.setState({ coverNote: err.message })
+        );
+      },
       onDraftAuthor: this.setDraft('author'),
       onDraftWhen: this.setDraft('when'),
       onDraftPages: this.setDraft('pages'),
@@ -800,10 +913,57 @@ class Component extends DCLogic {
       authError: this.state.authError,
       exportLabel: this.state.exportLabel,
       nomineeText: d.poll.nominees.map((n) => [n.title, n.author, n.pages, n.by, n.pitch].join(' | ')).join('\n'),
-      shelfAdmin: d.shelf.map((b, i) => ({
-        when: b.when, title: b.title, rating: Number(b.rating).toFixed(1),
-        remove: () => { const nd = clone(d); nd.shelf.splice(i, 1); this.save(nd); }
-      })),
+      cur: (() => {
+        const c = d.current || {};
+        const set = (key) => (e) => { const nd = clone(d); nd.current[key] = e.target.value; this.save(nd); };
+        return {
+          title: c.title || '', author: c.author || '', pages: c.pages === undefined ? '' : String(c.pages),
+          meeting: c.meeting || '', where: c.where || '', pick: c.pick || '',
+          blurb: c.blurb || '',
+          questions: this.state.curQuestionsText === null ? (c.questions || []).join('\n') : this.state.curQuestionsText,
+          coverUrl: c.coverUrl || '',
+          onTitle: set('title'), onAuthor: set('author'), onPages: set('pages'),
+          onMeeting: set('meeting'), onWhere: set('where'), onPick: set('pick'),
+          onBlurb: set('blurb'), onCover: set('coverUrl'),
+          onQuestions: (e) => this.setState({ curQuestionsText: e.target.value }),
+          onQuestionsBlur: () => {
+            const raw = this.state.curQuestionsText;
+            if (raw === null) return;
+            const nd = clone(this.state.data);
+            nd.current.questions = raw.split('\n').map((q) => q.trim()).filter(Boolean);
+            this.save(nd);
+            this.setState({ curQuestionsText: null });
+          },
+          onCoverFile: (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            const cfg = this.state.gh;
+            if (!cfg.owner || !cfg.repo || !cfg.token) { this.setState({ curCoverNote: 'Set the repository and token above first, or paste an address.' }); return; }
+            this.setState({ curCoverNote: 'Uploading\u2026' });
+            ghUploadImage(cfg, file).then(
+              (path) => { const nd = clone(this.state.data); nd.current.coverUrl = path; this.save(nd); this.setState({ curCoverNote: 'Committed as ' + path + '.' }); },
+              (err) => this.setState({ curCoverNote: err.message })
+            );
+          }
+        };
+      })(),
+      curCoverNote: this.state.curCoverNote || 'Leave the address empty for a plain ink cover.',
+      shelfAdmin: d.shelf.map((b, i) => {
+        const set = (key, cast) => (e) => {
+          const nd = clone(d);
+          nd.shelf[i][key] = cast ? cast(e.target.value) : e.target.value;
+          this.save(nd);
+        };
+        return {
+          when: b.when || '', title: b.title || '', author: b.author || '',
+          rating: b.rating === undefined || b.rating === null ? '' : String(b.rating),
+          coverUrl: b.coverUrl || '',
+          onWhen: set('when'), onTitle: set('title'), onAuthor: set('author'),
+          onRating: set('rating'),
+          onCover: set('coverUrl'),
+          remove: () => { const nd = clone(d); nd.shelf.splice(i, 1); this.save(nd); }
+        };
+      }),
       eventsAdmin: d.events.map((e, i) => ({
         date: e.date, title: e.title, list: e.past ? 'Past' : 'Upcoming',
         remove: () => { const nd = clone(d); nd.events.splice(i, 1); this.save(nd); }
@@ -826,12 +986,23 @@ class Component extends DCLogic {
           pages: dr.pages, rating: Number(dr.rating) || 0, coverUrl: dr.coverUrl
         };
         nd.shelf.unshift(book);
-        if (ev.target.elements.makeCurrent.checked) {
-          nd.current = { ...nd.current, title: book.title, author: book.author, pages: book.pages, coverUrl: book.coverUrl };
+        if (this.state.makeCurrent) {
+          const qs = dr.questions.split('\n').map((q) => q.trim()).filter(Boolean);
+          const prev = { ...nd.current };
+          delete prev.cover;
+          nd.current = {
+            ...prev,
+            title: book.title, author: book.author, pages: book.pages, coverUrl: book.coverUrl,
+            meeting: dr.meeting.trim() || nd.current.meeting,
+            where: dr.where.trim() || '',
+            pick: dr.pick.trim(),
+            blurb: dr.blurb.trim() || nd.current.blurb,
+            questions: qs.length ? qs : nd.current.questions
+          };
         }
         this.save(nd);
         ev.target.reset();
-        this.setState({ draft: { ...EMPTY_DRAFT }, lookupQuery: '', lookupNote: 'Added.' });
+        this.setState({ draft: { ...EMPTY_DRAFT }, lookupQuery: '', lookupNote: 'Added.', makeCurrent: false });
       },
       eventImage: this.state.eventImage,
       eventImageCss: '"' + this.state.eventImage + '"',

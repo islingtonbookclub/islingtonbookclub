@@ -29,13 +29,17 @@ There is no database. `data.json` in the repository *is* the database, and every
 
 ### One-time admin setup
 
-Open `/#admin`, unlock (passphrase `margin` — change it in `onUnlock` in the component's logic), open **Repository and token** and fill in:
+Open `/#admin`, unlock (passphrase `BookKeeper` — change it via `ADMIN_PASS` in the component's logic), open **Repository and token** and fill in:
 
 - **owner / repository / branch** — where the site lives.
 - **File** — `data.json`.
 - **Fine-grained token** — GitHub → Settings → Developer settings → Fine-grained tokens → new token, **this repository only**, permission **Contents: read and write**, nothing else. Give it a 1-year expiry.
 
 The token is stored in that browser's localStorage and is sent only to api.github.com. It never enters the repository. Treat it like a house key: anyone with the device and the passphrase can commit with it. If it leaks, revoke it on GitHub and make a new one.
+
+### Setting the current read
+
+Tick **Make this the current read** when adding a book and the form opens up: meeting date, location, blurb, and the discussion questions (one per line). Those drive the Reading page. Leave any of them empty to keep what is already published.
 
 ### Photographs
 
@@ -69,5 +73,5 @@ Home (centred title, scrolling covers of recent reads, then the three-up summary
 
 ## Notes
 
-- The passphrase is set by `ADMIN_PASS` near the top of the logic block in `Islington Book Club.dc.html`. It is readable in the page source, so treat it as a doormat lock, not a safe. The GitHub token is the thing that actually matters, and that never leaves your browser.
+- The passphrase is `BookKeeper`, set by `ADMIN_PASS` near the top of the logic block in `Islington Book Club.dc.html`. It is readable in the page source, so treat it as a doormat lock, not a safe. The GitHub token is the thing that actually matters, and that never leaves your browser.
 - Covers are hotlinked from Open Library. Goodreads has had no public API since 2020, so a pasted Goodreads URL is matched on its title slug — check the fetched details before adding.
