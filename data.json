@@ -50,52 +50,20 @@
   },
   "shelf": [
     {
-      "when": "Feb 2027",
-      "title": "Klara and the Sun",
-      "author": "Kazuo Ishiguro",
-      "rating": 3.8
+      "when": "MAy 2026",
+      "title": "Beneath the surface",
+      "author": "Jo Spain",
+      "pages": "",
+      "rating": 0,
+      "coverUrl": "https://covers.openlibrary.org/b/id/10209928-L.jpg"
     },
     {
-      "when": "Jan 2027",
-      "title": "Cold Enough for Snow",
-      "author": "Jessica Au",
-      "rating": 4.1
-    },
-    {
-      "when": "Dec 2026",
-      "title": "A Christmas Memory",
-      "author": "Truman Capote",
-      "rating": 4.6
-    },
-    {
-      "when": "Nov 2026",
-      "title": "The Overstory",
-      "author": "Richard Powers",
-      "rating": 3.4
-    },
-    {
-      "when": "Oct 2026",
-      "title": "Dept. of Speculation",
-      "author": "Jenny Offill",
-      "rating": 4.3
-    },
-    {
-      "when": "Sep 2026",
-      "title": "Concrete: A Life",
-      "author": "Rachel Adler",
-      "rating": 2.9
-    },
-    {
-      "when": "Aug 2026",
-      "title": "The Remains of the Day",
-      "author": "Kazuo Ishiguro",
-      "rating": 4.7
-    },
-    {
-      "when": "Jul 2026",
-      "title": "H is for Hawk",
-      "author": "Helen Macdonald",
-      "rating": 4.2
+      "when": "Apr 2026",
+      "title": "James",
+      "author": "Percival L. Everett",
+      "pages": "",
+      "rating": 0,
+      "coverUrl": "https://covers.openlibrary.org/b/id/15094964-L.jpg"
     }
   ],
   "events": [
