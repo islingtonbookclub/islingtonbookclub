@@ -8,8 +8,8 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="_ds/classical-e6dd3600-8a2d-4578-b7fd-7bdf6cf14480/styles.css">
-<script src="_ds/classical-e6dd3600-8a2d-4578-b7fd-7bdf6cf14480/_ds_bundle.js"></script>
+<link rel="stylesheet" href="ds/styles.css">
+<script src="ds/ds-bundle.js"></script>
 <script src="./image-slot.js"></script>
 <style>
   body { margin: 0; }
@@ -31,6 +31,7 @@
       <button class="lnk" onClick="{{ goEvents }}" style="color: {{ cEvents }};">Events</button>
       <button class="lnk" onClick="{{ goGallery }}" style="color: {{ cGallery }};">Gallery</button>
       <button class="lnk" onClick="{{ goVote }}" style="color: {{ cVote }};">Vote</button>
+      <button class="lnk" onClick="{{ goAdmin }}" style="color: {{ cAdmin }}; opacity: 0.55; font-size: 12px;">Housekeeping</button>
     </nav>
   </header>
 
@@ -296,7 +297,7 @@
       <section style="padding-top: clamp(40px, 6vw, 72px);">
         <sc-if value="{{ locked }}" hint-placeholder-val="{{ true }}">
           <div style="max-width: 380px;">
-            <h6 style="color: var(--color-accent);">Admin</h6>
+            <h6 style="color: var(--color-accent);">Housekeeping</h6>
             <h1 style="font-weight: 400; font-size: 40px; margin-bottom: 8px;">Locked</h1>
             <p class="text-muted" style="font-size: 14px;">For club organisers. If you have mislaid the passphrase, ask whoever set the site up.</p>
             <form onSubmit="{{ onUnlock }}" style="display: flex; gap: 10px; margin-top: 18px;">
@@ -311,7 +312,7 @@
           <div>
             <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between;">
               <div>
-                <h6 style="color: var(--color-accent);">Admin</h6>
+                <h6 style="color: var(--color-accent);">Housekeeping</h6>
                 <h1 style="font-weight: 400; font-size: clamp(32px, 5vw, 46px); margin: 0;">Keep the site fed</h1>
               </div>
               <div style="display: flex; gap: 10px; flex-wrap: wrap;">

@@ -4,9 +4,24 @@ Static site for GitHub Pages. No server, no build step. All content lives in `da
 
 ## Publish the site
 
-1. Push these files to a repository (keep the structure — `_ds/`, `support.js`, `image-slot.js`, `data.json`).
+1. Push **every** file, keeping the structure: `index.html`, `Islington Book Club.dc.html`, `admin/index.html`, `support.js`, `image-slot.js`, `data.json`, the `ds/` folder, and `.nojekyll`.
 2. **Settings → Pages → Deploy from a branch**, branch `main`, folder `/ (root)`.
 3. The site appears at `https://<user>.github.io/<repo>/`.
+
+### If the site loads but looks unstyled
+
+Two possible causes, in order of likelihood.
+
+1. **The `ds/` folder did not get uploaded.** It holds the entire look — fonts, colours, every component style. Check it is there in the repository, with `styles.css` and `ds-bundle.js` inside.
+2. **A missing `.nojekyll`.** GitHub Pages runs Jekyll by default, and Jekyll skips files and folders whose names begin with an underscore. This project keeps its styles in `ds/` precisely so that cannot bite, but `.nojekyll` is included as a belt-and-braces measure. Dotfiles are invisible to many Git clients and to drag-and-drop uploads, so if it is missing, add it in the browser: **Add file → Create new file**, name it `.nojekyll`, leave it empty, commit.
+
+Either way, open the browser console on the live site — a 404 tells you exactly which file did not arrive. Then hard-refresh; Pages caches for a minute or two.
+
+## Where is the admin page?
+
+`https://<user>.github.io/<repo>/admin/` — the trailing slash matters on Pages.
+
+That path is a small redirect (`admin/index.html`) into the main page's admin view. The direct equivalent is `…/Islington%20Book%20Club.dc.html#admin`, which is worth bookmarking if the redirect is ever cached oddly. There is deliberately no Admin link in the site navigation.
 
 ## How persistence works
 
