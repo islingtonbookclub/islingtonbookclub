@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/classical-e6dd3600-8a2d-4578-b7fd-7bdf6cf14480/styles.css">
+<script src="_ds/classical-e6dd3600-8a2d-4578-b7fd-7bdf6cf14480/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: var(--color-neutral-100); }
+  a { color: var(--color-accent); }
+  a:hover { color: var(--color-accent-700); }
+</style>
+</helmet>
+<div style="font-family: var(--font-body); color: var(--color-text); padding: 40px clamp(16px, 4vw, 48px) 96px;">
+
+  <section style="margin-bottom: 88px;">
+    <div style="max-width: 62ch; margin-bottom: 32px;">
+      <h6 style="color: var(--color-accent);">Turn 2 &middot; Full-bleed, four ways</h6>
+      <h1 style="font-weight: 400; font-size: clamp(30px, 4.4vw, 48px); margin-bottom: 10px;">Same illustration, four handlings of the type</h1>
+      <p class="text-muted" style="font-size: 14px; line-height: 1.7;">All built on <a href="#1a">1a</a>. The difference is where the words sit and how much of the picture you give up to keep them readable — drop an illustration into one and it fills all four. Pick by id: <a href="#2a">2a</a>, <a href="#2b">2b</a>, <a href="#2c">2c</a>, <a href="#2d">2d</a>.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 56px;">
+
+      <div id="2a">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;">
+          <span class="tag tag-accent">2a</span>
+          <div>
+            <h3 style="font-weight: 400; font-size: 22px; margin: 0;">Left scrim</h3>
+            <p class="text-muted" style="font-size: 13px; margin: 2px 0 0;">Type on a dark wash that fades right, so the illustration keeps its right two-thirds. The default.</p>
+          </div>
+        </div>
+        <div style="position: relative; background: #191614; overflow: hidden;">
+          <div style="position: absolute; inset: 0;"><image-slot id="hero-2" shape="rect" placeholder="Wide illustration"></image-slot></div>
+          <div style="position: absolute; inset: 0; background: linear-gradient(100deg, rgba(20,17,15,0.92) 0%, rgba(20,17,15,0.74) 44%, rgba(20,17,15,0.14) 100%); pointer-events: none;"></div>
+          <div style="position: relative; padding: clamp(48px, 7vw, 88px) clamp(24px, 5vw, 64px); pointer-events: none;">
+            <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent-400);">Islington, London &middot; Since 2019</div>
+            <h2 style="font-weight: 400; font-size: clamp(34px, 5.4vw, 66px); line-height: 1.04; margin: 20px 0 0; max-width: 15ch; color: #f6f3ee;">A warm room, a hard book, and something on the stove.</h2>
+            <div style="width: 84px; height: 1px; background: var(--color-accent); margin: 26px 0;"></div>
+            <p style="max-width: 44ch; font-size: 16px; line-height: 1.75; color: #dcd8d1; margin: 0;">Last Sunday of the month, four o'clock, whoever's living room can take us.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px;">
+              <span class="btn btn-primary" style="color: var(--color-accent-300); border-color: var(--color-accent-300);">What we're reading</span>
+              <span class="btn btn-secondary" style="color: #f6f3ee; border-color: rgba(246,243,238,0.32);">Vote on next month</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="2b">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;">
+          <span class="tag tag-accent">2b</span>
+          <div>
+            <h3 style="font-weight: 400; font-size: 22px; margin: 0;">Centred title page</h3>
+            <p class="text-muted" style="font-size: 13px; margin: 2px 0 0;">An even wash across the whole picture, type centred over it like a frontispiece. Quietest, and forgiving of any crop.</p>
+          </div>
+        </div>
+        <div style="position: relative; background: #191614; overflow: hidden;">
+          <div style="position: absolute; inset: 0;"><image-slot id="hero-2" shape="rect" placeholder="Wide illustration"></image-slot></div>
+          <div style="position: absolute; inset: 0; background: rgba(20,17,15,0.7); pointer-events: none;"></div>
+          <div style="position: relative; padding: clamp(56px, 8vw, 104px) clamp(24px, 5vw, 64px); text-align: center; pointer-events: none;">
+            <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent-400);">Islington, London &middot; Since 2019</div>
+            <h2 style="font-weight: 400; font-size: clamp(34px, 5.4vw, 64px); line-height: 1.06; margin: 20px auto 0; max-width: 20ch; color: #f6f3ee;">A warm room, a hard book, and something on the stove.</h2>
+            <div style="width: 84px; height: 1px; background: var(--color-accent); margin: 26px auto;"></div>
+            <p style="max-width: 48ch; font-size: 16px; line-height: 1.75; color: #dcd8d1; margin: 0 auto;">Last Sunday of the month, four o'clock, whoever's living room can take us.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; justify-content: center;">
+              <span class="btn btn-primary" style="color: var(--color-accent-300); border-color: var(--color-accent-300);">What we're reading</span>
+              <span class="btn btn-secondary" style="color: #f6f3ee; border-color: rgba(246,243,238,0.32);">Vote on next month</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="2c">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;">
+          <span class="tag tag-accent">2c</span>
+          <div>
+            <h3 style="font-weight: 400; font-size: 22px; margin: 0;">Tall crop, type at the foot</h3>
+            <p class="text-muted" style="font-size: 13px; margin: 2px 0 0;">Gives the illustration real height and pushes the words to the bottom edge. Most dramatic; wants a good picture.</p>
+          </div>
+        </div>
+        <div style="position: relative; background: #191614; overflow: hidden; min-height: 520px; display: flex; align-items: flex-end;">
+          <div style="position: absolute; inset: 0;"><image-slot id="hero-2" shape="rect" placeholder="Wide illustration"></image-slot></div>
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,17,15,0.95) 0%, rgba(20,17,15,0.72) 38%, rgba(20,17,15,0.12) 78%); pointer-events: none;"></div>
+          <div style="position: relative; padding: clamp(36px, 5vw, 60px) clamp(24px, 5vw, 64px); width: 100%; pointer-events: none;">
+            <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent-400);">Islington, London &middot; Since 2019</div>
+            <h2 style="font-weight: 400; font-size: clamp(34px, 5.4vw, 64px); line-height: 1.04; margin: 16px 0 20px; max-width: 17ch; color: #f6f3ee;">A warm room, a hard book, and something on the stove.</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 26px; align-items: flex-end; justify-content: space-between;">
+              <p style="max-width: 42ch; font-size: 15px; line-height: 1.75; color: #dcd8d1; margin: 0;">Last Sunday of the month, four o'clock, whoever's living room can take us.</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                <span class="btn btn-primary" style="color: var(--color-accent-300); border-color: var(--color-accent-300);">What we're reading</span>
+                <span class="btn btn-secondary" style="color: #f6f3ee; border-color: rgba(246,243,238,0.32);">Vote</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="2d">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;">
+          <span class="tag tag-accent">2d</span>
+          <div>
+            <h3 style="font-weight: 400; font-size: 22px; margin: 0;">Inset panel on the picture</h3>
+            <p class="text-muted" style="font-size: 13px; margin: 2px 0 0;">Words in a hairline-ruled block laid on the illustration — nothing is washed out, so a light or busy drawing still works.</p>
+          </div>
+        </div>
+        <div style="position: relative; background: #191614; overflow: hidden; padding: clamp(28px, 4vw, 56px);">
+          <div style="position: absolute; inset: 0;"><image-slot id="hero-2" shape="rect" placeholder="Wide illustration"></image-slot></div>
+          <div style="position: absolute; inset: 0; background: rgba(20,17,15,0.28); pointer-events: none;"></div>
+          <div style="position: relative; max-width: 520px; background: rgba(20,17,15,0.9); border: 1px solid var(--color-accent-700); padding: clamp(28px, 4vw, 44px); pointer-events: none;">
+            <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent-400);">Islington, London &middot; Since 2019</div>
+            <h2 style="font-weight: 400; font-size: clamp(30px, 4vw, 48px); line-height: 1.06; margin: 18px 0 0; color: #f6f3ee;">A warm room, a hard book, and something on the stove.</h2>
+            <div style="width: 72px; height: 1px; background: var(--color-accent); margin: 22px 0;"></div>
+            <p style="font-size: 15px; line-height: 1.75; color: #dcd8d1; margin: 0 0 26px;">Last Sunday of the month, four o'clock, whoever's living room can take us.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+              <span class="btn btn-primary" style="color: var(--color-accent-300); border-color: var(--color-accent-300);">What we're reading</span>
+              <span class="btn btn-secondary" style="color: #f6f3ee; border-color: rgba(246,243,238,0.32);">Vote</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div style="max-width: 62ch; margin-bottom: 32px;">
+      <h6 style="color: var(--color-accent);">Turn 1 &middot; Hero illustration</h6>
+      <h1 style="font-weight: 400; font-size: clamp(30px, 4.4vw, 48px); margin-bottom: 10px;">Four ways to put a picture in the hero</h1>
+      <p class="text-muted" style="font-size: 14px; line-height: 1.7;">Each frame is a real drop target — drag an illustration onto it and it stays. Reference me by id in chat (<a href="#1a">1a</a>, <a href="#1b">1b</a>, <a href="#1c">1c</a>, <a href="#1d">1d</a>) and I'll fit the winner into the live home page.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 56px;">
+
+      <div id="1a">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;">
+          <span class="tag tag-accent">1a</span>
+          <div>
+            <h3 style="font-weight: 400; font-size: 22px; margin: 0;">Full-bleed plate, type over the top</h3>
+            <p class="text-muted" style="font-size: 13px; margin: 2px 0 0;">Most atmospheric. Needs a dark or dim illustration or the words fight it.</p>
+          </div>
+        </div>
+        <div style="position: relative; background: #191614; overflow: hidden;">
+          <div style="position: absolute; inset: 0;"><image-slot id="hero-opt-a" shape="rect" placeholder="Wide illustration — a lamplit room, a shelf, a street"></image-slot></div>
+          <div style="position: absolute; inset: 0; background: linear-gradient(100deg, rgba(20,17,15,0.9) 0%, rgba(20,17,15,0.72) 46%, rgba(20,17,15,0.2) 100%); pointer-events: none;"></div>
+          <div style="position: relative; padding: clamp(48px, 7vw, 88px) clamp(24px, 5vw, 64px); pointer-events: none;">
+            <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent-400);">Islington, London &middot; Since 2019</div>
+            <h2 style="font-weight: 400; font-size: clamp(34px, 5.4vw, 66px); line-height: 1.04; margin: 20px 0 0; max-width: 15ch; color: #f6f3ee;">A warm room, a hard book, and something on the stove.</h2>
+            <div style="width: 84px; height: 1px; background: var(--color-accent); margin: 26px 0;"></div>
+            <p style="max-width: 46ch; font-size: 16px; line-height: 1.75; color: #d9d5cf; margin: 0;">Last Sunday of the month, four o'clock, whoever's living room can take us.</p>
+            <div style="display: flex; gap: 12px; margin-top: 30px;">
+              <span class="btn btn-primary" style="color: var(--color-accent-300); border-color: var(--color-accent-300);">What we're reading</span>
+              <span class="btn btn-secondary" style="color: #f6f3ee; border-color: rgba(246,243,238,0.32);">Vote on next month</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="1b">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;">
+          <span class="tag tag-accent">1b</span>
+          <div>
+            <h3 style="font-weight: 400; font-size: 22px; margin: 0;">Tipped-in plate beside the type</h3>
+            <p class="text-muted" style="font-size: 13px; margin: 2px 0 0;">The system's own move — matted plate, hairline mount. Safest with any illustration, light or dark.</p>
+          </div>
+        </div>
+        <div style="background: #191614; padding: clamp(36px, 5vw, 64px) clamp(24px, 5vw, 60px);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(28px, 5vw, 56px); align-items: center;">
+            <div>
+              <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent-400);">Islington, London &middot; Since 2019</div>
+              <h2 style="font-weight: 400; font-size: clamp(32px, 4.4vw, 56px); line-height: 1.05; margin: 18px 0 0; color: #f6f3ee;">A warm room, a hard book, and something on the stove.</h2>
+              <div style="width: 84px; height: 1px; background: var(--color-accent); margin: 24px 0;"></div>
+              <p style="max-width: 42ch; font-size: 15px; line-height: 1.75; color: #d9d5cf; margin: 0 0 26px;">One book, two hours, and a rule we have never once kept: finish it before you arrive.</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                <span class="btn btn-primary" style="color: var(--color-accent-300); border-color: var(--color-accent-300);">What we're reading</span>
+                <span class="btn btn-secondary" style="color: #f6f3ee; border-color: rgba(246,243,238,0.32);">Vote</span>
+              </div>
+            </div>
+            <div class="plate" style="aspect-ratio: 4 / 5; background: var(--color-neutral-200);">
+              <image-slot id="hero-opt-b" shape="rect" placeholder="Portrait illustration — armchair, window, stack of books"></image-slot>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="1c">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;">
+          <span class="tag tag-accent">1c</span>
+          <div>
+            <h3 style="font-weight: 400; font-size: 22px; margin: 0;">Light ground, illustrated band beneath</h3>
+            <p class="text-muted" style="font-size: 13px; margin: 2px 0 0;">Keeps the paper-white feel of the rest of the site. Reads most like a book's title page.</p>
+          </div>
+        </div>
+        <div style="background: var(--color-bg); padding: clamp(40px, 6vw, 76px) clamp(24px, 5vw, 60px) 0;">
+          <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent-700);">Islington, London &middot; Since 2019</div>
+          <h2 style="font-weight: 400; font-size: clamp(34px, 5.2vw, 62px); line-height: 1.04; margin: 18px 0 0; max-width: 17ch;">A warm room, a hard book, and something on the stove.</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 26px; align-items: flex-end; justify-content: space-between; margin-top: 24px;">
+            <p style="max-width: 44ch; font-size: 15px; line-height: 1.8; margin: 0; text-align: justify; hyphens: auto;">Last Sunday of the month, four o'clock, whoever's living room can take us. One book, two hours, and a rule we have never once kept.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+              <span class="btn btn-primary">What we're reading</span>
+              <span class="btn btn-secondary">Vote on next month</span>
+            </div>
+          </div>
+          <div class="plate" style="margin-top: clamp(32px, 4vw, 52px); aspect-ratio: 21 / 6; background: var(--color-neutral-200);">
+            <image-slot id="hero-opt-c" shape="rect" placeholder="Wide, letterbox illustration — rooftops, a long shelf, a table laid"></image-slot>
+          </div>
+        </div>
+      </div>
+
+      <div id="1d">
+        <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;">
+          <span class="tag tag-accent">1d</span>
+          <div>
+            <h3 style="font-weight: 400; font-size: 22px; margin: 0;">Small vignette, engraving-style</h3>
+            <p class="text-muted" style="font-size: 13px; margin: 2px 0 0;">Restrained: one square illustration used as a mark rather than a scene. Cheapest to commission, ages best.</p>
+          </div>
+        </div>
+        <div style="background: #191614; padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 60px);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: clamp(28px, 5vw, 60px); align-items: center;">
+            <div class="plate" style="max-width: 210px; aspect-ratio: 1 / 1; border-radius: 999px; overflow: hidden; background: var(--color-neutral-200);">
+              <image-slot id="hero-opt-d" shape="circle" placeholder="Small square illustration — a teapot, a candle, an open book"></image-slot>
+            </div>
+            <div style="grid-column: span 2; min-width: 0;">
+              <div style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent-400);">Islington, London &middot; Since 2019</div>
+              <h2 style="font-weight: 400; font-size: clamp(32px, 4.6vw, 58px); line-height: 1.05; margin: 18px 0 0; max-width: 16ch; color: #f6f3ee;">A warm room, a hard book, and something on the stove.</h2>
+              <div style="width: 84px; height: 1px; background: var(--color-accent); margin: 24px 0;"></div>
+              <p style="max-width: 46ch; font-size: 15px; line-height: 1.75; color: #d9d5cf; margin: 0 0 26px;">Last Sunday of the month, four o'clock, whoever's living room can take us.</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                <span class="btn btn-primary" style="color: var(--color-accent-300); border-color: var(--color-accent-300);">What we're reading</span>
+                <span class="btn btn-secondary" style="color: #f6f3ee; border-color: rgba(246,243,238,0.32);">Vote</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+</x-dc>
+</body>
+</html>
