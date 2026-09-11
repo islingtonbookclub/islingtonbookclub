@@ -54,7 +54,7 @@ The Gallery also has a personal scratchpad of drop-frames at the bottom. Those l
 
 ### Day to day
 
-1. Add books (paste a Goodreads link or ISBN → **Fetch** pulls title, author, pages and cover from Open Library) and events, with photographs if you have them.
+1. Add events. An event is the unit of everything: date, title, book author, cover, where, time and the note from the night. When a meeting has happened, press **Mark as happened** — it drops into Past events, which is what the shelf on the Events page and the scrolling covers on the home page are built from.
 2. Press **Publish to GitHub**. That writes `data.json`; Pages redeploys in about a minute.
 3. No token to hand? **Copy data** puts the same JSON on the clipboard — paste it over `data.json` in the GitHub web editor and commit. Same outcome.
 
@@ -64,12 +64,12 @@ The badge at the top of the admin panel says whether this browser holds unpublis
 
 - **Two admins on two devices will clobber each other.** Whoever publishes last wins — the earlier edits are overwritten, not merged. Fine for one or two organisers who take turns; not fine for a committee editing at once.
 - **Members cannot add anything.** Only someone with the passphrase and a token can write.
-- **Votes are not tallied here.** Voting is a link out to a poll service (set the URL in the admin ballot form), because a real shared tally needs a server. If you want live vote counts and phone-friendly editing without GitHub, the honest answer is a free Supabase or Firebase project — say the word and it can be swapped in.
+- **The token is stored in this browser.** Housekeeping keeps the repository details and the token in local storage so you do not retype them. It is protected by the passphrase and nothing else — use a fine-grained token scoped to this one repository, and press **Forget token on this device** on a shared computer.
 - **Gallery photos are per-browser.** Dropped images live in your browser only. For published photos, commit image files and replace the `<image-slot>` elements with `<img>`.
 
 ## The pages
 
-Home (centred title, scrolling covers of recent reads, then the three-up summary), The Club, Reading (current book with discussion questions, plus the full shelf and ratings), Events (upcoming and past), Gallery, Vote, and Housekeeping — the admin page, linked quietly at the end of the nav and also at `/admin/`.
+Home (centred title, scrolling covers pulled from past events, then the three-up summary), Events (upcoming meetings with RSVPs, then the shelf of everything we have read), Gallery, Join, and Housekeeping — the admin page, linked quietly at the end of the nav and also at `/admin/`.
 
 ## Notes
 
