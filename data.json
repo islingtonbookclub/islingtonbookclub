@@ -1,5 +1,18 @@
 {
   "heroImage": "",
+  "joinFormUrl": "",
+  "rsvpEndpoint": "",
+  "rsvps": {},
+  "photos": [
+    {
+      "src": "images/club-group.jpeg",
+      "caption": "Literary pub crawl — the Duke of Wellington"
+    },
+    {
+      "src": "images/club-dinner.jpeg",
+      "caption": "Christmas dinner"
+    }
+  ],
   "current": {
     "title": "Piranesi",
     "author": "Susanna Clarke",
@@ -124,5 +137,11 @@
       "note": "Summer outing; read half of it in the park.",
       "past": true
     }
-  ]
+  ],
+  "gh": {
+    "owner": "islingtonbookclub",
+    "repo": "islingtonbookclub",
+    "branch": "main",
+    "path": "data.json"
+  }
 }
