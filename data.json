@@ -1,8 +1,16 @@
 {
   "heroImage": "",
   "joinFormUrl": "",
-  "rsvpEndpoint": "",
-  "rsvps": {},
+  "rsvpEndpoint": "https://script.google.com/macros/s/AKfycbyyboFQNrrqoDP24424m5MGFvi0JHUUN59A6GAeqJ5GUSCmK4bNVAxtq_VJMdYKaCQy/exec",
+  "rsvps": {
+    "29 Mar 2027|March meeting — Piranesi": [
+      {
+        "name": "Fran1",
+        "coming": true,
+        "at": "2026-09-11T08:30:53.323Z"
+      }
+    ]
+  },
   "photos": [
     {
       "src": "images/club-group.jpeg",
