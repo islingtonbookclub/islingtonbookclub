@@ -1,15 +1,10 @@
 {
   "heroImage": "",
-  "joinFormUrl": "",
-  "rsvpEndpoint": "https://script.google.com/macros/s/AKfycbyyboFQNrrqoDP24424m5MGFvi0JHUUN59A6GAeqJ5GUSCmK4bNVAxtq_VJMdYKaCQy/exec",
+  "joinFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdm811_ij3WwN3udwW2wV7WDuZvW825wEommvDI9lduFA5C1Q/viewform?usp=header",
+  "rsvpEndpoint": "",
   "rsvps": {
-    "29 Mar 2027|March meeting — Piranesi": [
-      {
-        "name": "Fran1",
-        "coming": true,
-        "at": "2026-09-11T08:30:53.323Z"
-      }
-    ]
+    "05th October 2026|Cambridge Fun": [],
+    "15th October 2026|March meeting — Piranesi": []
   },
   "photos": [
     {
@@ -22,11 +17,11 @@
     }
   ],
   "current": {
-    "title": "Yellowface",
-    "author": "R. F. Kuang",
+    "title": "Murder on the Orient Express",
+    "author": "Agatha Christie",
     "pages": "",
-    "blurb": "A man lives alone in a house of endless halls and tidal seas, keeping careful notes on the statues and the birds. It is a puzzle, but the pleasure of it is the voice — patient, decent, entirely unbothered by the fact that his world makes no sense. Bring your theories; we will disagree warmly.",
-    "meeting": "Sept 2026",
+    "blurb": "While en route from Syria to Paris, in the middle of a freezing winter's night, the Orient Express is stopped dead in its tracks by a snowdrift. Passengers awake to find the train still stranded and to discover that a wealthy American has been brutally stabbed to death in his private compartment. Incredibly, that compartment is locked from the inside. With no escape into the wintery landscape the killer must still be on board.",
+    "meeting": "Sun 28 October",
     "pick": "",
     "questions": [
       "Does the House work better as a place or as a metaphor — and does it matter?",
@@ -34,58 +29,91 @@
       "Where did the ending leave you: relieved, or a bit bereft?"
     ],
     "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1733926500i/853510.jpg",
-    "where": ""
+    "where": "The Pub"
   },
   "shelf": [
     {
-      "when": "—",
-      "title": "Yellowface",
-      "author": "R. F. Kuang",
+      "when": "",
+      "title": "Murder on the Orient Express",
+      "author": "Agatha Christie",
       "pages": "",
-      "rating": 0,
-      "coverUrl": "https://covers.openlibrary.org/b/id/13195421-L.jpg"
+      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1733926500i/853510.jpg",
+      "notes": ""
     },
     {
-      "when": "—",
-      "title": "The Lady in the Lake",
-      "author": "Raymond Chandler",
-      "pages": "",
-      "rating": 0,
-      "coverUrl": "https://covers.openlibrary.org/b/id/254507-L.jpg"
+      "when": "Feb 2027",
+      "title": "Klara and the Sun",
+      "author": "Kazuo Ishiguro",
+      "notes": ""
     },
     {
-      "when": "June",
-      "title": "The Big Sleep",
-      "author": "Raymond Chandler",
-      "pages": "",
-      "rating": 0,
-      "coverUrl": "https://covers.openlibrary.org/b/id/7268475-L.jpg"
+      "when": "Jan 2027",
+      "title": "Cold Enough for Snow",
+      "author": "Jessica Au",
+      "notes": ""
     },
     {
-      "when": "May 2026",
-      "title": "Beneath the surface",
-      "author": "Jo Spain",
-      "pages": "",
-      "rating": 0,
-      "coverUrl": "https://covers.openlibrary.org/b/id/10209928-L.jpg"
+      "when": "Dec 2026",
+      "title": "A Christmas Memory",
+      "author": "Truman Capote",
+      "notes": ""
     },
     {
-      "when": "Apr 2026",
-      "title": "James",
-      "author": "Percival L. Everett",
-      "pages": "",
-      "rating": 0,
-      "coverUrl": "https://covers.openlibrary.org/b/id/15094964-L.jpg"
+      "when": "Dec 2026",
+      "title": "Christmas cheese and Capote",
+      "author": "",
+      "notes": "Jonah’s, Angel",
+      "coverUrl": ""
+    },
+    {
+      "when": "Nov 2026",
+      "title": "The Overstory",
+      "author": "Richard Powers",
+      "notes": ""
+    },
+    {
+      "when": "Oct 2026",
+      "title": "Dept. of Speculation",
+      "author": "Jenny Offill",
+      "notes": ""
+    },
+    {
+      "when": "Sep 2026",
+      "title": "Concrete: A Life",
+      "author": "Rachel Adler",
+      "notes": ""
+    },
+    {
+      "when": "Aug 2026",
+      "title": "The Remains of the Day",
+      "author": "Kazuo Ishiguro",
+      "notes": ""
+    },
+    {
+      "when": "Jul 2026",
+      "title": "H is for Hawk",
+      "author": "Helen Macdonald",
+      "notes": ""
     }
   ],
   "events": [
     {
-      "date": "29 Mar 2027",
+      "date": "05th October 2026",
+      "title": "Cambridge Fun",
+      "where": "Cambridge",
+      "time": "2pm",
+      "note": "The Big Smug Read 2026 - 'Midnight's Children' by Salman Rushdie\n\nMonday, Sep 14 · 7:30 PM to 9:30 PM BST",
+      "past": false,
+      "image": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1673724335i/14836.jpg"
+    },
+    {
+      "date": "15th October 2026",
       "title": "March meeting — Piranesi",
       "where": "Ruth’s, Canonbury",
       "time": "4pm",
-      "note": "Soup, because it is still March. Bring a passage you marked and one thing that annoyed you.",
-      "past": false
+      "note": "September Meeting & Author Q&A 'I'm Not The Only Murderer In My Retirement Home'",
+      "past": false,
+      "image": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1750474747i/234352462.jpg"
     },
     {
       "date": "11 Apr 2027",
@@ -94,42 +122,6 @@
       "time": "From noon",
       "note": "Four shops, one pub, a strict twenty-pound ceiling that nobody observes.",
       "past": false
-    },
-    {
-      "date": "26 Apr 2027",
-      "title": "April meeting — winner of the vote",
-      "where": "Marek’s, Highbury",
-      "time": "4pm",
-      "note": "Whichever of the four nominees takes it. Marek has promised the good coffee.",
-      "past": false
-    },
-    {
-      "date": "22 Feb 2027",
-      "title": "February meeting — Klara and the Sun",
-      "where": "Priya’s, Barnsbury",
-      "time": "4pm",
-      "past": true
-    },
-    {
-      "date": "25 Jan 2027",
-      "title": "January meeting — Cold Enough for Snow",
-      "where": "The Alma, back room",
-      "time": "4pm",
-      "past": true
-    },
-    {
-      "date": "14 Dec 2026",
-      "title": "Christmas cheese and Capote",
-      "where": "Jonah’s, Angel",
-      "time": "7pm",
-      "past": true
-    },
-    {
-      "date": "30 Nov 2026",
-      "title": "November meeting — The Overstory",
-      "where": "Ruth’s, Canonbury",
-      "time": "4pm",
-      "past": true
     }
   ],
   "poll": {
@@ -165,6 +157,26 @@
         "by": "Jonah",
         "pitch": "A woman stops eating meat and the world around her comes apart. We will not agree about it, which is the point."
       }
+    ],
+    "votes": [
+      {
+        "name": "Fran",
+        "choice": 0,
+        "title": "The Rings of Saturn",
+        "at": "2026-09-10T14:36:57.774Z"
+      },
+      {
+        "name": "Testy",
+        "choice": 2,
+        "title": "Small Things Like These",
+        "at": "2026-09-10T00:00:00Z"
+      }
     ]
+  },
+  "gh": {
+    "owner": "islingtonbookclub",
+    "repo": "islingtonbookclub",
+    "branch": "main",
+    "path": "data.json"
   }
 }
