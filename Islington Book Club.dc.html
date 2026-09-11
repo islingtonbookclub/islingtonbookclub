@@ -122,8 +122,10 @@
             <sc-for list="{{ coverLoop }}" as="b" hint-placeholder-count="10">
               <button class="lnk" onClick="{{ goEvents }}" style="flex: 0 0 auto; width: clamp(130px, 18vw, 168px); padding-right: clamp(16px, 3vw, 28px); box-sizing: content-box;">
                 <div class="plate" style="aspect-ratio: 2 / 3; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; background: {{ b.cover }};">
-                  <span style="font-family: var(--font-heading); font-size: 18px; line-height: 1.15; color: #f6f3ee;">{{ b.title }}</span>
-                  <span style="font-size: 11px; color: #d8d2c8; margin-top: 4px;">{{ b.author }}</span>
+                  <sc-if value="{{ b.noCover }}" hint-placeholder-val="{{ true }}">
+                    <span style="font-family: var(--font-heading); font-size: 18px; line-height: 1.15; color: #f6f3ee;">{{ b.title }}</span>
+                    <span style="font-size: 11px; color: #d8d2c8; margin-top: 4px;">{{ b.author }}</span>
+                  </sc-if>
                 </div>
                 <div class="text-muted" style="font-size: 11px; margin-top: 8px; font-variant-numeric: tabular-nums;">{{ b.when }}</div>
               </button>
@@ -164,13 +166,13 @@
                 <div style="font-family: var(--font-heading); font-size: clamp(24px, 3.4vw, 34px); font-variant-numeric: tabular-nums; color: var(--color-accent-700); margin-bottom: 10px;">{{ e.date }}</div>
                 <h2 style="font-weight: 400; font-size: clamp(28px, 4vw, 40px); line-height: 1.12; margin: 0 0 12px;">{{ e.title }}</h2>
                 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
-                  <span class="tag tag-accent" style="font-variant-numeric: tabular-nums;">{{ e.time }}</span>
-                  <span class="tag tag-outline">{{ e.where }}</span>
+                  <span class="tag tag-accent" style="flex: 0 0 auto; white-space: nowrap; font-variant-numeric: tabular-nums;">{{ e.time }}</span>
+                  <span class="tag tag-outline" style="flex: 0 0 auto; white-space: nowrap;">{{ e.where }}</span>
                 </div>
                 <p style="text-align: justify; hyphens: auto; font-size: 15px; line-height: 1.85; max-width: 58ch; margin: 0;">{{ e.note }}</p>
               </div>
               <sc-if value="{{ e.hasImage }}" hint-placeholder-val="{{ true }}">
-                <div class="plate" style="aspect-ratio: 4 / 3; background: url({{ e.imageCss }}) center / cover no-repeat;"></div>
+                <div class="plate" style="aspect-ratio: 4 / 3; background: #1b1714 url({{ e.imageCss }}) center / contain no-repeat;"></div>
               </sc-if>
             </article>
 
@@ -187,10 +189,10 @@
               </div>
               <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px;">
                 <sc-if value="{{ e.mineYes }}" hint-placeholder-val="{{ false }}">
-                  <span class="tag tag-accent">You're on the list</span>
+                  <span class="tag tag-accent" style="flex: 0 0 auto; white-space: nowrap;">You're on the list</span>
                 </sc-if>
                 <sc-if value="{{ e.mineNo }}" hint-placeholder-val="{{ false }}">
-                  <span class="tag tag-neutral">You said no this time</span>
+                  <span class="tag tag-neutral" style="flex: 0 0 auto; white-space: nowrap;">You said no this time</span>
                 </sc-if>
               </div>
               <p style="font-size: 13px; color: var(--color-accent-700); min-height: 18px; margin: 10px 0 0;">{{ e.note2 }}</p>
@@ -208,7 +210,7 @@
                   <summary style="cursor: pointer; font-size: 13px; color: var(--color-accent-700);">Who's coming</summary>
                   <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;">
                     <sc-for list="{{ e.goingNames }}" as="r" hint-placeholder-count="4">
-                      <span class="tag tag-outline">{{ r.name }}</span>
+                      <span class="tag tag-outline" style="flex: 0 0 auto; white-space: nowrap;">{{ r.name }}</span>
                     </sc-for>
                   </div>
                 </details>
@@ -218,7 +220,7 @@
                   <summary style="cursor: pointer; font-size: 13px; color: var(--color-accent-700);">Sending apologies</summary>
                   <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;">
                     <sc-for list="{{ e.notNames }}" as="r" hint-placeholder-count="2">
-                      <span class="tag tag-neutral">{{ r.name }}</span>
+                      <span class="tag tag-neutral" style="flex: 0 0 auto; white-space: nowrap;">{{ r.name }}</span>
                     </sc-for>
                   </div>
                 </details>
@@ -227,84 +229,40 @@
           </div>
         </sc-for>
 
-        <h2 style="font-weight: 400; margin: clamp(44px, 6vw, 68px) 0 18px;">Past</h2>
-        <div style="border-top: 1px solid var(--color-divider);">
-          <sc-for list="{{ past }}" as="e" hint-placeholder-count="4">
-            <div style="display: grid; grid-template-columns: clamp(84px, 22vw, 150px) minmax(0, 1fr); gap: clamp(14px, 4vw, 40px); padding: 18px 0; border-bottom: 1px solid var(--color-divider); opacity: 0.72;">
-              <div style="font-size: 14px; font-variant-numeric: tabular-nums;" class="text-muted">{{ e.date }}</div>
-              <div style="display: flex; gap: 14px; align-items: flex-start;">
-                <sc-if value="{{ e.image }}" hint-placeholder-val="{{ false }}">
-                  <div class="plate" style="flex: 0 0 auto; width: 72px; height: 54px; background: url({{ e.imageCss }}) center / cover no-repeat;"></div>
-                </sc-if>
-                <div style="min-width: 0;">
-                  <div style="font-family: var(--font-heading); font-size: 19px;">{{ e.title }}</div>
-                  <p class="text-muted" style="font-size: 13px; margin: 2px 0 0;">{{ e.where }}</p>
-                </div>
-              </div>
-            </div>
-          </sc-for>
-        </div>
-
           <hr class="hr" style="margin: clamp(52px, 7vw, 80px) 0 26px;">
-
-        <h6 style="color: var(--color-accent-700);">This month</h6>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(26px, 5vw, 52px); align-items: start; margin-top: 16px;">
-          <div class="plate" style="width: 100%; max-width: 260px; aspect-ratio: 2 / 3; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; background: {{ current.cover }};">
-            <span style="font-family: var(--font-heading); font-size: 26px; line-height: 1.1; color: #f6f3ee;">{{ current.title }}</span>
-            <span style="font-size: 12px; color: #d8d2c8; margin-top: 6px;">{{ current.author }}</span>
-          </div>
-          <div>
-            <h1 style="font-weight: 400; font-size: clamp(32px, 5vw, 52px); margin-bottom: 4px;">{{ current.title }}</h1>
-            <p class="text-muted" style="font-size: 16px; margin-bottom: 16px;">{{ currentMeta }}</p>
-            <p style="text-align: justify; hyphens: auto; font-size: 15px; line-height: 1.85; max-width: 60ch;">{{ current.blurb }}</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 26px;">
-              <span class="tag tag-accent" style="font-variant-numeric: tabular-nums;">Meeting on&nbsp;{{ current.meeting }}</span>
-              <sc-if value="{{ currentWhere }}" hint-placeholder-val="{{ false }}">
-                <span class="tag tag-outline">{{ currentWhere }}</span>
-              </sc-if>
-              <sc-if value="{{ currentPick }}" hint-placeholder-val="{{ true }}">
-                <span class="tag tag-neutral">{{ currentPick }}</span>
-              </sc-if>
-            </div>
-            <h4 style="font-weight: 400; margin-bottom: 8px;">Questions for the night</h4>
-            <ol style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.95; max-width: 58ch;">
-              <sc-for list="{{ current.questions }}" as="q" hint-placeholder-count="3">
-                <li>{{ q }}</li>
-              </sc-for>
-            </ol>
-          </div>
-        </div>
-
-        <hr class="hr" style="margin: clamp(44px, 6vw, 68px) 0 26px;">
 
         <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
           <h2 style="font-weight: 400; margin: 0;">The shelf so far</h2>
           <span class="text-muted" style="font-size: 13px; font-variant-numeric: tabular-nums;">{{ shelfLine }}</span>
         </div>
-        <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;"><table class="table" style="min-width: 460px; margin-top: 16px;">
-          <thead>
-            <tr>
-              <th style="width: 100px;">Month</th>
-              <th>Title</th>
-              <th>Author</th>
-              <th style="width: 150px; text-align: right;">Club rating</th>
-            </tr>
-          </thead>
-          <tbody>
-            <sc-for list="{{ shelf }}" as="b" hint-placeholder-count="8">
-              <tr>
-                <td class="text-muted" style="font-variant-numeric: tabular-nums; white-space: nowrap;">{{ b.when }}</td>
-                <td style="font-family: var(--font-heading); font-size: 17px;">{{ b.title }}</td>
-                <td class="text-muted">{{ b.author }}</td>
-                <td style="text-align: right; white-space: nowrap;">
-                  <span style="color: var(--color-accent-700); letter-spacing: 2px;">{{ b.stars }}</span>
-                  <span class="text-muted" style="font-size: 11px; margin-left: 6px; font-variant-numeric: tabular-nums;">{{ b.rating }}</span>
-                </td>
-              </tr>
-            </sc-for>
-          </tbody>
-        </table></div>
-        <p class="text-muted" style="font-size: 12px; margin-top: 12px;">Ratings are the average of members' marks out of five, collected the night we meet.</p>
+        <p class="text-muted" style="font-size: 13px; max-width: 56ch; margin: 8px 0 0;">Every book we have met about, newest first, with a note from the night.</p>
+        <div style="display: grid; gap: 0; border-top: 1px solid var(--color-divider); margin-top: 20px;">
+          <sc-for list="{{ shelf }}" as="b" hint-placeholder-count="6">
+            <div style="display: grid; grid-template-columns: clamp(78px, 16vw, 104px) minmax(0, 1fr); gap: clamp(18px, 3vw, 30px); padding: 22px 0; border-bottom: 1px solid var(--color-divider); align-items: start;">
+              <div class="plate" style="aspect-ratio: 2 / 3; display: flex; flex-direction: column; justify-content: flex-end; padding: 10px; background: {{ b.cover }};">
+                <sc-if value="{{ b.noCover }}" hint-placeholder-val="{{ true }}">
+                  <span style="font-family: var(--font-heading); font-size: 13px; line-height: 1.2; color: #f6f3ee;">{{ b.title }}</span>
+                  <span style="font-size: 10px; color: #d8d2c8; margin-top: 3px;">{{ b.author }}</span>
+                </sc-if>
+              </div>
+              <div style="min-width: 0;">
+                <sc-if value="{{ b.when }}" hint-placeholder-val="{{ true }}">
+                  <div class="text-muted" style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-variant-numeric: tabular-nums;">{{ b.when }}</div>
+                </sc-if>
+                <div style="font-family: var(--font-heading); font-size: clamp(20px, 3vw, 25px); line-height: 1.25; margin-top: 4px;">{{ b.title }}</div>
+                <div class="text-muted" style="font-size: 14px; margin-top: 2px;">{{ b.author }}</div>
+                <sc-if value="{{ b.notes }}" hint-placeholder-val="{{ true }}">
+                  <p style="font-size: 14px; line-height: 1.8; max-width: 58ch; margin: 10px 0 0;">{{ b.notes }}</p>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ shelfHasMore }}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; margin-top: 20px;">
+            <button class="btn btn-secondary" type="button" style="white-space: nowrap;" onClick="{{ onShelfMore }}">{{ shelfMoreLabel }}</button>
+          </div>
+        </sc-if>
 
         </section>
       </sc-if>
@@ -397,12 +355,13 @@
             <div style="border: 1px solid var(--color-accent-300); padding: 18px 20px; margin-top: 16px; max-width: 76ch;">
               <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline; justify-content: space-between; margin-bottom: 10px;">
                 <strong style="font-family: var(--font-heading); font-size: 18px; font-weight: 400;">How saving works</strong>
-                <span class="tag tag-neutral">{{ publishState }}</span>
+                <span class="tag tag-neutral" style="flex: 0 0 auto; white-space: nowrap;">{{ publishState }}</span>
               </div>
               <p style="font-size: 13px; line-height: 1.7; margin: 0 0 8px;">Edits below are saved as a draft in this browser and nobody else sees them. <strong>Save &amp; preview</strong> takes you to the site as it would look; <strong>Discard changes</strong> throws the draft away and puts back what is published. <strong>Publish to GitHub</strong> commits the draft to <code>data.json</code> in the repository — that is what every other visitor loads, so it is the step that makes a change real. Pages redeploys in about a minute.</p>
               <p class="text-muted" style="font-size: 12px; margin: 0;">No token to hand? <strong>Copy data</strong> puts the same JSON on your clipboard to paste into GitHub by hand. Either route ends in the same commit.</p>
               <details style="margin-top: 14px;">
                 <summary style="cursor: pointer; font-size: 13px; color: var(--color-accent-700);">Repository and token</summary>
+                <p class="text-muted" style="font-size: 12px; line-height: 1.7; margin: 12px 0 0;">The user, repository, branch and file below are published with the site, so once you have set them here and published, every other computer or phone you open Housekeeping on picks them up on its own. The token is the one thing that cannot travel — a token committed to a public repository is cancelled by GitHub within minutes and would let anyone commit meanwhile — so on a new device you paste the token once and nothing else.</p>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 14px;">
                   <div class="field"><label for="gh-owner">GitHub user or org</label><input class="input" id="gh-owner" value="{{ gh.owner }}" onChange="{{ onGhOwner }}" placeholder="yourname"></div>
                   <div class="field"><label for="gh-repo">Repository</label><input class="input" id="gh-repo" value="{{ gh.repo }}" onChange="{{ onGhRepo }}" placeholder="islington-book-club"></div>
@@ -413,7 +372,7 @@
                   <label for="gh-token">Fine-grained token</label>
                   <input class="input" id="gh-token" type="password" value="{{ gh.token }}" onChange="{{ onGhToken }}" placeholder="github_pat_…">
                 </div>
-                <p class="text-muted" style="font-size: 12px; line-height: 1.7; margin: 10px 0 0;">Make it at <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Settings → Developer settings → Fine-grained tokens</a>: this repository only, permission <strong>Contents: read and write</strong>, nothing else. It is kept in this browser and sent only to api.github.com. Anyone with access to this device and the passphrase can commit with it — so scope it to the one repo and expire it yearly.</p>
+                <p class="text-muted" style="font-size: 12px; line-height: 1.7; margin: 10px 0 0;">Make it at <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Settings → Developer settings → Fine-grained tokens</a>: this repository only, permission <strong>Contents: read and write</strong>, nothing else. It is kept in this one browser and sent only to api.github.com — keep it in your password manager so you can paste it on a new device. Anyone with access to this device and the passphrase can commit with it — so scope it to the one repo and expire it yearly.</p>
               </details>
               <p style="font-size: 13px; color: var(--color-accent-700); margin: 12px 0 0;">{{ publishNote }}</p>
             </div>
@@ -426,7 +385,7 @@
             <button class="btn btn-primary" type="button" onClick="{{ onAddUpcoming }}" style="margin-bottom: 16px; white-space: nowrap;">Add an upcoming event</button>
 
             <sc-if value="{{ eventsAdmin.noUpcoming }}" hint-placeholder-val="{{ false }}">
-              <p class="text-muted" style="font-size: 13px; padding: 16px 18px; border: 1px solid var(--color-divider);">Nothing upcoming. Add one above, or move a past event back.</p>
+              <p class="text-muted" style="font-size: 13px; padding: 16px 18px; border: 1px solid var(--color-divider);">Nothing upcoming. Add one above.</p>
             </sc-if>
 
             <sc-for list="{{ eventsAdmin.upcoming }}" as="e" hint-placeholder-count="1">
@@ -440,7 +399,7 @@
                 <div class="field" style="margin-top: 12px;"><label for="{{ e.idNote }}">Details</label><textarea class="input" id="{{ e.idNote }}" defaultValue="{{ e.note }}" onBlur="{{ e.onNote }}" style="min-height: 110px;"></textarea></div>
                 <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; margin-top: 12px;">
                   <sc-if value="{{ e.hasImage }}" hint-placeholder-val="{{ true }}">
-                    <div class="plate" style="flex: 0 0 96px; width: 96px; aspect-ratio: 4 / 3; background: url({{ e.imageCss }}) center / cover no-repeat;"></div>
+                    <div class="plate" style="flex: 0 0 96px; width: 96px; aspect-ratio: 4 / 3; background: #1b1714 url({{ e.imageCss }}) center / contain no-repeat;"></div>
                   </sc-if>
                   <div style="flex: 1 1 220px; min-width: 0;">
                     <div class="field"><label for="{{ e.idImage }}">Photograph</label><input class="input" id="{{ e.idImage }}" defaultValue="{{ e.image }}" onBlur="{{ e.onImage }}" placeholder="https://… or images/…"></div>
@@ -469,36 +428,16 @@
                   <p style="font-size: 12px; color: var(--color-accent-700); margin: 8px 0 0;">{{ rsvpAdminNote }}</p>
                 </details>
                 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px;">
-                  <button class="btn btn-secondary" type="button" onClick="{{ e.togglePast }}">{{ e.moveLabel }}</button>
                   <button class="btn btn-ghost" type="button" onClick="{{ e.remove }}">Remove</button>
                 </div>
               </div>
             </sc-for>
 
-            <h3 style="font-weight: 400; margin: 30px 0 4px;">Past events</h3>
-            <p class="text-muted" style="font-size: 12px; margin-bottom: 12px;">Edit any field in place.</p>
-            <button class="btn btn-secondary" type="button" onClick="{{ onAddPast }}" style="margin-bottom: 12px; white-space: nowrap;">Add a past event</button>
-            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;"><table class="table" style="min-width: 760px;">
-              <thead><tr><th style="width: 120px;">Date</th><th>Title</th><th>Where</th><th>Photograph</th><th style="width: 180px;"></th></tr></thead>
-              <tbody>
-                <sc-for list="{{ eventsAdmin.past }}" as="e" hint-placeholder-count="4">
-                  <tr>
-                    <td><input class="input" defaultValue="{{ e.date }}" onBlur="{{ e.onDate }}" aria-label="Date"></td>
-                    <td><input class="input" defaultValue="{{ e.title }}" onBlur="{{ e.onTitle }}" aria-label="Title"></td>
-                    <td><input class="input" defaultValue="{{ e.where }}" onBlur="{{ e.onWhere }}" aria-label="Where"></td>
-                    <td><input class="input" defaultValue="{{ e.image }}" onBlur="{{ e.onImage }}" aria-label="Photograph"></td>
-                    <td style="text-align: right; white-space: nowrap;">
-                      <button class="btn btn-ghost" onClick="{{ e.togglePast }}">Upcoming</button>
-                      <button class="btn btn-ghost" onClick="{{ e.remove }}">Remove</button>
-                    </td>
-                  </tr>
-                </sc-for>
-              </tbody>
-            </table></div>
+            <p class="text-muted" style="font-size: 12px; margin: 18px 0 0; max-width: 66ch;">Once a meeting has happened, remove it here and log the book on the shelf below — that is where the club's history lives now.</p>
 
             <hr class="hr" style="margin: clamp(36px, 5vw, 52px) 0 22px;">
             <h3 style="font-weight: 400; margin-bottom: 4px;">RSVP server</h3>
-            <p class="text-muted" style="font-size: 12px; line-height: 1.65; margin-bottom: 12px; max-width: 66ch;">The Apps Script <code>/exec</code> address from <code>rsvp-tally.gs</code>. With it set, each event gets its own tab in your Google Sheet — name and a yes/no in two columns — and all members see the same list. Empty, and answers only live in each person's own browser.</p>
+            <p class="text-muted" style="font-size: 12px; line-height: 1.65; margin-bottom: 12px; max-width: 66ch;">The Apps Script <code>/exec</code> address from <code>rsvp-tally.gs</code>. With it set, each event gets its own tab in your Google Sheet, named exactly what you type as its Title — name and a yes/no in two columns — and all members see the same list. Empty, and answers only live in each person's own browser.</p>
             <div class="field" style="max-width: 60ch; margin-bottom: clamp(30px, 4vw, 44px);">
               <label for="rsvp-endpoint">Web app address</label>
               <input class="input" id="rsvp-endpoint" defaultValue="{{ rsvpEndpoint }}" onBlur="{{ onRsvpEndpoint }}" placeholder="https://script.google.com/macros/s/…/exec">
@@ -540,74 +479,49 @@
             </div>
 
             <hr class="hr" style="margin: clamp(36px, 5vw, 52px) 0 22px;">
-            <div style="max-width: 640px;">
-              <form onSubmit="{{ onAddBook }}">
-                <h3 style="font-weight: 400; margin-bottom: 6px;">Add a book to the shelf</h3>
-                <p class="text-muted" style="font-size: 12px; margin-bottom: 12px;">Paste a Goodreads link, an ISBN, or just the title and we'll fetch the rest from Open Library.</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;">
-                  <input class="input" style="flex: 1 1 200px; min-width: 0;" value="{{ lookupQuery }}" onChange="{{ onLookupChange }}" placeholder="goodreads.com/book/show/… or 9781635575637" aria-label="Book link, ISBN or title">
-                  <button class="btn btn-secondary" type="button" onClick="{{ onLookup }}" style="white-space: nowrap;">{{ lookupLabel }}</button>
-                </div>
-                <div style="display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 14px; align-items: start;">
-                  <div class="plate" style="aspect-ratio: 2 / 3; background: {{ draft.cover }};"></div>
-                  <div>
-                    <div class="field" style="margin-bottom: 12px;"><label for="bk-title">Title</label><input class="input" id="bk-title" value="{{ draft.title }}" onChange="{{ onDraftTitle }}" placeholder="Title"></div>
-                    <div class="field" style="margin-bottom: 12px;"><label for="bk-author">Author</label><input class="input" id="bk-author" value="{{ draft.author }}" onChange="{{ onDraftAuthor }}" placeholder="Author"></div>
-                  </div>
-                </div>
-                <div class="field" style="margin: 14px 0 6px;">
-                  <label for="bk-cover">Cover image</label>
-                  <input class="input" id="bk-cover" value="{{ draft.coverUrl }}" onChange="{{ onDraftCover }}" placeholder="https://… or images/…">
-                </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-                  <label class="btn btn-secondary" style="cursor: pointer; margin: 0;">
-                    Upload a cover<input type="file" accept="image/*" onChange="{{ onDraftCoverFile }}" style="display: none;">
-                  </label>
-                  <span class="text-muted" style="font-size: 12px;">{{ coverNote }}</span>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0;">
-                  <div class="field"><label for="bk-when">Month</label><input class="input" id="bk-when" value="{{ draft.when }}" onChange="{{ onDraftWhen }}" placeholder="Mar 2027"></div>
-                  <div class="field"><label for="bk-pages">Pages</label><input class="input" id="bk-pages" value="{{ draft.pages }}" onChange="{{ onDraftPages }}" placeholder="245"></div>
-                  <div class="field"><label for="bk-rating">Rating /5</label><input class="input" id="bk-rating" value="{{ draft.rating }}" onChange="{{ onDraftRating }}" placeholder="4.2"></div>
-                </div>
-                <label class="radio" style="margin-bottom: 12px;"><input type="checkbox" checked="{{ makeCurrent }}" onChange="{{ onMakeCurrent }}"><span class="dot"></span>Make this the current read</label>
-                <sc-if value="{{ makeCurrent }}" hint-placeholder-val="{{ false }}">
-                  <div style="border-left: 1px solid var(--color-accent-300); padding-left: 16px; margin: 4px 0 14px;">
-                    <p class="text-muted" style="font-size: 12px; margin: 0 0 12px;">What the Reading page will say about it.</p>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
-                      <div class="field"><label for="cur-meeting">Meeting date</label><input class="input" id="cur-meeting" value="{{ draft.meeting }}" onChange="{{ onDraftMeeting }}" placeholder="Mon 26 April"></div>
-                      <div class="field"><label for="cur-where">Location</label><input class="input" id="cur-where" value="{{ draft.where }}" onChange="{{ onDraftWhere }}" placeholder="Marek's, Highbury"></div>
-                      <div class="field"><label for="cur-pick">How it was chosen</label><input class="input" id="cur-pick" value="{{ draft.pick }}" onChange="{{ onDraftPick }}" placeholder="Chosen by vote, 9–4–2–1"></div>
-                    </div>
-                    <div class="field" style="margin-top: 12px;"><label for="cur-blurb">Blurb</label><textarea class="input" id="cur-blurb" value="{{ draft.blurb }}" onChange="{{ onDraftBlurb }}" style="min-height: 96px;" placeholder="A paragraph in the club's voice — what it is, and what to expect."></textarea></div>
-                    <div class="field" style="margin-top: 12px;"><label for="cur-questions">Questions for the night</label><textarea class="input" id="cur-questions" value="{{ draft.questions }}" onChange="{{ onDraftQuestions }}" style="min-height: 96px;" placeholder="One per line."></textarea></div>
-                    <p class="text-muted" style="font-size: 12px; margin: 8px 0 0;">One question per line. Leave any of these empty to keep what is already on the page.</p>
-                  </div>
-                </sc-if>
-                <button class="btn btn-primary btn-block" type="submit">Add book</button>
-                <p style="font-size: 12px; color: var(--color-accent-700); margin-top: 10px;">{{ lookupNote }}</p>
-              </form>
+            <h3 style="font-weight: 400; margin-bottom: 4px;">The shelf</h3>
+            <p class="text-muted" style="font-size: 12px; margin-bottom: 16px; max-width: 66ch;">Every book we have met about — month and year, title, author, cover and the note that shows on the Events page. Add one at the top; edits below save as you type. Publish afterwards to make them public.</p>
+            <form onSubmit="{{ onAddShelf }}" style="border: 1px solid var(--color-accent-300); padding: 14px 16px; margin-bottom: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+                <div class="field"><label for="sh-new-when">Month and year</label><input class="input" id="sh-new-when" name="when" placeholder="Mar 2027"></div>
+                <div class="field"><label for="sh-new-title">Title</label><input class="input" id="sh-new-title" name="title" placeholder="Piranesi"></div>
+                <div class="field"><label for="sh-new-author">Author</label><input class="input" id="sh-new-author" name="author" placeholder="Susanna Clarke"></div>
+                <div class="field"><label for="sh-new-cover">Cover</label><input class="input" id="sh-new-cover" name="coverUrl" placeholder="https://… or images/…"></div>
+              </div>
+              <div class="field" style="margin-top: 12px;">
+                <label for="sh-new-notes">Notes</label>
+                <textarea class="input" id="sh-new-notes" name="notes" style="min-height: 64px;" placeholder="Where we met and what was said."></textarea>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 12px;">
+                <button class="btn btn-primary" type="submit" style="white-space: nowrap;">Add to the shelf</button>
+                <span class="text-muted" style="font-size: 12px;">{{ shelfAddNote }}</span>
+              </div>
+            </form>
 
+            <div style="display: grid; gap: 14px;">
+              <sc-for list="{{ shelfAdmin }}" as="b" hint-placeholder-count="4">
+                <div style="border: 1px solid var(--color-divider); padding: 14px 16px;">
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+                    <div class="field"><label for="{{ b.idWhen }}">Month and year</label><input class="input" id="{{ b.idWhen }}" value="{{ b.when }}" onChange="{{ b.onWhen }}" placeholder="Mar 2027"></div>
+                    <div class="field"><label for="{{ b.idTitle }}">Title</label><input class="input" id="{{ b.idTitle }}" value="{{ b.title }}" onChange="{{ b.onTitle }}"></div>
+                    <div class="field"><label for="{{ b.idAuthor }}">Author</label><input class="input" id="{{ b.idAuthor }}" value="{{ b.author }}" onChange="{{ b.onAuthor }}"></div>
+                    <div class="field"><label for="{{ b.idCover }}">Cover</label><input class="input" id="{{ b.idCover }}" value="{{ b.coverUrl }}" onChange="{{ b.onCover }}" placeholder="https://… or images/…"></div>
+                  </div>
+                  <div class="field" style="margin-top: 12px;">
+                    <label for="{{ b.idNotes }}">Notes</label>
+                    <textarea class="input" id="{{ b.idNotes }}" value="{{ b.notes }}" onChange="{{ b.onNotes }}" style="min-height: 64px;" placeholder="Where we met and what was said."></textarea>
+                  </div>
+                  <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+                    <button class="btn btn-ghost" type="button" onClick="{{ b.remove }}">Remove</button>
+                  </div>
+                </div>
+              </sc-for>
             </div>
-
-            <hr class="hr" style="margin: clamp(30px, 4vw, 44px) 0 22px;">
-            <h3 style="font-weight: 400; margin-bottom: 4px;">Everything on the shelf</h3>
-            <p class="text-muted" style="font-size: 12px; margin-bottom: 12px;">Edit any field in place — changes save as you type. Publish afterwards to make them public.</p>
-            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;"><table class="table" style="min-width: 720px;">
-              <thead><tr><th style="width: 104px;">Month</th><th>Title</th><th>Author</th><th style="width: 78px;">Rating</th><th>Cover</th><th style="width: 76px;"></th></tr></thead>
-              <tbody>
-                <sc-for list="{{ shelfAdmin }}" as="b" hint-placeholder-count="5">
-                  <tr>
-                    <td><input class="input" value="{{ b.when }}" onChange="{{ b.onWhen }}" style="padding: 6px 8px; font-size: 13px;"></td>
-                    <td><input class="input" value="{{ b.title }}" onChange="{{ b.onTitle }}" style="padding: 6px 8px; font-size: 13px;"></td>
-                    <td><input class="input" value="{{ b.author }}" onChange="{{ b.onAuthor }}" style="padding: 6px 8px; font-size: 13px;"></td>
-                    <td><input class="input" value="{{ b.rating }}" onChange="{{ b.onRating }}" style="padding: 6px 8px; font-size: 13px; text-align: right;"></td>
-                    <td><input class="input" value="{{ b.coverUrl }}" onChange="{{ b.onCover }}" placeholder="https://… or images/…" style="padding: 6px 8px; font-size: 12px;"></td>
-                    <td style="text-align: right;"><button class="btn btn-ghost" onClick="{{ b.remove }}">Remove</button></td>
-                  </tr>
-                </sc-for>
-              </tbody>
-            </table></div>
+            <sc-if value="{{ shelfAdminHasMore }}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; margin-top: 16px;">
+                <button class="btn btn-secondary" type="button" style="white-space: nowrap;" onClick="{{ onShelfAdminMore }}">{{ shelfAdminMoreLabel }}</button>
+              </div>
+            </sc-if>
 
             <p class="text-muted" style="font-size: 12px; margin-top: 26px;">Reset this browser's copy back to <code>data.json</code>: <button class="lnk" onClick="{{ onReset }}" style="color: var(--color-accent-700); border-bottom: 1px solid var(--color-accent-700);">discard local changes</button>.</p>
           </div>
@@ -633,65 +547,59 @@ const RSVP_KEY = 'ibc-rsvp-v1';
 const KEY = 'ibc-site-data-v1';
 const GH_KEY = 'ibc-gh-settings-v1';
 const GH_DEFAULTS = { owner: '', repo: '', branch: 'main', path: 'data.json', token: '' };
-function parseQuery(raw) {
-  const s = String(raw || '').trim();
-  const gr = s.match(/goodreads\.com\/book\/show\/\d+[.-]?([^?#]*)/i);
-  if (gr && gr[1]) return { type: 'q', value: gr[1].replace(/[-_]+/g, ' ').trim() };
-  const isbn = s.replace(/[^0-9Xx]/g, '');
-  if (!/\s/.test(s) && (isbn.length === 10 || isbn.length === 13)) return { type: 'isbn', value: isbn };
-  return { type: 'q', value: s };
-}
-async function lookupBook(raw) {
-  const q = parseQuery(raw);
-  if (!q.value) throw new Error('Nothing to look up.');
-  const url = q.type === 'isbn'
-    ? 'https://openlibrary.org/search.json?isbn=' + encodeURIComponent(q.value) + '&limit=1'
-    : 'https://openlibrary.org/search.json?q=' + encodeURIComponent(q.value) + '&limit=1';
-  const res = await fetch(url);
-  if (!res.ok) throw new Error('Open Library did not answer.');
-  const json = await res.json();
-  const d = json.docs && json.docs[0];
-  if (!d) throw new Error('No match \u2014 try the plain title and author.');
-  let blurb = '';
-  if (d.key && /^\/works\//.test(d.key)) {
-    try {
-      const wr = await fetch('https://openlibrary.org' + d.key + '.json');
-      if (wr.ok) {
-        const w = await wr.json();
-        const desc = w.description;
-        blurb = typeof desc === 'string' ? desc : (desc && desc.value) || '';
-      }
-    } catch (e) { /* synopsis is optional */ }
-  }
-  if (!blurb && d.first_sentence && d.first_sentence[0]) blurb = d.first_sentence[0];
-  blurb = blurb
-    .replace(/\r/g, '')
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-    .replace(/\[([^\]]+)\]\[[^\]]*\]/g, '$1')
-    .split(/\n\s*-{3,}|\n\s*\(?\[?source/i)[0]
-    .replace(/^\[\d+\]:.*$/gm, '')
-    .replace(/\[\d+\]/g, '')
-    .replace(/\*\*|__/g, '')
-    .replace(/(^|[\s("'])[*_]([^*_\n]+)[*_]/g, '$1$2')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
-  const paras = blurb.split(/\n{2,}/).filter(Boolean);
-  blurb = paras.slice(0, 2).join('\n\n').trim();
-  if (blurb.length > 700) {
-    const cut = blurb.slice(0, 700);
-    const stop = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
-    blurb = (stop > 300 ? cut.slice(0, stop + 1) : cut.trim() + '\u2026').trim();
-  }
-  return {
-    title: d.title || '',
-    author: (d.author_name && d.author_name[0]) || '',
-    pages: d.number_of_pages_median || '',
-    blurb: blurb,
-    coverUrl: d.cover_i ? 'https://covers.openlibrary.org/b/id/' + d.cover_i + '-L.jpg' : ''
-  };
-}
-const EMPTY_DRAFT = { when: '', title: '', author: '', pages: '', rating: '', coverUrl: '', meeting: '', where: '', blurb: '', questions: '', pick: '' };
+
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
+// The shelf is now the single record of every book we have met about, so any
+// event still marked past is folded into it once and dropped from the diary.
+function mergeShelf(d, published) {
+  const out = d || {};
+  const pubShelf = (published && published.shelf) || [];
+  out.shelf = out.shelf || [];
+  out.events = out.events || [];
+  const pastEvents = out.events.filter((e) => e.past);
+  if (pastEvents.length) {
+    pastEvents.forEach((e) => {
+      const title = String(e.title || '');
+      // Only fold a past meeting into the book it was about — social nights
+      // (crawls, Christmas dinners) belong in the gallery, not on the shelf.
+      const hit = out.shelf.find((b) => b.title && title.toLowerCase().indexOf(String(b.title).toLowerCase()) !== -1);
+      if (!hit) return;
+      if (!hit.notes) hit.notes = [e.where, e.note].filter(Boolean).join('. ');
+      if (!hit.coverUrl && e.image) hit.coverUrl = e.image;
+      if (!hit.when && e.date) hit.when = monthOf(e.date);
+    });
+    out.events = out.events.filter((e) => !e.past);
+  }
+  const pubOf = (title) => pubShelf.find((p) => String(p.title || '').toLowerCase() === String(title || '').toLowerCase());
+  out.shelf = out.shelf.map((b) => {
+    const n = { ...b };
+    delete n.rating;
+    const p = pubOf(n.title) || {};
+    n.notes = n.notes || p.notes || '';
+    n.author = n.author || p.author || '';
+    n.coverUrl = n.coverUrl || p.coverUrl || '';
+    n.when = String(n.when || p.when || '').replace(/^—$/, '');
+    return n;
+  });
+  // One-off repair: an earlier version turned social nights into shelf rows.
+  // A row with no author, no cover and no match in the published shelf is one.
+  if (!out.shelfClean && pubShelf.length) {
+    out.shelf = out.shelf.filter((b) => b.author || b.coverUrl || pubOf(b.title));
+    out.shelfClean = true;
+  }
+  out.shelf.sort((a, b) => monthKey(b.when) - monthKey(a.when));
+  return out;
+}
+
+const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+// Sorts 'Mar 2027' style labels newest first; anything unparseable floats to the top.
+function monthKey(when) {
+  const s = String(when || '').toLowerCase();
+  const year = (s.match(/(\d{4})/) || [])[1];
+  if (!year) return Infinity;
+  const mi = MONTHS.findIndex((m) => s.indexOf(m) !== -1);
+  return Number(year) * 12 + (mi < 0 ? 0 : mi);
+}
 
 const DEFAULTS = {
   heroImage: '',
@@ -699,7 +607,7 @@ const DEFAULTS = {
   rsvpEndpoint: '',
   rsvps: {},
   photos: [
-    { src: 'images/club-group.jpeg', caption: 'Literary pub crawl \u2014 the Duke of Wellington' },
+    { src: 'images/club-group.jpeg', caption: 'Literary pub crawl — the Duke of Wellington' },
     { src: 'images/club-dinner.jpeg', caption: 'Christmas dinner' }
   ],
   current: {
@@ -707,32 +615,28 @@ const DEFAULTS = {
     author: 'Susanna Clarke',
     pages: 245,
     coverUrl: '',
-    blurb: 'A man lives alone in a house of endless halls and tidal seas, keeping careful notes on the statues and the birds. It is a puzzle, but the pleasure of it is the voice \u2014 patient, decent, entirely unbothered by the fact that his world makes no sense.',
+    blurb: 'A man lives alone in a house of endless halls and tidal seas, keeping careful notes on the statues and the birds. It is a puzzle, but the pleasure of it is the voice — patient, decent, entirely unbothered by the fact that his world makes no sense.',
     meeting: 'Mon 29 March',
     where: '',
     pick: 'Chosen by vote, 14\u20132\u20131\u20131',
     questions: [
-      'Does the House work better as a place or as a metaphor \u2014 and does it matter?',
+      'Does the House work better as a place or as a metaphor — and does it matter?',
       'Piranesi is kind almost to a fault. Is that innocence, or damage?',
       'Where did the ending leave you: relieved, or a bit bereft?'
     ]
   },
   shelf: [
-    { when: 'Feb 2027', title: 'Klara and the Sun', author: 'Kazuo Ishiguro', rating: 3.8 },
-    { when: 'Jan 2027', title: 'Cold Enough for Snow', author: 'Jessica Au', rating: 4.1 },
-    { when: 'Dec 2026', title: 'A Christmas Memory', author: 'Truman Capote', rating: 4.6 },
-    { when: 'Nov 2026', title: 'The Overstory', author: 'Richard Powers', rating: 3.4 },
-    { when: 'Oct 2026', title: 'Dept. of Speculation', author: 'Jenny Offill', rating: 4.3 },
-    { when: 'Sep 2026', title: 'Concrete: A Life', author: 'Rachel Adler', rating: 2.9 },
-    { when: 'Aug 2026', title: 'The Remains of the Day', author: 'Kazuo Ishiguro', rating: 4.7 },
-    { when: 'Jul 2026', title: 'H is for Hawk', author: 'Helen Macdonald', rating: 4.2 }
+    { when: 'Feb 2027', title: 'Klara and the Sun', author: 'Kazuo Ishiguro', notes: 'Priya\u2019s, Barnsbury. Split the room — half moved by the ending, half unconvinced Klara was ever really looking.' },
+    { when: 'Jan 2027', title: 'Cold Enough for Snow', author: 'Jessica Au', notes: 'The Alma, back room. Short enough that everyone finished it, which had not happened since June.' },
+    { when: 'Dec 2026', title: 'A Christmas Memory', author: 'Truman Capote', notes: 'Jonah\u2019s, Angel. Read the last pages aloud after the cheese.' },
+    { when: 'Nov 2026', title: 'The Overstory', author: 'Richard Powers', notes: 'Ruth\u2019s, Canonbury. Long. Two people skipped to the trees.' },
+    { when: 'Oct 2026', title: 'Dept. of Speculation', author: 'Jenny Offill', notes: 'Argued about whether the fragments earn their whiteness. They do.' },
+    { when: 'Sep 2026', title: 'Concrete: A Life', author: 'Rachel Adler', notes: 'Nobody\u2019s favourite, but a good night.' },
+    { when: 'Aug 2026', title: 'The Remains of the Day', author: 'Kazuo Ishiguro', notes: 'The high point of the year so far — unanimous.' },
+    { when: 'Jul 2026', title: 'H is for Hawk', author: 'Helen Macdonald', notes: 'Summer outing; read half of it in the park.' }
   ],
   events: [
-    { date: '29 Mar 2027', title: 'March meeting \u2014 Piranesi', where: 'Ruth\u2019s, Canonbury', time: '4pm', note: 'Soup, because it is still March. Bring a passage you marked and one thing that annoyed you.', image: '', past: false },
-    { date: '22 Feb 2027', title: 'February meeting \u2014 Klara and the Sun', where: 'Priya\u2019s, Barnsbury', time: '4pm', past: true },
-    { date: '25 Jan 2027', title: 'January meeting \u2014 Cold Enough for Snow', where: 'The Alma, back room', time: '4pm', past: true },
-    { date: '14 Dec 2026', title: 'Christmas cheese and Capote', where: 'Jonah\u2019s, Angel', time: '7pm', past: true },
-    { date: '30 Nov 2026', title: 'November meeting \u2014 The Overstory', where: 'Ruth\u2019s, Canonbury', time: '4pm', past: true }
+    { date: '29 Mar 2027', title: 'March meeting — Piranesi', where: 'Ruth\u2019s, Canonbury', time: '4pm', note: 'Soup, because it is still March. Bring a passage you marked and one thing that annoyed you.', image: '', past: false }
   ]
 };
 
@@ -740,7 +644,8 @@ const SPINES = ['#3f3a34', '#4a3b2c', '#33403c', '#4a3340', '#2f3a48', '#463c26'
 function coverBg(b, i) {
   const url = b && (b.coverUrl || b.cover);
   if (url && typeof url === 'string' && !/^linear-gradient/.test(url)) {
-    return 'linear-gradient(rgba(20,17,14,0.28), rgba(20,17,14,0.55)), url("' + url + '") center / cover no-repeat';
+    // contain, not cover: jackets are not all 2:3 and cropping loses the title
+    return '#1b1714 url("' + url + '") center / contain no-repeat';
   }
   const base = SPINES[(i || 0) % SPINES.length];
   return 'linear-gradient(155deg, ' + base + ', #14110e)';
@@ -810,17 +715,17 @@ function ghUploadImage(cfg, file) {
   });
 }
 
-function stars(r) {
-  const n = Math.round(Number(r) || 0);
-  return '\u2605\u2605\u2605\u2605\u2605'.slice(0, n) + '\u2606\u2606\u2606\u2606\u2606'.slice(0, 5 - n);
+function monthOf(date) {
+  const m = String(date || '').match(/([A-Za-z]{3,})\w*\s+(\d{4})/);
+  return m ? m[1].slice(0, 3) + ' ' + m[2] : String(date || '');
 }
 
 class Component extends DCLogic {
   state = {
     page: 'home', data: clone(DEFAULTS), unlocked: false, authError: '', exportLabel: 'Copy data',
-    draft: { ...EMPTY_DRAFT }, lookupQuery: '', lookupLabel: 'Fetch', lookupNote: '',
+    shelfShown: 5, shelfAdminShown: 5, shelfAddNote: '',
     gh: { ...GH_DEFAULTS }, publishLabel: 'Publish to GitHub', publishNote: '', dirty: false,
-    coverNote: '', imageNote: '', curQuestionsText: null, makeCurrent: false, narrow: false, menuOpen: false,
+    imageNote: '', narrow: false, menuOpen: false,
     photoNote: '',
     member: (() => { try { return localStorage.getItem(MEMBER_KEY) === '1'; } catch (e) { return false; } })(),
     memberPass: '', memberError: '',
@@ -833,18 +738,19 @@ class Component extends DCLogic {
       const v = ev.target.value;
       this.setState((s) => {
         const gh = { ...s.gh, [key]: v };
+        this.ghLocal = { ...(this.ghLocal || {}), [key]: v };
         try { localStorage.setItem(GH_KEY, JSON.stringify(gh)); } catch (e) {}
-        return { gh, publishNote: '' };
+        // Everything except the token rides along in data.json, so the next
+        // device to open Housekeeping already knows the repository.
+        if (key === 'token') return { gh, publishNote: '' };
+        const nd = clone(s.data);
+        nd.gh = { owner: gh.owner, repo: gh.repo, branch: gh.branch, path: gh.path };
+        try { localStorage.setItem(KEY, JSON.stringify(nd)); } catch (e) {}
+        return { gh, data: nd, dirty: true, publishNote: '' };
       });
     };
   }
 
-  setDraft(key) {
-    return (ev) => {
-      const v = ev.target.value;
-      this.setState((s) => ({ draft: { ...s.draft, [key]: v } }));
-    };
-  }
 
   componentDidMount() {
     this.onResize = () => {
@@ -862,16 +768,30 @@ class Component extends DCLogic {
         this.published = published;
         let local = null;
         try { local = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
-        const merged = Object.assign(clone(DEFAULTS), published, local || {});
-        this.setState({ data: merged });
+        const merged = mergeShelf(Object.assign(clone(DEFAULTS), published, local || {}), published);
+        this.setState((s) => {
+          // Published repo settings seed any field this device has not filled in.
+          const pub = merged.gh || {};
+          const gh = { ...s.gh };
+          const mine = this.ghLocal || {};
+          ['owner', 'repo', 'branch', 'path'].forEach((k) => {
+            // Only a value this device actually saved beats the published one.
+            if (pub[k] && !String(mine[k] || '').trim()) gh[k] = pub[k];
+          });
+          return { data: merged, gh };
+        });
         this.fetchRsvps(merged);
       })
       .catch(() => {});
     try {
       const raw = localStorage.getItem(KEY);
-      if (raw) this.setState({ data: Object.assign(clone(DEFAULTS), JSON.parse(raw)), dirty: true });
+      if (raw) this.setState({ data: mergeShelf(Object.assign(clone(DEFAULTS), JSON.parse(raw)), this.published), dirty: true });
       const gh = localStorage.getItem(GH_KEY);
-      if (gh) this.setState({ gh: Object.assign({ ...GH_DEFAULTS }, JSON.parse(gh)) });
+      if (gh) {
+        const saved = JSON.parse(gh) || {};
+        this.ghLocal = saved;
+        this.setState({ gh: Object.assign({ ...GH_DEFAULTS }, saved) });
+      }
     } catch (e) { /* first run */ }
     const hash = (location.hash || '').replace('#', '');
     if (hash) this.setState({ page: hash });
@@ -907,7 +827,6 @@ class Component extends DCLogic {
     const ink = (p) => (page === p ? 'var(--color-accent-700)' : 'inherit');
     const withImg = (e) => ({ ...e, image: e.image || '', imageCss: '"' + (e.image || '') + '"' });
     const upcoming = d.events.filter((e) => !e.past).map(withImg);
-    const past = d.events.filter((e) => e.past).map(withImg);
     const nextEvent = upcoming[0] || { title: 'To be announced', note: 'Watch this space.', date: '', where: '', time: '' };
 
     return {
@@ -927,10 +846,6 @@ class Component extends DCLogic {
 
       heroImage: d.heroImage || '',
       heroImageCss: '"' + (d.heroImage || '') + '"',
-      current: { ...d.current, cover: coverBg(d.current, 0) },
-      currentWhere: d.current.where || '',
-      currentPick: d.current.pick || '',
-      currentMeta: [d.current.author, d.current.pages ? d.current.pages + ' pages' : ''].filter(Boolean).join(' \u00b7 '),
       memberLocked: !this.state.member,
       memberUnlocked: !!this.state.member,
       memberPass: this.state.memberPass,
@@ -966,7 +881,7 @@ class Component extends DCLogic {
           this.setState({
             rsvps: { ...all, [id]: next },
             myRsvps: myNext,
-            rsvpNotes: { ...(this.state.rsvpNotes || {}), [id]: coming ? 'Marked you as coming, ' + name + '.' : 'Noted \u2014 next time, ' + name + '.' }
+            rsvpNotes: { ...(this.state.rsvpNotes || {}), [id]: coming ? 'Marked you as coming, ' + name + '.' : 'Noted — next time, ' + name + '.' }
           });
           const url = d.rsvpEndpoint;
           if (url) {
@@ -1017,12 +932,7 @@ class Component extends DCLogic {
         nd.events.unshift({ date: '', title: '', where: '', time: '', note: '', image: '', past: false });
         this.save(nd);
       },
-      onAddPast: () => {
-        const nd = clone(this.state.data);
-        nd.events = nd.events || [];
-        nd.events.push({ date: '', title: '', where: '', time: '', note: '', image: '', past: true });
-        this.save(nd);
-      },
+
       photoNote: this.state.photoNote,
       photosAdmin: (d.photos || []).map((p, i) => ({
         srcCss: '"' + p.src + '"',
@@ -1044,8 +954,8 @@ class Component extends DCLogic {
         const cfg = this.state.gh;
         if (!cfg.owner || !cfg.repo || !cfg.token) { this.setState({ photoNote: 'Set the repository and token above first, or paste web addresses below.' }); return; }
         const tooBig = files.filter((f) => f.size > 4 * 1024 * 1024);
-        if (tooBig.length) { this.setState({ photoNote: tooBig.length + ' file(s) over 4MB \u2014 shrink them first.' }); return; }
-        this.setState({ photoNote: 'Uploading ' + files.length + '\u2026' });
+        if (tooBig.length) { this.setState({ photoNote: tooBig.length + ' file(s) over 4MB — shrink them first.' }); return; }
+        this.setState({ photoNote: 'Uploading ' + files.length + '…' });
         Promise.all(files.map((f) => ghUploadImage(cfg, f))).then(
           (paths) => {
             const nd = clone(this.state.data);
@@ -1069,51 +979,6 @@ class Component extends DCLogic {
         ev.target.reset();
         this.setState({ photoNote: 'Added to the album.' });
       },
-      draft: { ...this.state.draft, cover: coverBg(this.state.draft, 0) },
-      lookupQuery: this.state.lookupQuery,
-      lookupLabel: this.state.lookupLabel,
-      lookupNote: this.state.lookupNote,
-      onLookupChange: (ev) => this.setState({ lookupQuery: ev.target.value }),
-      onDraftTitle: this.setDraft('title'),
-      onDraftCover: this.setDraft('coverUrl'),
-      onDraftMeeting: this.setDraft('meeting'),
-      onDraftWhere: this.setDraft('where'),
-      onDraftBlurb: this.setDraft('blurb'),
-      onDraftQuestions: this.setDraft('questions'),
-      onDraftPick: this.setDraft('pick'),
-      makeCurrent: this.state.makeCurrent,
-      onMakeCurrent: (e) => this.setState({ makeCurrent: e.target.checked }),
-      coverNote: this.state.coverNote || 'If Fetch found no art, or found the wrong edition.',
-      onDraftCoverFile: (e) => {
-        const file = e.target.files && e.target.files[0];
-        if (!file) return;
-        const cfg = this.state.gh;
-        if (!cfg.owner || !cfg.repo || !cfg.token) { this.setState({ coverNote: 'Set the repository and token above first, or paste an address.' }); return; }
-        this.setState({ coverNote: 'Uploading\u2026' });
-        ghUploadImage(cfg, file).then(
-          (path) => this.setState((st) => ({ draft: { ...st.draft, coverUrl: path }, coverNote: 'Committed as ' + path + '.' })),
-          (err) => this.setState({ coverNote: err.message })
-        );
-      },
-      onDraftAuthor: this.setDraft('author'),
-      onDraftWhen: this.setDraft('when'),
-      onDraftPages: this.setDraft('pages'),
-      onDraftRating: this.setDraft('rating'),
-      onLookup: () => {
-        this.setState({ lookupLabel: 'Fetching\u2026', lookupNote: '' });
-        lookupBook(this.state.lookupQuery).then(
-          (b) => this.setState((s) => ({
-            draft: { ...s.draft, title: b.title, author: b.author, pages: b.pages, coverUrl: b.coverUrl, blurb: b.blurb || s.draft.blurb },
-            lookupLabel: 'Fetch',
-            lookupNote: [
-              b.coverUrl ? 'Found it' : 'Found it, but no cover art',
-              b.blurb ? 'synopsis pulled in' : 'no synopsis on file \u2014 write your own',
-              'check the details and add.'
-            ].join(' \u2014 ')
-          })),
-          (err) => this.setState({ lookupLabel: 'Fetch', lookupNote: err.message })
-        );
-      },
       nextEvent,
       nextEventLine: [nextEvent.date, nextEvent.where].filter(Boolean).join(' \u00b7 '),
       nextEventWhen: [nextEvent.date, nextEvent.time].filter(Boolean).join(', '),
@@ -1121,15 +986,15 @@ class Component extends DCLogic {
       hasNextEventWhere: !!nextEvent.where,
       hasFeatured: upcoming.length > 0,
       noFeatured: upcoming.length === 0,
-      upcoming, past,
-      shelf: d.shelf.map((b) => ({ ...b, stars: stars(b.rating), rating: Number(b.rating).toFixed(1) })),
+      upcoming,
+      shelf: d.shelf.slice(0, this.state.shelfShown).map((b, i) => ({ ...b, cover: coverBg(b, i), hasCover: !!b.coverUrl, noCover: !b.coverUrl, notes: b.notes || '' })),
+      shelfHasMore: d.shelf.length > this.state.shelfShown,
+      shelfMoreLabel: 'Show ' + Math.min(10, d.shelf.length - this.state.shelfShown) + ' more',
+      onShelfMore: () => this.setState((st) => ({ shelfShown: st.shelfShown + 10 })),
       shelfLine: d.shelf.length + ' books logged',
-      tickerLoop: (() => {
-        const row = d.shelf.slice(0, 12).map((b) => ({ title: b.title, author: b.author, stars: stars(b.rating) }));
-        return row.concat(row);
-      })(),
+
       coverLoop: (() => {
-        const row = d.shelf.slice(0, 14).map((b, i) => ({ ...b, cover: coverBg(b, i) }));
+        const row = d.shelf.slice(0, 14).map((b, i) => ({ ...b, cover: coverBg(b, i), noCover: !b.coverUrl }));
         return row.concat(row.map((b) => ({ ...b })));
       })(),
 
@@ -1137,7 +1002,10 @@ class Component extends DCLogic {
       unlocked: this.state.unlocked,
       authError: this.state.authError,
       exportLabel: this.state.exportLabel,
-      shelfAdmin: d.shelf.map((b, i) => {
+      shelfAdminHasMore: d.shelf.length > this.state.shelfAdminShown,
+      shelfAdminMoreLabel: 'Show ' + Math.min(10, d.shelf.length - this.state.shelfAdminShown) + ' more',
+      onShelfAdminMore: () => this.setState((st) => ({ shelfAdminShown: st.shelfAdminShown + 10 })),
+      shelfAdmin: d.shelf.slice(0, this.state.shelfAdminShown).map((b, i) => {
         const set = (key, cast) => (e) => {
           const nd = clone(d);
           nd.shelf[i][key] = cast ? cast(e.target.value) : e.target.value;
@@ -1145,10 +1013,12 @@ class Component extends DCLogic {
         };
         return {
           when: b.when || '', title: b.title || '', author: b.author || '',
-          rating: b.rating === undefined || b.rating === null ? '' : String(b.rating),
+          notes: b.notes || '',
           coverUrl: b.coverUrl || '',
+          idWhen: 'sh' + i + '-when', idTitle: 'sh' + i + '-title', idAuthor: 'sh' + i + '-author',
+          idCover: 'sh' + i + '-cover', idNotes: 'sh' + i + '-notes',
           onWhen: set('when'), onTitle: set('title'), onAuthor: set('author'),
-          onRating: set('rating'),
+          onNotes: set('notes'),
           onCover: set('coverUrl'),
           remove: () => { const nd = clone(d); nd.shelf.splice(i, 1); this.save(nd); }
         };
@@ -1160,8 +1030,6 @@ class Component extends DCLogic {
             date: e.date || '', title: e.title || '', where: e.where || '', time: e.time || '',
             note: e.note || '', image: e.image || '', imageCss: '"' + (e.image || '') + '"',
             hasImage: !!e.image,
-            list: e.past ? 'Past' : 'Upcoming',
-            moveLabel: e.past ? 'Move to upcoming' : 'Move to past',
             idDate: 'ev-e' + i + '-date', idTitle: 'ev-e' + i + '-title', idWhere: 'ev-e' + i + '-where',
             idTime: 'ev-e' + i + '-time', idNote: 'ev-e' + i + '-note', idImage: 'ev-e' + i + '-image',
             idFile: 'ev-e' + i + '-file',
@@ -1172,14 +1040,13 @@ class Component extends DCLogic {
               if (!file) return;
               const cfg = this.state.gh;
               if (!cfg.owner || !cfg.repo || !cfg.token) { this.setState({ imageNote: 'Set the repository and token above first, or paste a web address instead.' }); return; }
-              if (file.size > 4 * 1024 * 1024) { this.setState({ imageNote: 'That is over 4MB \u2014 shrink it first.' }); return; }
-              this.setState({ imageNote: 'Uploading\u2026' });
+              if (file.size > 4 * 1024 * 1024) { this.setState({ imageNote: 'That is over 4MB — shrink it first.' }); return; }
+              this.setState({ imageNote: 'Uploading…' });
               ghUploadImage(cfg, file).then(
                 (path) => { const nd = clone(this.state.data); nd.events[i].image = path; this.save(nd); this.setState({ imageNote: 'Committed as ' + path + '.' }); },
                 (err) => this.setState({ imageNote: err.message })
               );
             },
-            togglePast: () => { const nd = clone(this.state.data); nd.events[i].past = !nd.events[i].past; this.save(nd); },
             remove: () => { const nd = clone(this.state.data); nd.events.splice(i, 1); this.save(nd); },
             ...(() => {
               const id = (e.date || '') + '|' + (e.title || '');
@@ -1204,7 +1071,7 @@ class Component extends DCLogic {
               return {
                 rsvpCount: list.length,
                 rsvpSummary: list.length
-                  ? going + ' coming, ' + (list.length - going) + ' not \u2014 ' + list.length + ' replied'
+                  ? going + ' coming, ' + (list.length - going) + ' not — ' + list.length + ' replied'
                   : 'Nobody has replied yet',
                 hasRsvps: list.length > 0,
                 attendees: list.map((r, j) => ({
@@ -1237,10 +1104,8 @@ class Component extends DCLogic {
         return {
           all,
           upcoming: d.events.map((e, i) => (e.past ? null : build(e, i))).filter(Boolean),
-          past: d.events.map((e, i) => (e.past ? build(e, i) : null)).filter(Boolean),
           hasUpcoming: d.events.some((e) => !e.past),
-          noUpcoming: !d.events.some((e) => !e.past),
-          hasPast: d.events.some((e) => e.past)
+          noUpcoming: !d.events.some((e) => !e.past)
         };
       })(),
 
@@ -1251,33 +1116,22 @@ class Component extends DCLogic {
         else this.setState({ authError: 'Not that one. Try again.' });
       },
       onLock: () => this.setState({ unlocked: false }),
-      onAddBook: (ev) => {
+      shelfAddNote: this.state.shelfAddNote || 'Newest first — the month decides the order.',
+      onAddShelf: (ev) => {
         ev.preventDefault();
-        const dr = this.state.draft;
-        if (!dr.title.trim()) { this.setState({ lookupNote: 'A title at least.' }); return; }
-        const nd = clone(d);
-        const book = {
-          when: dr.when.trim() || '\u2014', title: dr.title.trim(), author: dr.author.trim(),
-          pages: dr.pages, rating: Number(dr.rating) || 0, coverUrl: dr.coverUrl
-        };
-        nd.shelf.unshift(book);
-        if (this.state.makeCurrent) {
-          const qs = dr.questions.split('\n').map((q) => q.trim()).filter(Boolean);
-          const prev = { ...nd.current };
-          delete prev.cover;
-          nd.current = {
-            ...prev,
-            title: book.title, author: book.author, pages: book.pages, coverUrl: book.coverUrl,
-            meeting: dr.meeting.trim() || nd.current.meeting,
-            where: dr.where.trim() || '',
-            pick: dr.pick.trim(),
-            blurb: dr.blurb.trim() || nd.current.blurb,
-            questions: qs.length ? qs : nd.current.questions
-          };
-        }
+        const f = ev.target;
+        const title = f.title.value.trim();
+        if (!title) { this.setState({ shelfAddNote: 'A title at least.' }); return; }
+        const nd = clone(this.state.data);
+        nd.shelf = nd.shelf || [];
+        nd.shelf.unshift({
+          when: f.when.value.trim(), title, author: f.author.value.trim(),
+          coverUrl: f.coverUrl.value.trim(), notes: f.notes.value.trim()
+        });
+        nd.shelf.sort((x, y) => monthKey(y.when) - monthKey(x.when));
         this.save(nd);
-        ev.target.reset();
-        this.setState({ draft: { ...EMPTY_DRAFT }, lookupQuery: '', lookupNote: 'Added.', makeCurrent: false });
+        f.reset();
+        this.setState({ shelfAddNote: 'Added. Publish to make it public.' });
       },
       gh: this.state.gh,
       publishLabel: this.state.publishLabel,
@@ -1295,7 +1149,7 @@ class Component extends DCLogic {
           this.setState({ publishNote: 'Fill in owner, repository and token first.' });
           return;
         }
-        this.setState({ publishLabel: 'Publishing\u2026', publishNote: '' });
+        this.setState({ publishLabel: 'Publishing…', publishNote: '' });
         ghPublish(cfg, this.state.data).then(
           () => {
             this.published = clone(this.state.data);
@@ -1306,7 +1160,7 @@ class Component extends DCLogic {
       },
       onExport: () => {
         const text = JSON.stringify(this.state.data, null, 2);
-        const done = () => { this.setState({ exportLabel: 'Copied \u2014 paste into data.json' }); setTimeout(() => this.setState({ exportLabel: 'Copy data' }), 2600); };
+        const done = () => { this.setState({ exportLabel: 'Copied — paste into data.json' }); setTimeout(() => this.setState({ exportLabel: 'Copy data' }), 2600); };
         if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, done); else done();
       },
       previewLabel: this.state.previewLabel || 'Save & preview',
@@ -1320,8 +1174,8 @@ class Component extends DCLogic {
         try { localStorage.removeItem(KEY); } catch (e) {}
         this.setState({
           data: Object.assign(clone(DEFAULTS), this.published || {}),
-          dirty: false, curQuestionsText: null,
-          publishNote: 'Draft discarded \u2014 showing the published version again.'
+          dirty: false,
+          publishNote: 'Draft discarded — showing the published version again.'
         });
       },
       onReset: () => {

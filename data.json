@@ -1,129 +1,5 @@
 {
   "heroImage": "",
-  "joinFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdm811_ij3WwN3udwW2wV7WDuZvW825wEommvDI9lduFA5C1Q/viewform?usp=header",
-  "rsvpEndpoint": "",
-  "rsvps": {
-    "05th October 2026|Cambridge Fun": [],
-    "15th October 2026|March meeting — Piranesi": []
-  },
-  "photos": [
-    {
-      "src": "images/club-group.jpeg",
-      "caption": "Literary pub crawl — the Duke of Wellington"
-    },
-    {
-      "src": "images/club-dinner.jpeg",
-      "caption": "Christmas dinner"
-    }
-  ],
-  "current": {
-    "title": "Murder on the Orient Express",
-    "author": "Agatha Christie",
-    "pages": "",
-    "blurb": "While en route from Syria to Paris, in the middle of a freezing winter's night, the Orient Express is stopped dead in its tracks by a snowdrift. Passengers awake to find the train still stranded and to discover that a wealthy American has been brutally stabbed to death in his private compartment. Incredibly, that compartment is locked from the inside. With no escape into the wintery landscape the killer must still be on board.",
-    "meeting": "Sun 28 October",
-    "pick": "",
-    "questions": [
-      "Does the House work better as a place or as a metaphor — and does it matter?",
-      "Piranesi is kind almost to a fault. Is that innocence, or damage?",
-      "Where did the ending leave you: relieved, or a bit bereft?"
-    ],
-    "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1733926500i/853510.jpg",
-    "where": "The Pub"
-  },
-  "shelf": [
-    {
-      "when": "",
-      "title": "Murder on the Orient Express",
-      "author": "Agatha Christie",
-      "pages": "",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1733926500i/853510.jpg",
-      "notes": ""
-    },
-    {
-      "when": "Feb 2027",
-      "title": "Klara and the Sun",
-      "author": "Kazuo Ishiguro",
-      "notes": ""
-    },
-    {
-      "when": "Jan 2027",
-      "title": "Cold Enough for Snow",
-      "author": "Jessica Au",
-      "notes": ""
-    },
-    {
-      "when": "Dec 2026",
-      "title": "A Christmas Memory",
-      "author": "Truman Capote",
-      "notes": ""
-    },
-    {
-      "when": "Dec 2026",
-      "title": "Christmas cheese and Capote",
-      "author": "",
-      "notes": "Jonah’s, Angel",
-      "coverUrl": ""
-    },
-    {
-      "when": "Nov 2026",
-      "title": "The Overstory",
-      "author": "Richard Powers",
-      "notes": ""
-    },
-    {
-      "when": "Oct 2026",
-      "title": "Dept. of Speculation",
-      "author": "Jenny Offill",
-      "notes": ""
-    },
-    {
-      "when": "Sep 2026",
-      "title": "Concrete: A Life",
-      "author": "Rachel Adler",
-      "notes": ""
-    },
-    {
-      "when": "Aug 2026",
-      "title": "The Remains of the Day",
-      "author": "Kazuo Ishiguro",
-      "notes": ""
-    },
-    {
-      "when": "Jul 2026",
-      "title": "H is for Hawk",
-      "author": "Helen Macdonald",
-      "notes": ""
-    }
-  ],
-  "events": [
-    {
-      "date": "05th October 2026",
-      "title": "Cambridge Fun",
-      "where": "Cambridge",
-      "time": "2pm",
-      "note": "The Big Smug Read 2026 - 'Midnight's Children' by Salman Rushdie\n\nMonday, Sep 14 · 7:30 PM to 9:30 PM BST",
-      "past": false,
-      "image": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1673724335i/14836.jpg"
-    },
-    {
-      "date": "15th October 2026",
-      "title": "March meeting — Piranesi",
-      "where": "Ruth’s, Canonbury",
-      "time": "4pm",
-      "note": "September Meeting & Author Q&A 'I'm Not The Only Murderer In My Retirement Home'",
-      "past": false,
-      "image": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1750474747i/234352462.jpg"
-    },
-    {
-      "date": "11 Apr 2027",
-      "title": "Bookshop crawl",
-      "where": "Charing Cross Road",
-      "time": "From noon",
-      "note": "Four shops, one pub, a strict twenty-pound ceiling that nobody observes.",
-      "past": false
-    }
-  ],
   "poll": {
     "month": "April’s book",
     "closes": "Saturday 24 April",
@@ -157,26 +33,103 @@
         "by": "Jonah",
         "pitch": "A woman stops eating meat and the world around her comes apart. We will not agree about it, which is the point."
       }
-    ],
-    "votes": [
-      {
-        "name": "Fran",
-        "choice": 0,
-        "title": "The Rings of Saturn",
-        "at": "2026-09-10T14:36:57.774Z"
-      },
-      {
-        "name": "Testy",
-        "choice": 2,
-        "title": "Small Things Like These",
-        "at": "2026-09-10T00:00:00Z"
-      }
     ]
   },
-  "gh": {
-    "owner": "islingtonbookclub",
-    "repo": "islingtonbookclub",
-    "branch": "main",
-    "path": "data.json"
-  }
+  "current": {
+    "title": "Piranesi",
+    "author": "Susanna Clarke",
+    "pages": 245,
+    "blurb": "A man lives alone in a house of endless halls and tidal seas, keeping careful notes on the statues and the birds. It is a puzzle, but the pleasure of it is the voice — patient, decent, entirely unbothered by the fact that his world makes no sense. Bring your theories; we will disagree warmly.",
+    "meeting": "Sun 29 March",
+    "pick": "Chosen by vote, 14–2–1–1",
+    "questions": [
+      "Does the House work better as a place or as a metaphor — and does it matter?",
+      "Piranesi is kind almost to a fault. Is that innocence, or damage?",
+      "Where did the ending leave you: relieved, or a bit bereft?"
+    ]
+  },
+  "shelf": [
+    {
+      "when": "Feb 2027",
+      "title": "Klara and the Sun",
+      "author": "Kazuo Ishiguro",
+      "coverUrl": "",
+      "notes": "Priya’s, Barnsbury. Split the room — half moved by the ending, half unconvinced Klara was ever really looking."
+    },
+    {
+      "when": "Jan 2027",
+      "title": "Cold Enough for Snow",
+      "author": "Jessica Au",
+      "coverUrl": "",
+      "notes": "The Alma, back room. Short enough that everyone finished it."
+    },
+    {
+      "when": "Dec 2026",
+      "title": "A Christmas Memory",
+      "author": "Truman Capote",
+      "coverUrl": "",
+      "notes": "Jonah’s, Angel. Christmas cheese; read the last pages aloud."
+    },
+    {
+      "when": "Nov 2026",
+      "title": "The Overstory",
+      "author": "Richard Powers",
+      "coverUrl": "",
+      "notes": "Ruth’s, Canonbury. Long. Two people skipped to the trees."
+    },
+    {
+      "when": "Oct 2026",
+      "title": "Dept. of Speculation",
+      "author": "Jenny Offill",
+      "coverUrl": "",
+      "notes": "Argued about whether the fragments earn their whiteness. They do."
+    },
+    {
+      "when": "Sep 2026",
+      "title": "Concrete: A Life",
+      "author": "Rachel Adler",
+      "coverUrl": "",
+      "notes": "Nobody’s favourite, but a good night."
+    },
+    {
+      "when": "Aug 2026",
+      "title": "The Remains of the Day",
+      "author": "Kazuo Ishiguro",
+      "coverUrl": "",
+      "notes": "The high point of the year so far — unanimous."
+    },
+    {
+      "when": "Jul 2026",
+      "title": "H is for Hawk",
+      "author": "Helen Macdonald",
+      "coverUrl": "",
+      "notes": "Summer outing; read half of it in the park."
+    }
+  ],
+  "events": [
+    {
+      "date": "29 Mar 2027",
+      "title": "March meeting — Piranesi",
+      "where": "Ruth’s, Canonbury",
+      "time": "4pm",
+      "note": "Soup, because it is still March. Bring a passage you marked and one thing that annoyed you.",
+      "past": false
+    },
+    {
+      "date": "11 Apr 2027",
+      "title": "Bookshop crawl",
+      "where": "Charing Cross Road",
+      "time": "From noon",
+      "note": "Four shops, one pub, a strict twenty-pound ceiling that nobody observes.",
+      "past": false
+    },
+    {
+      "date": "26 Apr 2027",
+      "title": "April meeting — winner of the vote",
+      "where": "Marek’s, Highbury",
+      "time": "4pm",
+      "note": "Whichever of the four nominees takes it. Marek has promised the good coffee.",
+      "past": false
+    }
+  ]
 }

@@ -7,14 +7,21 @@
  *   Who has access: Anyone
  * Copy the /exec address into Housekeeping → RSVP server.
  *
- * Each event gets its OWN TAB in the spreadsheet, named after the event.
+ * Each event gets its OWN TAB in the spreadsheet, named exactly what you typed
+ * as the event's Title in Housekeeping.
  * Two columns per tab: Name | Attending (Yes/No).
  * Answering again replaces that person's earlier row.
  */
 
-/** Google limits tab names to 100 chars and forbids : \ / ? * [ ] */
+/**
+ * The tab is named after the event TITLE exactly as it is typed in
+ * Housekeeping. The site sends "date|title", so everything before the first
+ * bar is dropped. Google limits tab names to 100 chars and forbids : \ / ? * [ ]
+ */
 function tabName_(eventId) {
-  var name = String(eventId || 'Event').replace(/\|/g, ' — ').replace(/[:\\\/\?\*\[\]]/g, '-').trim();
+  var raw = String(eventId || '');
+  var bar = raw.indexOf('|');
+  var name = (bar === -1 ? raw : raw.substring(bar + 1)).replace(/[:\\\/\?\*\[\]]/g, '-').trim();
   if (!name) name = 'Event';
   return name.substring(0, 99);
 }
