@@ -1,40 +1,18 @@
 {
   "heroImage": "",
-  "poll": {
-    "month": "April’s book",
-    "closes": "Saturday 24 April",
-    "url": "https://strawpoll.com/example-islington-book-club",
-    "nominees": [
-      {
-        "title": "The Rings of Saturn",
-        "author": "W. G. Sebald",
-        "pages": 296,
-        "by": "Marek",
-        "pitch": "A walk along the Suffolk coast that keeps falling through the floor into history. Slow, and then suddenly enormous."
-      },
-      {
-        "title": "Cold Enough for Snow",
-        "author": "Jessica Au",
-        "pages": 112,
-        "by": "Priya",
-        "pitch": "A mother and daughter in Tokyo, saying almost nothing. Short enough that even Tom will finish it."
-      },
-      {
-        "title": "Small Things Like These",
-        "author": "Claire Keegan",
-        "pages": 128,
-        "by": "Ruth",
-        "pitch": "A coal merchant in 1985 Ireland notices something he could choose not to notice. Perfect for December weather in April."
-      },
-      {
-        "title": "The Vegetarian",
-        "author": "Han Kang",
-        "pages": 188,
-        "by": "Jonah",
-        "pitch": "A woman stops eating meat and the world around her comes apart. We will not agree about it, which is the point."
-      }
-    ]
-  },
+  "joinFormUrl": "",
+  "rsvpEndpoint": "",
+  "rsvps": {},
+  "photos": [
+    {
+      "src": "images/club-group.jpeg",
+      "caption": "Literary pub crawl — the Duke of Wellington"
+    },
+    {
+      "src": "images/club-dinner.jpeg",
+      "caption": "Christmas dinner"
+    }
+  ],
   "current": {
     "title": "Piranesi",
     "author": "Susanna Clarke",
@@ -131,5 +109,47 @@
       "note": "Whichever of the four nominees takes it. Marek has promised the good coffee.",
       "past": false
     }
-  ]
+  ],
+  "poll": {
+    "month": "April’s book",
+    "closes": "Saturday 24 April",
+    "url": "https://strawpoll.com/example-islington-book-club",
+    "nominees": [
+      {
+        "title": "The Rings of Saturn",
+        "author": "W. G. Sebald",
+        "pages": 296,
+        "by": "Marek",
+        "pitch": "A walk along the Suffolk coast that keeps falling through the floor into history. Slow, and then suddenly enormous."
+      },
+      {
+        "title": "Cold Enough for Snow",
+        "author": "Jessica Au",
+        "pages": 112,
+        "by": "Priya",
+        "pitch": "A mother and daughter in Tokyo, saying almost nothing. Short enough that even Tom will finish it."
+      },
+      {
+        "title": "Small Things Like These",
+        "author": "Claire Keegan",
+        "pages": 128,
+        "by": "Ruth",
+        "pitch": "A coal merchant in 1985 Ireland notices something he could choose not to notice. Perfect for December weather in April."
+      },
+      {
+        "title": "The Vegetarian",
+        "author": "Han Kang",
+        "pages": 188,
+        "by": "Jonah",
+        "pitch": "A woman stops eating meat and the world around her comes apart. We will not agree about it, which is the point."
+      }
+    ]
+  },
+  "shelfClean": true,
+  "gh": {
+    "owner": "islingtonbookclub",
+    "repo": "islingtonbookclub",
+    "branch": "main",
+    "path": "data.json"
+  }
 }
