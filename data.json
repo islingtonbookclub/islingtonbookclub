@@ -1,101 +1,73 @@
 {
   "heroImage": "",
-  "poll": {
-    "month": "April’s book",
-    "closes": "Saturday 24 April",
-    "url": "https://strawpoll.com/example-islington-book-club",
-    "nominees": [
-      {
-        "title": "The Rings of Saturn",
-        "author": "W. G. Sebald",
-        "pages": 296,
-        "by": "Marek",
-        "pitch": "A walk along the Suffolk coast that keeps falling through the floor into history. Slow, and then suddenly enormous."
-      },
-      {
-        "title": "Cold Enough for Snow",
-        "author": "Jessica Au",
-        "pages": 112,
-        "by": "Priya",
-        "pitch": "A mother and daughter in Tokyo, saying almost nothing. Short enough that even Tom will finish it."
-      },
-      {
-        "title": "Small Things Like These",
-        "author": "Claire Keegan",
-        "pages": 128,
-        "by": "Ruth",
-        "pitch": "A coal merchant in 1985 Ireland notices something he could choose not to notice. Perfect for December weather in April."
-      },
-      {
-        "title": "The Vegetarian",
-        "author": "Han Kang",
-        "pages": 188,
-        "by": "Jonah",
-        "pitch": "A woman stops eating meat and the world around her comes apart. We will not agree about it, which is the point."
-      }
-    ]
-  },
+  "joinFormUrl": "",
+  "rsvpEndpoint": "",
+  "rsvps": {},
+  "photos": [
+    {
+      "src": "images/club-group.jpeg",
+      "caption": "Literary pub crawl — the Duke of Wellington"
+    },
+    {
+      "src": "images/club-dinner.jpeg",
+      "caption": "Christmas dinner"
+    }
+  ],
   "current": {
-    "title": "Piranesi",
-    "author": "Susanna Clarke",
-    "pages": 245,
+    "title": "Yellowface",
+    "author": "R. F. Kuang",
+    "pages": "",
     "blurb": "A man lives alone in a house of endless halls and tidal seas, keeping careful notes on the statues and the birds. It is a puzzle, but the pleasure of it is the voice — patient, decent, entirely unbothered by the fact that his world makes no sense. Bring your theories; we will disagree warmly.",
-    "meeting": "Sun 29 March",
-    "pick": "Chosen by vote, 14–2–1–1",
+    "meeting": "Sept 2026",
+    "pick": "",
     "questions": [
       "Does the House work better as a place or as a metaphor — and does it matter?",
       "Piranesi is kind almost to a fault. Is that innocence, or damage?",
       "Where did the ending leave you: relieved, or a bit bereft?"
-    ]
+    ],
+    "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1733926500i/853510.jpg",
+    "where": ""
   },
   "shelf": [
     {
-      "when": "Feb 2027",
-      "title": "Klara and the Sun",
-      "author": "Kazuo Ishiguro",
-      "rating": 3.8
+      "when": "—",
+      "title": "Yellowface",
+      "author": "R. F. Kuang",
+      "pages": "",
+      "rating": 0,
+      "coverUrl": "https://covers.openlibrary.org/b/id/13195421-L.jpg"
     },
     {
-      "when": "Jan 2027",
-      "title": "Cold Enough for Snow",
-      "author": "Jessica Au",
-      "rating": 4.1
+      "when": "—",
+      "title": "The Lady in the Lake",
+      "author": "Raymond Chandler",
+      "pages": "",
+      "rating": 0,
+      "coverUrl": "https://covers.openlibrary.org/b/id/254507-L.jpg"
     },
     {
-      "when": "Dec 2026",
-      "title": "A Christmas Memory",
-      "author": "Truman Capote",
-      "rating": 4.6
+      "when": "June",
+      "title": "The Big Sleep",
+      "author": "Raymond Chandler",
+      "pages": "",
+      "rating": 0,
+      "coverUrl": "https://covers.openlibrary.org/b/id/7268475-L.jpg"
     },
     {
-      "when": "Nov 2026",
-      "title": "The Overstory",
-      "author": "Richard Powers",
-      "rating": 3.4
+      "when": "May 2026",
+      "title": "Beneath the surface",
+      "author": "Jo Spain",
+      "pages": "",
+      "rating": 0,
+      "coverUrl": "https://covers.openlibrary.org/b/id/10209928-L.jpg"
     },
     {
-      "when": "Oct 2026",
-      "title": "Dept. of Speculation",
-      "author": "Jenny Offill",
-      "rating": 4.3
-    },
-    {
-      "when": "Sep 2026",
-      "title": "Concrete: A Life",
-      "author": "Rachel Adler",
-      "rating": 2.9
-    },
-    {
-      "when": "Aug 2026",
-      "title": "The Remains of the Day",
-      "author": "Kazuo Ishiguro",
-      "rating": 4.7
-    },
-    {
-      "when": "Jul 2026",
-      "title": "H is for Hawk",
-      "author": "Helen Macdonald",
-      "rating": 4.2
+      "when": "Apr 2026",
+      "title": "James",
+      "author": "Percival L. Everett",
+      "pages": "",
+      "rating": 0,
+      "coverUrl": "https://covers.openlibrary.org/b/id/15094964-L.jpg"
     }
   ],
   "events": [
@@ -151,5 +123,40 @@
       "time": "4pm",
       "past": true
     }
-  ]
+  ],
+  "poll": {
+    "month": "April’s book",
+    "closes": "Saturday 24 April",
+    "url": "https://strawpoll.com/example-islington-book-club",
+    "nominees": [
+      {
+        "title": "The Rings of Saturn",
+        "author": "W. G. Sebald",
+        "pages": 296,
+        "by": "Marek",
+        "pitch": "A walk along the Suffolk coast that keeps falling through the floor into history. Slow, and then suddenly enormous."
+      },
+      {
+        "title": "Cold Enough for Snow",
+        "author": "Jessica Au",
+        "pages": 112,
+        "by": "Priya",
+        "pitch": "A mother and daughter in Tokyo, saying almost nothing. Short enough that even Tom will finish it."
+      },
+      {
+        "title": "Small Things Like These",
+        "author": "Claire Keegan",
+        "pages": 128,
+        "by": "Ruth",
+        "pitch": "A coal merchant in 1985 Ireland notices something he could choose not to notice. Perfect for December weather in April."
+      },
+      {
+        "title": "The Vegetarian",
+        "author": "Han Kang",
+        "pages": 188,
+        "by": "Jonah",
+        "pitch": "A woman stops eating meat and the world around her comes apart. We will not agree about it, which is the point."
+      }
+    ]
+  }
 }
