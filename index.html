@@ -3,15 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Islington Book Club</title>
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="icon" href="favicon.png" sizes="512x512">
 <link rel="apple-touch-icon" href="favicon-180.png">
 <link rel="stylesheet" href="ds/styles.css">
-<meta http-equiv="refresh" content="0; url=./Islington%20Book%20Club.dc.html">
-<style>body{display:grid;place-items:center;min-height:100vh;margin:0;background:var(--color-bg)}</style>
+<meta http-equiv="refresh" content="3; url=./Islington%20Book%20Club.dc.html">
+<style>body { display: grid; place-items: center; min-height: 100vh; margin: 0; background: var(--color-bg); }</style>
 </head>
 <body>
-<p style="font-family:var(--font-heading);font-size:22px">Islington Book Club &mdash; <a href="./Islington%20Book%20Club.dc.html">enter</a></p>
+<p style="font-family: var(--font-heading); font-size: 22px;">Islington Book Club &mdash; <a id="go" href="./Islington%20Book%20Club.dc.html">enter</a></p>
+<script>
+// Read the publish stamp first, then send the phone to a URL it has never
+// cached. The meta refresh above is the fallback if this fetch fails.
+(function () {
+  var base = "./Islington%20Book%20Club.dc.html";
+  function go(v) {
+    var url = base.indexOf('#') > -1
+      ? base.replace('#', '?v=' + encodeURIComponent(v) + '#')
+      : base + '?v=' + encodeURIComponent(v);
+    document.getElementById('go').href = url;
+    location.replace(url);
+  }
+  var t = setTimeout(function () { go(Date.now()); }, 2000);
+  fetch('data.json?v=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) { clearTimeout(t); go((d && d.updated) || Date.now()); })
+    .catch(function () { clearTimeout(t); go(Date.now()); });
+})();
+</script>
 </body>
 </html>

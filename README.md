@@ -58,6 +58,10 @@ The Gallery also has a personal scratchpad of drop-frames at the bottom. Those l
 2. Press **Publish to GitHub**. That writes `data.json`; Pages redeploys in about a minute.
 3. No token to hand? **Copy data** puts the same JSON on the clipboard — paste it over `data.json` in the GitHub web editor and commit. Same outcome.
 
+### Phones holding onto an old copy
+
+GitHub Pages tells browsers to cache the page, and phones take that to heart. Publishing now stamps `data.json` with an `updated` timestamp, `index.html` reads that stamp before it forwards you on, and the site reloads itself once against a fresh URL whenever the stamp has moved since that browser last looked. So a phone picks up new content on its next visit without clearing anything. If one ever does get stuck, opening the site from `index.html` (the bare site URL, not a bookmarked deep link) is the reliable nudge.
+
 The badge at the top of the admin panel says whether this browser holds unpublished changes. "Discard local changes" at the foot throws them away and reloads the published file.
 
 ## What this design cannot do
@@ -66,6 +70,12 @@ The badge at the top of the admin panel says whether this browser holds unpublis
 - **Members cannot add anything.** Only someone with the passphrase and a token can write.
 - **The token is stored in this browser.** Housekeeping keeps the repository details and the token in local storage so you do not retype them. It is protected by the passphrase and nothing else — use a fine-grained token scoped to this one repository, and press **Forget token on this device** on a shared computer.
 - **Gallery photos are per-browser.** Dropped images live in your browser only. For published photos, commit image files and replace the `<image-slot>` elements with `<img>`.
+
+## RSVPs
+
+`rsvp-tally.gs` goes into the Google Sheet (Extensions → Apps Script), deployed as a web app with **Execute as: Me** and **Who has access: Anyone**. Paste the `/exec` address into Housekeeping → RSVP server. Each event gets its own tab, named exactly what you typed as the event Title.
+
+The sheet is the record, not the browser: the site asks it about every upcoming event on load and again whenever you come back to the tab, so a reply made on a phone shows on a laptop. Two things to watch — after editing the script you must **Deploy → Manage deployments → edit → Deploy** again (a saved-but-undeployed change does nothing), and renaming an event Title starts a new, empty tab.
 
 ## The pages
 

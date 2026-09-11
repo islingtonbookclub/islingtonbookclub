@@ -1,18 +1,5 @@
 {
   "heroImage": "",
-  "joinFormUrl": "",
-  "rsvpEndpoint": "https://script.google.com/macros/s/AKfycbwM6YhqtLeIzA3H5f8JxNVx_igdHTXuh-Ertfe08dBREVfZ1HiAhOIammLXZjqsf3NGSg/exec",
-  "rsvps": {},
-  "photos": [
-    {
-      "src": "images/club-group.jpeg",
-      "caption": "Literary pub crawl — the Duke of Wellington"
-    },
-    {
-      "src": "images/club-dinner.jpeg",
-      "caption": "Christmas dinner"
-    }
-  ],
   "current": {
     "title": "Piranesi",
     "author": "Susanna Clarke",
@@ -28,13 +15,13 @@
   },
   "events": [
     {
-      "date": "10 October 2-26",
-      "title": "James James",
-      "author": "Percival Everett",
-      "coverUrl": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1704107491i/173754979.jpg",
+      "date": "29 Mar 2027",
+      "title": "March meeting — Piranesi",
+      "author": "",
+      "coverUrl": "",
       "where": "Ruth’s, Canonbury",
       "time": "4pm",
-      "note": "When Jim overhears that he is about to be sold to a man in New Orleans, separated from his wife and daughter forever, he runs away until he can formulate a plan. Meanwhile, Huck has faked his own death to escape his violent father. As all readers of American literature know, thus begins the dangerous and transcendent journey by raft down the Mississippi River toward the elusive and unreliable promise of the Free States and beyond.",
+      "note": "Soup, because it is still March. Bring a passage you marked and one thing that annoyed you.",
       "past": false
     },
     {
@@ -138,10 +125,5 @@
       "past": true
     }
   ],
-  "gh": {
-    "owner": "islingtonbookclub",
-    "repo": "islingtonbookclub",
-    "branch": "main",
-    "path": "data.json"
-  }
+  "updated": "2026-09-11T14:11:31.887Z"
 }

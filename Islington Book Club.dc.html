@@ -556,6 +556,7 @@ const MEMBER_KEY = 'ibc-member-v1';
 const RSVP_KEY = 'ibc-rsvp-v1';
 const KEY = 'ibc-site-data-v1';
 const GH_KEY = 'ibc-gh-settings-v1';
+const CACHE_KEY = 'ibc-cache-stamp-v1';
 const GH_DEFAULTS = { owner: '', repo: '', branch: 'main', path: 'data.json', token: '' };
 
 function clone(o) { return JSON.parse(JSON.stringify(o)); }
@@ -768,13 +769,31 @@ class Component extends DCLogic {
     };
     this.onResize();
     window.addEventListener('resize', this.onResize);
+    this.onWake = () => { if (!document.hidden) this.fetchRsvps(); };
+    document.addEventListener('visibilitychange', this.onWake);
     // Published content lives in data.json (committed to the repo). A local
     // draft in this browser, if any, wins until the admin resets it.
-    fetch('./data.json', { cache: 'no-store' })
+    fetch('./data.json?v=' + Date.now(), { cache: 'no-store' })
       .then((r) => (r.ok ? r.json() : null))
       .then((published) => {
         if (!published) return;
         this.published = published;
+        // Phones hold onto the page itself long after data.json has moved on.
+        // Every publish stamps data.json with a fresh `updated`; if that stamp
+        // has changed since this browser last loaded, reload once against a
+        // new URL so the HTML and its assets come from the network.
+        try {
+          const stamp = String(published.updated || '');
+          if (stamp && localStorage.getItem(CACHE_KEY) !== stamp) {
+            localStorage.setItem(CACHE_KEY, stamp);
+            const url = new URL(location.href);
+            if (url.searchParams.get('v') !== stamp) {
+              url.searchParams.set('v', stamp);
+              location.replace(url.toString());
+              return;
+            }
+          }
+        } catch (e) {}
         let local = null;
         try { local = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
         const merged = mergeData(Object.assign(clone(DEFAULTS), published, local || {}), published);
@@ -801,19 +820,34 @@ class Component extends DCLogic {
     if (hash) this.setState({ page: hash });
   }
 
-  componentWillUnmount() { window.removeEventListener('resize', this.onResize); }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    document.removeEventListener('visibilitychange', this.onWake);
+  }
 
+  // The sheet is the truth for RSVPs: ask it about every upcoming event, not
+  // just the next one, and key the answers by the same date|title the form
+  // posts. Anything the server answers for wins over this browser's own copy,
+  // which is why a reply made on a phone now shows up on a laptop.
   fetchRsvps(data) {
     const d = data || this.state.data;
     if (!d.rsvpEndpoint) return;
-    const f = (d.events || []).filter((e) => !e.past)[0];
-    if (!f) return;
-    const id = f.date + '|' + f.title;
+    const upcoming = (d.events || []).filter((e) => !e.past);
+    if (!upcoming.length) return;
     const sep = d.rsvpEndpoint.indexOf('?') === -1 ? '?' : '&';
-    fetch(d.rsvpEndpoint + sep + 'event=' + encodeURIComponent(id))
-      .then((r) => r.json())
-      .then((j) => { if (j && j.rsvps) this.setState({ rsvps: j.rsvps }); })
-      .catch(() => {});
+    const stamp = Date.now();
+    Promise.all(upcoming.map((e) => {
+      const id = (e.date || '') + '|' + (e.title || '');
+      const url = d.rsvpEndpoint + sep + 'event=' + encodeURIComponent(id) + '&t=' + stamp;
+      return fetch(url, { cache: 'no-store' })
+        .then((r) => r.json())
+        .then((j) => [id, j && Array.isArray(j.rsvps) ? j.rsvps : null])
+        .catch(() => [id, null]);
+    })).then((pairs) => {
+      const live = {};
+      pairs.forEach(([id, list]) => { if (list) live[id] = list; });
+      if (Object.keys(live).length) this.setState((st) => ({ rsvps: { ...(st.rsvps || {}), ...live } }));
+    });
   }
 
   save(data) {
@@ -873,7 +907,7 @@ class Component extends DCLogic {
       upcomingCards: (d.events || []).map((e, idx) => ({ e, idx })).filter((x) => !x.e.past).map(({ e, idx }) => {
         const id = e.date + '|' + e.title;
         const all = this.state.rsvps || {};
-        const list = all[id] || (d.rsvps || {})[id] || [];
+        const list = all[id] !== undefined ? all[id] : ((d.rsvps || {})[id] || []);
         const going = list.filter((r) => r.coming);
         const notGoing = list.filter((r) => !r.coming);
         const mine = this.state.myRsvps && this.state.myRsvps[id];
@@ -1068,7 +1102,7 @@ class Component extends DCLogic {
             ...(() => {
               const id = (e.date || '') + '|' + (e.title || '');
               const all = this.state.rsvps || {};
-              const list = all[id] || (d.rsvps || {})[id] || [];
+              const list = all[id] !== undefined ? all[id] : ((d.rsvps || {})[id] || []);
               const push = (next, note) => {
                 const nd = clone(this.state.data);
                 nd.rsvps = nd.rsvps || {};
@@ -1176,9 +1210,13 @@ class Component extends DCLogic {
           return;
         }
         this.setState({ publishLabel: 'Publishing…', publishNote: '' });
-        ghPublish(cfg, this.state.data).then(
+        // The stamp is what tells every other browser its cached copy is stale.
+        const stamped = Object.assign(clone(this.state.data), { updated: new Date().toISOString() });
+        try { localStorage.setItem(CACHE_KEY, stamped.updated); } catch (e) {}
+        this.save(stamped);
+        ghPublish(cfg, stamped).then(
           () => {
-            this.published = clone(this.state.data);
+            this.published = clone(stamped);
             this.setState({ publishLabel: 'Publish to GitHub', dirty: false, publishNote: 'Committed. The live site updates in about a minute.' });
           },
           (err) => this.setState({ publishLabel: 'Publish to GitHub', publishNote: err.message })
